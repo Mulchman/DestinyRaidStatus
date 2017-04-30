@@ -39,13 +39,17 @@ module.exports = function(grunt) {
           'views/*.html',
           'scss/*.scss'
         ],
-        tasks: ['css']
+        tasks: ['css'],
+        options: {
+          atBegin: true
+        }
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('css', ['sass', 'postcss']);
 };

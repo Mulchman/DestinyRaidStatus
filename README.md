@@ -11,3 +11,8 @@ Install dependencies:
 * Install [NodeJS].
 * Navigate to app directory `cd app`
 * Run `npm install`
+
+Generate CSS:
+
+* Navigate to app directory `cd app`
+* Run `grunt css`
