@@ -3,6 +3,10 @@
 
   angular
     .module("drsApp", [
+      "ngAnimate",
+      "ngAria",
+      "ngMaterial",
+      "ngMessages",
       "ngRoute"
     ])
     .config(function($routeProvider) {

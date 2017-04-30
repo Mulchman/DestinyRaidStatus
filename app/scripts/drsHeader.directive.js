@@ -19,6 +19,9 @@
   }
 
   function HeaderCtrl() {
+    var vm = this;
+
+    vm.ps4 = true;
 
   }
 })();

@@ -3,3 +3,4 @@ dist/
 .settings/
 .idea/
 node_modules/
+app/main.css.map

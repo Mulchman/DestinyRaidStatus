@@ -1,7 +1,9 @@
-<div>
+<div class="header">
   <h1>Destiny Raid Status</h1>
 
   <span>
-    <input type="text" placeholder="PSN or XB1"> Gamertag <input type="text"> <input type="submit">
+    <md-switch ng-model="vm.ps4" ng-true-value="'PS4'" ng-false-value="'XB1'" aria-label="Platform Switch">{{vm.ps4}}</md-switch>
+    <input type="text" placeholder="Gamertag">
+    <input type="submit">
   </span>
 </div>

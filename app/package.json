@@ -19,17 +19,22 @@
     "url": "https://github.com/Mulchman/DestinyRaidStatus/issues"
   },
   "homepage": "https://github.com/Mulchman/DestinyRaidStatus",
-  "browserslist": [
-    "n/a"
-  ],
   "devDependencies": {
+    "autoprefixer": "^6.3.7",
     "bower": "^1.7.9",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
-    "load-grunt-tasks": "^3.5.0"
+    "grunt-postcss": "^0.8.0",
+    "grunt-sass": "^1.2.0",
+    "load-grunt-tasks": "^3.5.0",
+    "node-sass": "^4.5.0"
   },
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-animate": "^1.6.4",
+    "angular-aria": "^1.6.4",
+    "angular-material": "^1.1.4",
+    "angular-messages": "^1.6.4",
     "angular-route": "^1.6.4",
     "jquery": "^3.1.1",
     "underscore": "^1.8.3"
