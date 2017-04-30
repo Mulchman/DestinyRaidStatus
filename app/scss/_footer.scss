@@ -1,0 +1,12 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+}

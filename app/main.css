@@ -16,6 +16,36 @@
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around; }
-  .header md-switch {
-    display: inline; }
+  .header span {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .header span md-switch {
+      display: inline; }
+    .header span #gamer-tag {
+      margin-left: 1em;
+      margin-right: 1em; }
+
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .footer span {
+    margin-left: 1em;
+    margin-right: 1em; }
 /*# sourceMappingURL=main.css.map */

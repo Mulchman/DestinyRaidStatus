@@ -20,6 +20,6 @@
 
   function HeaderCtrl() {
     var vm = this;
-    vm.ps4 = true;
+    vm.ps4 = "PS4";
   }
 })();

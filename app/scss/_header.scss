@@ -5,7 +5,17 @@
   align-items: center;
   justify-content: space-around;
 
-  md-switch {
-    display: inline;
+  span {
+    display: flex;
+    align-items: center;
+
+    md-switch {
+      display: inline;
+    }
+
+    #gamer-tag {
+      margin-left: 1em;
+      margin-right: 1em;
+    }
   }
 }
