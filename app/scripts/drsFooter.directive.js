@@ -18,6 +18,6 @@
   }
 
   function FooterCtrl() {
-    let me = this;
+    let vm = this;
   }
 })();
