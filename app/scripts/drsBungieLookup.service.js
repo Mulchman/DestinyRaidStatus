@@ -12,8 +12,14 @@
       'XB1': 1
     };
 
-
+    // Find membershipId from this URL. Is there a better way?
     // http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/{membershipType}/{displayName}/
+
+    // Find character Ids through
+    // http://www.bungie.net/Platform/Destiny/{membershipType}/Account/{destinyMembershipId}/Summary/
+
+    // Find raid completions through
+    // http://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/{membershipType}/{destinyMembershipId}/{characterId}/
 
     const service = {
       enqueue: enqueue
@@ -21,20 +27,90 @@
     return service;
 
     function enqueue(entry) {
-      const url = 'http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/' + membership[entry.platform] + '/' + entry.gamertag + '/';
-      console.log("[drs] url: %o", url);
+      let data = {
+        gamertag: entry.gamertag,
+        membership: membership[entry.platform],
+        membershipId: null,
+        characters: null
+      };
 
-      getMembershipId(url)
-        .then(function success(membershipId) {
-          console.log("[drs] membershipId: %o", membershipId);
-        }, function failure(response) {
-          console.log("[drs] response: %o", response);
+      getMembershipId(data)
+        .then(getCharacters)
+        .then(function() {
+          let promises = [
+            getActivities(data)
+          ];
+          return $q.all(promises).then(function(data) {
+
+            // TODO: need the 390 hashes
+            const raids = [
+              // Kings Fall- nm/hm/390
+              1733556769, 3534581229,
+              // Vault of Glass- nm/hm/390
+              2659248071, 2659248068,
+              // Crota's End- nm/hm/390
+              1836893116, 1836893119,
+              // Wrath of the Machine- nm/hm/390
+              260765522, 1387993552
+            ];
+
+            const onlyRaidActivities = _.reject(_.flatten(data[0]), function(activity) {
+              return !_.contains(raids, activity.activityHash);
+            });
+
+            raids.forEach(function(raidHash) {
+              entry.bungie[raidHash] = 0;
+              onlyRaidActivities.forEach(function(activity) {
+                if (activity.activityHash === raidHash) {
+                  entry.bungie[raidHash] += activity.values.activityCompletions.basic.value;
+                }
+              });
+            });
+            entry.loading = false;
+
+            return $q.resolve(data[0]);
+          });
+        })
+        .catch(function(error) {
+          entry.bungie = "Error loading user.";
+          entry.loading = false;
         });
-
-
     }
 
-    function getMembershipId(url) {
+    function getActivities(data) {
+      let promises = data.characters.map(function(character) {
+        return $q.when(getAggregateActivityStats(data.membership, data.membershipId, character.characterBase.characterId))
+          .then($http)
+          .then(handleErrors, handleErrors)
+          .then(function(response) {
+            return response.data.Response.data.activities;
+          });
+      });
+
+      function getAggregateActivityStats(membership, membershipId, characterId) {
+        const url = getAggregateActivityStatsUrl(membership, membershipId, characterId);
+        return {
+          method: 'GET',
+          url: url,
+          headers: {
+            'X-API-Key': apiKey
+          }
+        };
+      }
+
+      function getAggregateActivityStatsUrl(membership, membershipId, characterId) {
+        return 'http://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/' + membership + '/' + membershipId + '/' + characterId + '/';
+      }
+
+      return $q.all(promises);
+    }
+
+    function getCharacters(data) {
+      function getAccountSummaryUrl() {
+        return 'http://www.bungie.net/Platform/Destiny/' + data.membership + '/Account/' + data.membershipId + '/Summary/';
+      }
+
+      const url = getAccountSummaryUrl();
       return $q.when({
         method: 'GET',
         url: url,
@@ -45,12 +121,38 @@
         .then($http)
         .then(handleErrors, handleErrors)
         .then(function(response) {
-          return response.data.Response[0].membershipId;
+          data.characters = response.data.Response.data.characters;
+          return data;
+        });
+    }
+
+    function getMembershipId(data) {
+      function getSearchDestinyPlayerUrl() {
+        return 'http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/' + data.membership + '/' + data.gamertag + '/';
+      }
+
+      const url = getSearchDestinyPlayerUrl();
+      return $q.when({
+        method: 'GET',
+        url: url,
+        headers: {
+          'X-API-Key': apiKey
+        }
+      })
+        .then($http)
+        .then(handleErrors, handleErrors)
+        .then(function(response) {
+          data.membershipId = response.data.Response[0].membershipId;
+          return data;
+        })
+        .catch(function(error) {
+          return $q.reject(error);
         });
     }
 
     // copied from DIM with modifications
     function handleErrors(response) {
+      //return $q.reject(new Error("Patrick says so"));
       if (response.status === -1) {
         return $q.reject(new Error(('BungieService.NotConnected')));
       }
