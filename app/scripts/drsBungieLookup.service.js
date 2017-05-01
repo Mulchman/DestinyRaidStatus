@@ -5,21 +5,22 @@
     .module('drsApp')
     .service('BungieLookupService', BungieLookupService);
 
-  function BungieLookupService($http, $q) {
-    // same strings from drsPlatform.service.js to hopefully streamline it
+  function BungieLookupService($http, $q, RaidService) {
+    // same strings from drsPlatform.service.js to streamline the lookup -> "membership[entry.platform]" (long term
+    // probably not a good idea and PC support if this goes to D2...?)
     const membership = {
       'PS4': 2,
       'XB1': 1
     };
 
-    // Find membershipId from this URL. Is there a better way?
+    // 1) Find membershipId through
     // http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/{membershipType}/{displayName}/
-
-    // Find character Ids through
+    // 2) Find character Ids through
     // http://www.bungie.net/Platform/Destiny/{membershipType}/Account/{destinyMembershipId}/Summary/
-
-    // Find raid completions through
+    // 3) Find raid completions through
     // http://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/{membershipType}/{destinyMembershipId}/{characterId}/
+    // 4) ...
+    // 5) profit. Are there better endpoints to use? We only want very specific data...
 
     const service = {
       enqueue: enqueue
@@ -41,24 +42,11 @@
             getActivities(data)
           ];
           return $q.all(promises).then(function(data) {
-
-            // TODO: need the 390 hashes
-            const raids = [
-              // Kings Fall- nm/hm/390
-              1733556769, 3534581229,
-              // Vault of Glass- nm/hm/390
-              2659248071, 2659248068,
-              // Crota's End- nm/hm/390
-              1836893116, 1836893119,
-              // Wrath of the Machine- nm/hm/390
-              260765522, 1387993552
-            ];
-
             const onlyRaidActivities = _.reject(_.flatten(data[0]), function(activity) {
-              return !_.contains(raids, activity.activityHash);
+              return !_.contains(RaidService.raids, activity.activityHash);
             });
 
-            raids.forEach(function(raidHash) {
+            RaidService.raids.forEach(function(raidHash) {
               entry.bungie[raidHash] = 0;
               onlyRaidActivities.forEach(function(activity) {
                 if (activity.activityHash === raidHash) {
@@ -72,7 +60,7 @@
           });
         })
         .catch(function(error) {
-          entry.bungie = "Error loading user.";
+          entry.bungie = "Error loading user: " + error;
           entry.loading = false;
         });
     }
@@ -152,7 +140,12 @@
 
     // copied from DIM with modifications
     function handleErrors(response) {
-      //return $q.reject(new Error("Patrick says so"));
+
+      // TODO: do we actually care about anything except 200? If not 200 we can't do anything.
+
+      // TODO: the extra parenthesis are from DIM code having $translate.instant around the strings. I'm lazy
+      // TODO: and haven't added the translation dependency yet.
+
       if (response.status === -1) {
         return $q.reject(new Error(('BungieService.NotConnected')));
       }
@@ -166,7 +159,7 @@
         })));
       }
 
-      var errorCode = response.data ? response.data.ErrorCode : -1;
+      let errorCode = response.data ? response.data.ErrorCode : -1;
 
       // See https://github.com/DestinyDevs/BungieNetPlatform/wiki/Enums#platformerrorcodes
       switch (errorCode) {
