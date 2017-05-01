@@ -5,7 +5,7 @@
     .module('drsApp')
     .service('GamertagListService', GamertagListService);
 
-  function GamertagListService($q) {
+  function GamertagListService($q, BungieLookupService) {
     const service = {
       addGamertag: addGamertag,
       gamertags: [],
@@ -16,9 +16,9 @@
     function addGamertag(gamertag, platform) {
       let p = $q.defer();
 
-      let pair = { gamertag: gamertag, platform: platform };
-
-      service.gamertags.push(pair);
+      let entry = { gamertag: gamertag, platform: platform, loading: true, bungie: {} };
+      service.gamertags.push(entry);
+      BungieLookupService.enqueue(entry);
       p.resolve();
 
       return p.promise;

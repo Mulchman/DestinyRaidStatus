@@ -1,4 +1,8 @@
 <div ng-repeat="entry in vm.gls.gamertags">
-  <span>{{entry.gamertag}}</span>
   <span>{{entry.platform}}</span>
+  <span>{{entry.gamertag}}</span>
+  <span ng-show="entry.loading"><i class="fa fa-refresh fa-spin"></i></span>
+  <span ng-show="!entry.loading">
+    <div>Raid completion stuff</div>
+  </span>
 </div>
