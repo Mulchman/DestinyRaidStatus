@@ -23,8 +23,5 @@ Get your own API key:
 * Goto [Bungie](https://www.bungie.net/en/Application)
 * Open your extension in another tab, copy the url up to `/index.html`.
 * Paste your extension url into the `Origin Header` section on bungie.net
-* Create a file named `apiKey.json` in the root of DSR directory tree that looks like the following:
-  `{`
-     `"apiKey": "paste_here"`
-   `}`
+* Create a file named `apiKey.json` in the root of the DSR directory tree that looks like the following (including the curly braces and quotations): `{ "apiKey": "paste_here" }`
 * Copy your API-key from bungie.net into the section where it says `paste_here`. Re-build and you're good to go.
