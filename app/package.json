@@ -22,7 +22,6 @@
   "devDependencies": {
     "autoprefixer": "^6.3.7",
     "bower": "^1.7.9",
-    "font-awesome": "^4.7.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-watch": "^1.0.0",
@@ -38,6 +37,7 @@
     "angular-material": "^1.1.4",
     "angular-messages": "^1.6.4",
     "angular-route": "^1.6.4",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
     "underscore": "^1.8.3"
   }

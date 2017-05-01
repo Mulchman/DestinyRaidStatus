@@ -5,7 +5,17 @@
     .module('drsApp')
     .service('BungieLookupService', BungieLookupService);
 
-  function BungieLookupService($http, $q, RaidService) {
+
+  // 1) Find membershipId through
+  // http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/{membershipType}/{displayName}/
+  // 2) Find character Ids through
+  // http://www.bungie.net/Platform/Destiny/{membershipType}/Account/{destinyMembershipId}/Summary/
+  // 3) Find raid completions through
+  // http://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/{membershipType}/{destinyMembershipId}/{characterId}/
+  // 4) ...
+  // 5) profit. Are there better endpoints to use? We only want very specific data...
+
+  function BungieLookupService($http, $q, QueueService, RaidService) {
     // same strings from drsPlatform.service.js to streamline the lookup -> "membership[entry.platform]" (long term
     // probably not a good idea and PC support if this goes to D2...?)
     const membership = {
@@ -13,21 +23,7 @@
       'XB1': 1
     };
 
-    // 1) Find membershipId through
-    // http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/{membershipType}/{displayName}/
-    // 2) Find character Ids through
-    // http://www.bungie.net/Platform/Destiny/{membershipType}/Account/{destinyMembershipId}/Summary/
-    // 3) Find raid completions through
-    // http://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/{membershipType}/{destinyMembershipId}/{characterId}/
-    // 4) ...
-    // 5) profit. Are there better endpoints to use? We only want very specific data...
-
-    const service = {
-      enqueue: enqueue
-    };
-    return service;
-
-    function enqueue(entry) {
+    let lookup = QueueService.wrap(function(entry) {
       let data = {
         gamertag: entry.gamertag,
         membership: membership[entry.platform],
@@ -35,35 +31,39 @@
         characters: null
       };
 
-      getMembershipId(data)
+      return getMembershipId(data)
         .then(getCharacters)
         .then(function() {
           let promises = [
             getActivities(data)
           ];
-          return $q.all(promises).then(function(data) {
-            const onlyRaidActivities = _.reject(_.flatten(data[0]), function(activity) {
+          return $q.all(promises).then(function (data) {
+            const onlyRaidActivities = _.reject(_.flatten(data[0]), function (activity) {
               return !_.contains(RaidService.raids, activity.activityHash);
             });
 
-            RaidService.raids.forEach(function(raidHash) {
-              entry.bungie[raidHash] = 0;
-              onlyRaidActivities.forEach(function(activity) {
+            const stats = {};
+            RaidService.raids.forEach(function (raidHash) {
+              stats[raidHash] = 0;
+              onlyRaidActivities.forEach(function (activity) {
                 if (activity.activityHash === raidHash) {
-                  entry.bungie[raidHash] += activity.values.activityCompletions.basic.value;
+                  stats[raidHash] += activity.values.activityCompletions.basic.value;
                 }
               });
             });
-            entry.loading = false;
 
-            return $q.resolve(data[0]);
+            return $q.resolve(stats);
           });
         })
-        .catch(function(error) {
-          entry.bungie = "Error loading user: " + error;
-          entry.loading = false;
+        .catch(function (error) {
+          return $q.reject(error);
         });
-    }
+    });
+
+    const service = {
+      lookup: lookup
+    };
+    return service;
 
     function getActivities(data) {
       let promises = data.characters.map(function(character) {

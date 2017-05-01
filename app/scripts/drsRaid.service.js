@@ -25,7 +25,38 @@
     return service;
 
     function getName(hash) {
-      return "todo";
+      const ce = "Crota's End";
+      const vog = "Vault of Glass";
+      const kf = "King's Faull";
+      const wotm = "Wrath of the Machine";
+      const unk = "Unknown";
+      let retval;
+
+      switch (hash) {
+        case service.raids[0]:
+        case service.raids[1]:
+        case service.raids[2]:
+          retval = ce;
+          break;
+        case service.raids[3]:
+        case service.raids[4]:
+        case service.raids[5]:
+          retval = vog;
+          break;
+        case service.raids[6]:
+        case service.raids[7]:
+        case service.raids[8]:
+          retval = kf;
+          break;
+        case service.raids[9]:
+        case service.raids[10]:
+        case service.raids[11]:
+          retval = wotm;
+          break;
+        default:
+          retval = unk;
+      }
+      return retval;
     }
   }
 })();
