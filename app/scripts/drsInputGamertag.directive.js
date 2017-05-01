@@ -22,6 +22,7 @@
 
     vm.add = add;
     vm.gamertag = "";
+    vm.keyup = keyup;
 
     angular.extend(vm, {
       ps: PlatformService,
@@ -33,6 +34,12 @@
         .then(function() {
           vm.gamertag = "";
         });
+    }
+
+    function keyup(event) {
+      if (event.keyCode === 13) {
+        vm.add();
+      }
     }
   }
 })();
