@@ -1,0 +1,7 @@
+<span>
+  <md-switch id="platform" ng-model="vm.ps.active" ng-true-value="'{{vm.ps.platforms[0]}}'" ng-false-value="'{{vm.ps.platforms[1]}}'" aria-label="Platform Switch">
+    {{vm.ps.active}}
+  </md-switch>
+  <input id="gamer-tag" type="text" ng-model="vm.gamertag" placeholder="Gamertag">
+  <span id="submit" ng-click="vm.add()"><i class="fa fa-search"></i></span>
+</span>

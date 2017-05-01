@@ -2,10 +2,10 @@
   'use strict';
 
   angular
-    .module("drsApp")
-    .directive('drsHeader', drsHeader);
+    .module('drsApp')
+    .directive('drsHeader', Header);
 
-  function drsHeader() {
+  function Header() {
     const directive = {
       restrict: 'E',
       templateUrl: 'scripts/drsHeader.template.html',
@@ -14,12 +14,10 @@
       controllerAs: 'vm',
       bindToController: true
     };
-
     return directive;
   }
 
   function HeaderCtrl() {
-    var vm = this;
-    vm.ps4 = "PS4";
+    let vm = this;
   }
 })();

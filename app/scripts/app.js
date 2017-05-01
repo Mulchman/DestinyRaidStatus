@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module("drsApp", [
-      "ngAnimate",
-      "ngAria",
-      "ngMaterial",
-      "ngMessages",
-      "ngRoute"
+    .module('drsApp', [
+      'ngAnimate',
+      'ngAria',
+      'ngMaterial',
+      'ngMessages',
+      'ngRoute'
     ])
     .config(function($routeProvider) {
       $routeProvider

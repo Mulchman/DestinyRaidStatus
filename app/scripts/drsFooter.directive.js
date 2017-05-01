@@ -2,10 +2,10 @@
   'use strict';
 
   angular
-    .module("drsApp")
-    .directive('drsFooter', drsFooter);
+    .module('drsApp')
+    .directive('drsFooter', Footer);
 
-  function drsFooter() {
+  function Footer() {
     const directive = {
       restrict: 'E',
       templateUrl: 'scripts/drsFooter.template.html',
@@ -14,11 +14,10 @@
       controllerAs: 'vm',
       bindToController: true
     };
-
     return directive;
   }
 
   function FooterCtrl() {
-
+    let me = this;
   }
 })();
