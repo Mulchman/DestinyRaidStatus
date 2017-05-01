@@ -1,16 +1,14 @@
-(function() {
-  'use strict';
+import angular from 'angular';
 
-  angular
-    .module('drsApp')
-    .service('PlatformService', PlatformService);
+angular
+  .module('drsApp')
+  .factory('PlatformService', PlatformService);
 
-  function PlatformService() {
-    const platforms = ['PS4', 'XB1'];
-    const service = {
-      active: platforms[0],
-      platforms: platforms
-    };
-    return service;
-  }
-})();
+function PlatformService() {
+  const platforms = ['PS4', 'XB1'];
+  const service = {
+    active: platforms[0],
+    platforms: platforms
+  };
+  return service;
+}

@@ -1,27 +1,25 @@
-(function() {
-  'use strict';
+import angular from 'angular';
 
-  angular
-    .module('drsApp')
-    .directive('drsGamertagList', GamertagList);
+angular
+  .module('drsApp')
+  .directive('drsGamertagList', GamertagList);
 
-  function GamertagList() {
-    const directive = {
-      restrict: 'E',
-      templateUrl: 'scripts/drsGamertagList.template.html',
-      scope: {},
-      controller: GamertagListCtrl,
-      controllerAs: 'vm',
-      bindToController: true
-    };
-    return directive;
-  }
+function GamertagList() {
+  const directive = {
+    restrict: 'E',
+    templateUrl: require('app/scripts/drsGamertagList.template.html'),
+    scope: {},
+    controller: GamertagListCtrl,
+    controllerAs: 'vm',
+    bindToController: true
+  };
+  return directive;
+}
 
-  function GamertagListCtrl(GamertagListService) {
-    let vm = this;
+function GamertagListCtrl(GamertagListService) {
+  let vm = this;
 
-    angular.extend(vm, {
-      gls: GamertagListService
-    });
-  }
-})();
+  angular.extend(vm, {
+    gls: GamertagListService
+  });
+}

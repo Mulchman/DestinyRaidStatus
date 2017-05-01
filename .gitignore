@@ -3,5 +3,4 @@ dist/
 .settings/
 .idea/
 node_modules/
-app/main.css.map
-app/scripts/apikey.js
+apiKey.json
