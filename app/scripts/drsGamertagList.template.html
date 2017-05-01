@@ -12,19 +12,23 @@
   <span class="row-table-cell row-table-cell-4of6" ng-show="entry.loading"><i class="fa fa-refresh fa-spin"></i></span>
   <span class="row-table-cell row-table-cell-4of6" ng-show="!entry.loading && entry.error">{{::entry.errorString}}</span>
   <span class="row-table-cell row-table-cell-1of6" ng-show="!entry.loading && !entry.error">
-    <span>{{::entry.ce.nm}} / {{::entry.ce.hm}} / {{::entry.ce[390]}}</span>
-    <span class="total">({{::entry.ce.total}})</span>
+    <span>{{::entry.ce.nm}} / {{::entry.ce.hm}} / {{::entry.ce[390]}}
+      (<span class="total">{{::entry.ce.total}}</span>)
+    </span>
   </span>
   <span class="row-table-cell row-table-cell-1of6" ng-show="!entry.loading && !entry.error">
-    <span>{{::entry.vog.nm}} / {{::entry.vog.hm}} / {{::entry.vog[390]}}</span>
-    <span class="total">({{::entry.vog.total}})</span>
+    <span>{{::entry.vog.nm}} / {{::entry.vog.hm}} / {{::entry.vog[390]}}
+      (<span class="total">{{::entry.vog.total}}</span>)
+    </span>
   </span>
   <span class="row-table-cell row-table-cell-1of6" ng-show="!entry.loading && !entry.error">
-    <span>{{::entry.kf.nm}} / {{::entry.kf.hm}} / {{::entry.kf[390]}}</span>
-    <span class="total">({{::entry.kf.total}})</span>
+    <span>{{::entry.kf.nm}} / {{::entry.kf.hm}} / {{::entry.kf[390]}}
+      (<span class="total">{{::entry.kf.total}}</span>)
+    </span>
   </span>
   <span class="row-table-cell row-table-cell-1of6" ng-show="!entry.loading && !entry.error">
-    <span>{{::entry.wotm.nm}} / {{::entry.wotm.hm}} / {{::entry.wotm[390]}}</span>
-    <span class="total">({{::entry.wotm.total}})</span>
+    <span>{{::entry.wotm.nm}} / {{::entry.wotm.hm}} / {{::entry.wotm[390]}}
+      (<span class="total">{{::entry.wotm.total}}</span>)
+    </span>
   </span>
 </div>
