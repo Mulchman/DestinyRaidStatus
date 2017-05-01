@@ -17,7 +17,7 @@ function GamertagList() {
 }
 
 function GamertagListCtrl(GamertagListService) {
-  let vm = this;
+  const vm = this;
 
   angular.extend(vm, {
     gls: GamertagListService

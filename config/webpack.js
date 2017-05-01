@@ -24,8 +24,8 @@ var preMinifiedDeps = [
 
 module.exports = (env) => {
   const isDev = env === 'dev';
-  let version = packageJson.version.toString();
-  let apiKey = apiKeyJson.apiKey.toString();
+  const version = packageJson.version.toString();
+  const apiKey = apiKeyJson.apiKey.toString();
 
   const config = {
     entry: {
@@ -134,8 +134,8 @@ module.exports = (env) => {
       ]),
 
       new webpack.DefinePlugin({
-        $DRS_VERSION: JSON.stringify(version.toString()),
-        $DRS_API_KEY: JSON.stringify(apiKey.toString())
+        $DRS_VERSION: JSON.stringify(version),
+        $DRS_API_KEY: JSON.stringify(apiKey)
       }),
 
       // Enable if you want to debug the size of the chunks

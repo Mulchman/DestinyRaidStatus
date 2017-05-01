@@ -8,14 +8,7 @@ function Header() {
   const directive = {
     restrict: 'E',
     templateUrl: require('app/scripts/drsHeader.template.html'),
-    scope: {},
-    controller: HeaderCtrl,
-    controllerAs: 'vm',
-    bindToController: true
+    scope: {}
   };
   return directive;
-}
-
-function HeaderCtrl() {
-  let vm = this;
 }

@@ -8,14 +8,7 @@ function Footer() {
   const directive = {
     restrict: 'E',
     templateUrl: require('app/scripts/drsFooter.template.html'),
-    scope: {},
-    controller: FooterCtrl,
-    controllerAs: 'vm',
-    bindToController: true
+    scope: {}
   };
   return directive;
-}
-
-function FooterCtrl() {
-  let vm = this;
 }

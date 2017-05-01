@@ -17,7 +17,7 @@ function InputGamertag() {
 }
 
 function InputGamertagCtrl(GamertagListService, PlatformService) {
-  let vm = this;
+  const vm = this;
 
   vm.add = add;
   vm.gamertag = "";

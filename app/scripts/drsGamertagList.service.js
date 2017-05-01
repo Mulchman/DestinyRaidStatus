@@ -4,18 +4,18 @@ angular
   .module('drsApp')
   .factory('GamertagListService', GamertagListService);
 
-function GamertagListService($q, BungieLookupService, RaidService, UtilsService) {
+function GamertagListService($q, BungieLookupService, RaidService) {
   const service = {
     addGamertag: addGamertag,
-    gamertags: [],
-    removeGamertag: removeGamertag
+    gamertags: []
+    // removeGamertag: removeGamertag
   };
   return service;
 
   function addGamertag(gamertag, platform) {
-    let p = $q.defer();
+    const p = $q.defer();
 
-    let entry = {gamertag: gamertag, platform: platform, loading: true, error: false};
+    const entry = { gamertag: gamertag, platform: platform, loading: true, error: false };
     service.gamertags.push(entry);
 
     // do the async stuff
@@ -36,7 +36,6 @@ function GamertagListService($q, BungieLookupService, RaidService, UtilsService)
   }
 
   function parseStats(entry) {
-
     function buildStats(start) {
       const stats = {};
       let i = start;
@@ -53,7 +52,7 @@ function GamertagListService($q, BungieLookupService, RaidService, UtilsService)
     entry.wotm = buildStats(9);
   }
 
-  function removeGamertag(gamertag, platform) {
-    console.log("[drs] todo");
-  }
+  // function removeGamertag(gamertag, platform) {
+    // console.log("[drs] todo");
+  // }
 }

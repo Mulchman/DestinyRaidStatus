@@ -18,11 +18,11 @@ function QueueService($q) {
     let promise = (_queue.length) ? _queue[_queue.length - 1] : $q.when();
     // Execute fn regardless of the result of the existing promise. We
     // don't use finally here because finally can't modify the return value.
-    promise = promise.then(function () {
+    promise = promise.then(function() {
       return fn();
-    }, function () {
+    }, function() {
       return fn();
-    }).finally(function () {
+    }).finally(function() {
       _queue.shift();
     });
     _queue.push(promise);
@@ -32,8 +32,8 @@ function QueueService($q) {
   // Wrap a function to produce a function that will be queued
   function wrap(fn, context) {
     const self = this;
-    return function (...args) {
-      return self.enqueue(function () {
+    return function(...args) {
+      return self.enqueue(function() {
         return fn.apply(context, args);
       });
     };
