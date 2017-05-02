@@ -17,8 +17,6 @@
     "install": "napa"
   },
   "napa": {
-    "angular-chrome-storage": "https://github.com/infomofo/angular-chrome-storage",
-    "angular-uuid2": "https://github.com/MBehtemam/angular-uuid",
     "zip-js": "https://github.com/gildas-lormeau/zip.js"
   },
   "repository": {
@@ -81,14 +79,8 @@
     "angular-route": "^1.6.4",
     "babel-polyfill": "^6.20.0",
     "components-font-awesome": "^4.7.0",
-    "drag-drop-webkit-mobile": "^1.4.1",
     "file-loader": "^0.10.1",
-    "jquery": "^3.1.1",
-    "jquery-textcomplete": "^1.8.0",
-    "jquery-ui": "^1.12.1",
     "lodash": "^4.17.3",
-    "messageformat": "^1.0.2",
-    "ng-dialog": "^0.6.4",
     "underscore": "^1.8.3"
   }
 }

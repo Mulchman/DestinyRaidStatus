@@ -17,9 +17,7 @@ const nodeModulesDir = path.join(__dirname, '../node_modules');
 
 // https://github.com/dmachat/angular-webpack-cookbook/wiki/Optimizing-Development
 var preMinifiedDeps = [
-  'underscore/underscore-min.js',
-  'messageformat/messageformat.min.js',
-  'jquery/dist/jquery.min.js'
+  'underscore/underscore-min.js'
 ];
 
 module.exports = (env) => {

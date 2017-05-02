@@ -15,10 +15,6 @@
     ]
   },
   "permissions": [
-    "storage",
-    "*://www.bungie.net/*",
-    "cookies",
-    "identity"
   ],
   "browser_action": {
     "default_icon": {

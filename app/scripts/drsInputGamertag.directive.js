@@ -4,39 +4,16 @@ angular
   .module('drsApp')
   .directive('drsInputGamertag', InputGamertag);
 
-function InputGamertag($timeout) {
+function InputGamertag() {
   const directive = {
     restrict: 'E',
     templateUrl: require('app/scripts/drsInputGamertag.template.html'),
     scope: {},
     controller: InputGamertagCtrl,
     controllerAs: 'vm',
-    bindToController: true,
-    link: Link
+    bindToController: true
   };
   return directive;
-
-  function Link(scope) {
-    /*const vm = scope.vm;
-    const element = angular.element("#platform");
-
-    vm.togglePlatform = togglePlatform;
-
-    //console.log("[drs] link: %o", angular.element("#platform"));
-
-    $timeout(function() {
-      console.log("[drs] removing");
-      element.removeClass("md-checked");
-    });
-
-
-    function togglePlatform() {
-      $timeout(function() {
-        console.log("[drs] removing");
-        element.removeClass("md-checked");
-      });
-    }*/
-  }
 }
 
 function InputGamertagCtrl(GamertagListService, PlatformService) {
