@@ -4,11 +4,24 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 1em;
+  // margin-bottom: 1em;
+  background-color: #2d3137;
+
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 62px;
+
+  h1 {
+    color: white;
+  }
 
   span {
     display: flex;
     align-items: center;
+    color: white;
 
     md-switch {
       display: inline;

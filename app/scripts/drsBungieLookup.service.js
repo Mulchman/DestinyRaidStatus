@@ -132,6 +132,10 @@ function BungieLookupService($http, $q, QueueService, RaidService) {
       .then($http)
       .then(handleErrors, handleErrors)
       .then(function(response) {
+        if (response.data.Response.length <= 0) {
+          return $q.reject(new Error('Could not find user. Check spelling and/or platform.'));
+        }
+
         data.membershipId = response.data.Response[0].membershipId;
         return data;
       })
@@ -171,7 +175,7 @@ function BungieLookupService($http, $q, QueueService, RaidService) {
     case 2106: // AuthorizationCodeInvalid
     case 2108: // AccessNotPermittedByApplicationScope
         // $rootScope.$broadcast('dim-no-token-found');
-      return $q.reject("DIM does not have permission to perform this action.");
+      return $q.reject("DRS does not have permission to perform this action.");
     case 5: // SystemDisabled
       return $q.reject(new Error(('BungieService.Maintenance')));
     case 35: // ThrottleLimitExceededMinutes

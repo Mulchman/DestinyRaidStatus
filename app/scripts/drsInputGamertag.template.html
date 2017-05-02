@@ -1,5 +1,5 @@
 <span>
-  <md-switch id="platform" ng-model="vm.ps.active" ng-true-value="'{{vm.ps.platforms[0]}}'" ng-false-value="'{{vm.ps.platforms[1]}}'" aria-label="Platform Switch">
+  <md-switch id="platform" class="md-primary" ng-model="vm.ps.active" ng-true-value="'{{vm.ps.platforms[0]}}'" ng-false-value="'{{vm.ps.platforms[1]}}'" md-no-ink="true" aria-label="Platform Switch">
     {{vm.ps.active}}
   </md-switch>
   <input id="gamer-tag" type="text" ng-model="vm.gamertag" ng-keyup="vm.keyup($event)" placeholder="Gamertag">

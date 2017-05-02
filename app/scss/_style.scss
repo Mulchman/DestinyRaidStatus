@@ -9,3 +9,23 @@
 .total {
   font-weight: bold;
 }
+
+.content {
+  padding-top: 62px; // same as header height
+
+  .column-heading {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .column-entry {
+    text-align: center;
+  }
+
+  .striped {
+    background-color: #DCDCDC;
+  }
+}
