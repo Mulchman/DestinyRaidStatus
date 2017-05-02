@@ -1,5 +1,7 @@
 require('babel-polyfill');
 
+require('./scripts/google');
+
 // TODO: remove this globals and instead require where needed
 window.$ = window.jQuery = require('jquery');
 require('jquery-textcomplete');
