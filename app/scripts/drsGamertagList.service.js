@@ -43,15 +43,16 @@ function GamertagListService($q, BungieLookupService, RaidService) {
       let i = start;
       stats.nm = entry.stats[RaidService.raids[i++]] || 0;
       stats.hm = entry.stats[RaidService.raids[i++]] || 0;
-      stats[390] = entry.stats[RaidService.raids[i++]] || 0;
+      // non-featured + featured. They have different hashes.
+      stats[390] = (entry.stats[RaidService.raids[i++]] || 0) + (entry.stats[RaidService.raids[i++]] || 0);
       stats.total = stats.nm + stats.hm + stats[390];
       return stats;
     }
 
     entry.ce = buildStats(0);
-    entry.vog = buildStats(3);
-    entry.kf = buildStats(6);
-    entry.wotm = buildStats(9);
+    entry.vog = buildStats(4);
+    entry.kf = buildStats(8);
+    entry.wotm = buildStats(12);
   }
 
   // function removeGamertag(gamertag, platform) {
