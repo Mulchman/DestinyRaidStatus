@@ -7,8 +7,8 @@ angular
 
 // 1) Find membershipId through
 // https://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/{membershipType}/{displayName}/
-// 2) Find character Ids through
-// https://www.bungie.net/Platform/Destiny/{membershipType}/Account/{destinyMembershipId}/Summary/
+// 2) Find character Ids through (even deleted ones!)
+// https://www.bungie.net/Platform/Destiny/Stats/Account/{membershipType}/{destinyMembershipId}/
 // 3) Find raid completions through
 // https://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/{membershipType}/{destinyMembershipId}/{characterId}/
 // 4) ...
@@ -31,11 +31,11 @@ function BungieLookupService($http, $q, QueueService, RaidService) {
       gamertag: entry.gamertag,
       membership: membership[entry.platform],
       membershipId: null,
-      characters: null
+      characterIds: null
     };
 
     return getMembershipId(data)
-      .then(getCharacters)
+      .then(getAllCharacters)
       .then(function() {
         const promises = [
           getActivities(data)
@@ -69,8 +69,8 @@ function BungieLookupService($http, $q, QueueService, RaidService) {
   return service;
 
   function getActivities(data) {
-    const promises = data.characters.map(function(character) {
-      return $q.when(getAggregateActivityStats(data.membership, data.membershipId, character.characterBase.characterId))
+    const promises = data.characterIds.map(function(characterId) {
+      return $q.when(getAggregateActivityStats(data.membership, data.membershipId, characterId))
         .then($http)
         .then(handleErrors, handleErrors)
         .then(function(response) {
@@ -96,12 +96,12 @@ function BungieLookupService($http, $q, QueueService, RaidService) {
     return $q.all(promises);
   }
 
-  function getCharacters(data) {
-    function getAccountSummaryUrl() {
-      return 'https://www.bungie.net/Platform/Destiny/' + data.membership + '/Account/' + data.membershipId + '/Summary/';
+  function getAllCharacters(data) {
+    function getHistoricalStatsForAccountUrl() {
+      return 'https://www.bungie.net/Platform/Destiny/Stats/Account/' + data.membership + '/' + data.membershipId + '/';
     }
 
-    const url = getAccountSummaryUrl();
+    const url = getHistoricalStatsForAccountUrl();
     return $q.when({
       method: 'GET',
       url: url,
@@ -112,7 +112,7 @@ function BungieLookupService($http, $q, QueueService, RaidService) {
       .then($http)
       .then(handleErrors, handleErrors)
       .then(function(response) {
-        data.characters = response.data.Response.data.characters;
+        data.characterIds = _.pluck(response.data.Response.characters, 'characterId');
         return data;
       });
   }
