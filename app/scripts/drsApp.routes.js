@@ -1,6 +1,7 @@
-function routes($routeProvider) {
-  'ngInject';
 
+routes.$inject = ['$routeProvider'];
+
+function routes($routeProvider) {
   $routeProvider
     .when("/", {
       templateUrl: require('app/views/main.html')

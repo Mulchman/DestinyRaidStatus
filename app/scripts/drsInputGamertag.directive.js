@@ -16,6 +16,8 @@ function InputGamertag() {
   return directive;
 }
 
+InputGamertagCtrl.$inject = ['GamertagListService', 'PlatformService'];
+
 function InputGamertagCtrl(GamertagListService, PlatformService) {
   const vm = this;
 

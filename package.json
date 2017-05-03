@@ -12,6 +12,7 @@
     "generate-css": "echo \"No need to run this any more. Just run 'npm start'!\n\"",
     "lint": "eslint . --fix=true",
     "bundle": "webpack --config ./config/webpack.js --hide-modules",
+    "build-release": "npm run bundle -s -- --env=release",
     "build-dev": "npm run bundle -s -- --env=dev --watch",
     "start": "npm run build-dev -s",
     "server": "webpack-dev-server --config ./config/webpack.js --env=dev",

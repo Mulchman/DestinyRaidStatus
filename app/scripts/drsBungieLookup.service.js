@@ -5,15 +5,16 @@ angular
   .module('drsApp')
   .factory('BungieLookupService', BungieLookupService);
 
-
 // 1) Find membershipId through
-// http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/{membershipType}/{displayName}/
+// https://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/{membershipType}/{displayName}/
 // 2) Find character Ids through
-// http://www.bungie.net/Platform/Destiny/{membershipType}/Account/{destinyMembershipId}/Summary/
+// https://www.bungie.net/Platform/Destiny/{membershipType}/Account/{destinyMembershipId}/Summary/
 // 3) Find raid completions through
-// http://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/{membershipType}/{destinyMembershipId}/{characterId}/
+// https://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/{membershipType}/{destinyMembershipId}/{characterId}/
 // 4) ...
 // 5) profit. Are there better endpoints to use? We only want very specific data...
+
+BungieLookupService.$inject = ['$http', '$q', 'QueueService', 'RaidService'];
 
 function BungieLookupService($http, $q, QueueService, RaidService) {
   // same strings from drsPlatform.service.js to streamline the lookup -> "membership[entry.platform]" (long term
@@ -89,7 +90,7 @@ function BungieLookupService($http, $q, QueueService, RaidService) {
     }
 
     function getAggregateActivityStatsUrl(membership, membershipId, characterId) {
-      return 'http://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/' + membership + '/' + membershipId + '/' + characterId + '/';
+      return 'https://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/' + membership + '/' + membershipId + '/' + characterId + '/';
     }
 
     return $q.all(promises);
@@ -97,7 +98,7 @@ function BungieLookupService($http, $q, QueueService, RaidService) {
 
   function getCharacters(data) {
     function getAccountSummaryUrl() {
-      return 'http://www.bungie.net/Platform/Destiny/' + data.membership + '/Account/' + data.membershipId + '/Summary/';
+      return 'https://www.bungie.net/Platform/Destiny/' + data.membership + '/Account/' + data.membershipId + '/Summary/';
     }
 
     const url = getAccountSummaryUrl();
@@ -118,7 +119,7 @@ function BungieLookupService($http, $q, QueueService, RaidService) {
 
   function getMembershipId(data) {
     function getSearchDestinyPlayerUrl() {
-      return 'http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/' + data.membership + '/' + data.gamertag + '/';
+      return 'https://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/' + data.membership + '/' + data.gamertag + '/';
     }
 
     const url = getSearchDestinyPlayerUrl();

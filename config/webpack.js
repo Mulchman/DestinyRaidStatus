@@ -59,7 +59,7 @@ module.exports = (env) => {
           test: /\.js$/,
           exclude: /node_modules/,
           use: [
-            'babel-loader'
+            'babel-loader?presets[]=es2015'
           ]
         }, {
           test: /\.json$/,
@@ -127,6 +127,7 @@ module.exports = (env) => {
         { from: './node_modules/zip-js/WebContent/z-worker.js', to: 'static/zipjs' },
         { from: './node_modules/zip-js/WebContent/inflate.js', to: 'static/zipjs' },
 
+        { from: './app/.htaccess' },
         { from: './app/extension-scripts/main.js', to: 'extension-scripts/' },
         { from: './app/manifest.json' },
         { from: `./icons/` }
@@ -160,8 +161,8 @@ module.exports = (env) => {
 
   if (!isDev) {
     // Bail and fail hard on first error
-    config.bail = true;
-    config.stats = 'verbose';
+    //config.bail = true;
+    //config.stats = 'verbose';
 
     // The sql.js library doesnt work at all (reports no tables) when minified,
     // so we exclude it from the regular minification

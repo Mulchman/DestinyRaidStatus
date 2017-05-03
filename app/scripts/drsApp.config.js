@@ -1,6 +1,7 @@
-function config($compileProvider, localStorageServiceProvider) {
-  'ngInject';
 
+config.$inject = ['$compileProvider', 'localStorageServiceProvider'];
+
+function config($compileProvider, localStorageServiceProvider) {
   // TODO: remove this depenency by fixing component bindings https://github.com/angular/angular.js/blob/master/CHANGELOG.md#breaking-changes-1
   $compileProvider.preAssignBindingsEnabled(true);
   // Allow chrome-extension: URLs in ng-src

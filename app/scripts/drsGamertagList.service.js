@@ -4,6 +4,8 @@ angular
   .module('drsApp')
   .factory('GamertagListService', GamertagListService);
 
+GamertagListService.$inject = ['$q', 'BungieLookupService', 'RaidService'];
+
 function GamertagListService($q, BungieLookupService, RaidService) {
   const service = {
     addGamertag: addGamertag,

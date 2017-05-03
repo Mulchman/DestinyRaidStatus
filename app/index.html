@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="" ng-app="app" ng-csp>
+<html lang="" ng-app="app" ng-csp ng-strict-di>
 
   <head>
     <meta charset="utf-8">
@@ -13,6 +13,7 @@
     <link href='https://www.google-analytics.com' rel='preconnect'>
     <link href='https://ssl.gstatic.com' rel='preconnect'>
 
+
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <meta name="theme-color" content="#434444">
@@ -23,7 +24,7 @@
 
   </head>
 
-  <body>
+  <body ng-strict-di>
     <app></app>
     <script type="text/javascript" src="{{webpackConfig.output.publicPath}}{{htmlWebpackPlugin.files.chunks.main.entry}}"></script>
   </body>

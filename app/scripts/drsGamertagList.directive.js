@@ -16,6 +16,8 @@ function GamertagList() {
   return directive;
 }
 
+GamertagListCtrl.$inject = ['GamertagListService'];
+
 function GamertagListCtrl(GamertagListService) {
   const vm = this;
 
