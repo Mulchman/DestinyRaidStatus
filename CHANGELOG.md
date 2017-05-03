@@ -3,6 +3,7 @@
 * Fix #6 - make tab say 'Destiny Raid Status' instead of 'DRS'.
 * Fix #7 - account for deleted characters.
 * Fix #1 - add link to Destiny Status and Destiny Tracker for each gamertag.
+* Fix #4 - swap VoG and CE.
 * Semi-fix #3 - add some @media queries
 * Fixes to gamertag input (empty, whitespace).
 * Fix Chrome extension version number differing from website.
