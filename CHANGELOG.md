@@ -1,4 +1,4 @@
-# Next
+# 1.0.2
 
 * Fix #6 - make tab say 'Destiny Raid Status' instead of 'DRS'.
 * Fix #7 - account for deleted characters.
