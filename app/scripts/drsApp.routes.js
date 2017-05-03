@@ -5,6 +5,9 @@ function routes($routeProvider) {
   $routeProvider
     .when("/", {
       templateUrl: require('app/views/main.html')
+    })
+    .otherwise({
+      redirectTo: "/"
     });
 }
 

@@ -1,6 +1,7 @@
 # Next
 
-* 
+* Fix #6 - make tab say 'Destiny Raid Status' instead of 'DRS'.
+* Add 'otherwise' route back to index.
 
 # 1.0.1
 
