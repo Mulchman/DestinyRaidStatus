@@ -6,3 +6,4 @@ node_modules/
 apiKey.json
 apiKey_server.json
 npm-debug.log
+backups/
