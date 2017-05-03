@@ -41,3 +41,39 @@ body {
     font-size: 14px;
   }
 }
+
+@media only screen and (max-width: 640px) {
+  body {
+    h1 {
+      font-size: 1.5em;
+    }
+
+    a, div, input, span {
+      font-size: 12px;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  body {
+    h1 {
+      font-size: 1em;
+    }
+
+    a, div, input, span {
+      font-size: 9px;
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  body {
+    h1 {
+      font-size: 1em;
+    }
+
+    a, div, input, span {
+      font-size: 7px;
+    }
+  }
+}
