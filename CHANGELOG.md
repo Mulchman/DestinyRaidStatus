@@ -1,3 +1,7 @@
+# Next
+
+* 
+
 # 1.0.1
 
 * Add changelog and version number to the footer.
