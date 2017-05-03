@@ -32,7 +32,10 @@ function InputGamertagCtrl(GamertagListService, PlatformService) {
 
   function add() {
     vm.gls.addGamertag(vm.gamertag, vm.ps.active)
-      .then(function() {
+      .then(function success() {
+        vm.gamertag = "";
+      }, function failure(error) {
+        console.log("Gamertag input failure: %o", error);
         vm.gamertag = "";
       });
   }

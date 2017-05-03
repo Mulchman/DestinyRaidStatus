@@ -4,13 +4,20 @@ angular
   .module('drsApp')
   .factory('UtilsService', Utils);
 
-function Utils() {
+Utils.$inject = ['$sanitize'];
+
+function Utils($sanitize) {
   const service = {
-    isNullOrEmpty: isNullOrEmpty
+    isUndefinedOrNullOrEmpty: isUndefinedOrNullOrEmpty,
+    sanitizeInput: sanitizeInput
   };
   return service;
 
-  function isNullOrEmpty(input) {
-    return ((typeof input === 'undefined') || (input.trim() === ''));
+  function isUndefinedOrNullOrEmpty(input) {
+    return ((typeof input === 'undefined') || (input === null) || (input.trim() === ''));
+  }
+
+  function sanitizeInput(input) {
+    return isUndefinedOrNullOrEmpty(input) ? null : $sanitize(input.trim());
   }
 }

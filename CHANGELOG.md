@@ -1,6 +1,9 @@
 # Next
 
 * Fix #6 - make tab say 'Destiny Raid Status' instead of 'DRS'.
+* Fix #8 - add link to Destiny Status and Destiny Tracker for each gamertag.
+* Fixes to gamertag input (empty, whitespace).
+* Fix Chrome extension version number differing from website.
 * Add 'otherwise' route back to index.
 
 # 1.0.1

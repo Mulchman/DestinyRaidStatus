@@ -9,7 +9,11 @@
 </div>
 <div class="row-table row-table-6cols" ng-repeat="entry in vm.gls.gamertags" ng-class-odd="'striped'">
   <span class="row-table-cell row-table-cell-1of6 column-entry">{{::entry.platform}}</span>
-  <span class="row-table-cell row-table-cell-1of6 column-entry">{{::entry.gamertag}}</span>
+  <span class="row-table-cell row-table-cell-1of6 column-entry">
+    {{::entry.gamertag}}
+    <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyStatus"></span>
+    <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyTracker"></span>
+  </span>
   <span class="row-table-cell row-table-cell-4of6" ng-show="entry.loading"><i class="fa fa-refresh fa-spin"></i></span>
   <span class="row-table-cell row-table-cell-4of6" ng-show="!entry.loading && entry.error">{{::entry.errorString}}</span>
   <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">

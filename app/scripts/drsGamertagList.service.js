@@ -4,9 +4,9 @@ angular
   .module('drsApp')
   .factory('GamertagListService', GamertagListService);
 
-GamertagListService.$inject = ['$q', 'BungieLookupService', 'RaidService'];
+GamertagListService.$inject = ['$q', 'BungieLookupService', 'PlatformService', 'RaidService', 'UtilsService'];
 
-function GamertagListService($q, BungieLookupService, RaidService) {
+function GamertagListService($q, BungieLookupService, PlatformService, RaidService, UtilsService) {
   const service = {
     addGamertag: addGamertag,
     gamertags: []
@@ -17,6 +17,12 @@ function GamertagListService($q, BungieLookupService, RaidService) {
   function addGamertag(gamertag, platform) {
     const p = $q.defer();
 
+    gamertag = UtilsService.sanitizeInput(gamertag);
+    if (UtilsService.isUndefinedOrNullOrEmpty(gamertag)) {
+      p.reject("Gamertag input is invalid");
+      return p.promise;
+    }
+
     const entry = { gamertag: gamertag, platform: platform, loading: true, error: false };
     service.gamertags.push(entry);
 
@@ -24,6 +30,7 @@ function GamertagListService($q, BungieLookupService, RaidService) {
     BungieLookupService.lookup(entry)
       .then(function success(response) {
         entry.stats = response;
+        buildLinks(entry);
         parseStats(entry);
         entry.loading = false;
       }, function failure(response) {
@@ -35,6 +42,30 @@ function GamertagListService($q, BungieLookupService, RaidService) {
     p.resolve();
 
     return p.promise;
+  }
+
+  function buildLinks(entry) {
+    function buildDestinyStatusUrl() {
+      // http://destinystatus.com/psn/<gamertag>
+      // http://destinystatus.com/xbl/<gamertag>
+      // TODO: don't set these in code
+      return "<a href='http://destinystatus.com/" +
+        (entry.platform === PlatformService.platforms[0] ? "psn" : "xbl") + "/" + entry.gamertag +
+        "' target='_blank' alt='View gamertag on Destiny Status'>DS</a>";
+    }
+    function buildDestinyTrackerUrl() {
+      // http://destinytracker.com/destiny/overview/ps/<gamertag>
+      // http://destinytracker.com/destiny/overview/xbox/<gamertag>
+      // TODO: don't set these in code
+      return "<a href='http://destinytracker.com/destiny/overview/" +
+        (entry.platform === PlatformService.platforms[0] ? "ps" : "xbox") + "/" + entry.gamertag +
+        "' target='_blank' alt='View gamertag on Destiny Tracker'>DTR</a>";
+    }
+
+    const urls = {};
+    urls.destinyStatus = buildDestinyStatusUrl();
+    urls.destinyTracker = buildDestinyTrackerUrl();
+    entry.urls = urls;
   }
 
   function parseStats(entry) {

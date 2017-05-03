@@ -6,6 +6,7 @@ import LocalStorageModule from 'angular-local-storage';
 import MaterialModule from 'angular-material';
 import MessagesModule from 'angular-messages';
 import RouteModule from 'angular-route';
+import SanitizeModule from 'angular-sanitize';
 
 import config from './drsApp.config';
 import routes from './drsApp.routes';
@@ -18,7 +19,8 @@ export const DrsAppModule = angular
     LocalStorageModule,
     MaterialModule,
     MessagesModule,
-    RouteModule
+    RouteModule,
+    SanitizeModule
   ])
   .config(config)
   .config(routes)
