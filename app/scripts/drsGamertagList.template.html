@@ -1,15 +1,15 @@
 <div class="content">
 <div class="row-table row-table-6cols" ng-show="vm.gls.gamertags.length">
-  <span class="row-table-cell row-table-cell-1of6 column-heading">Platform</span>
-  <span class="row-table-cell row-table-cell-1of6 column-heading">Gamertag</span>
+  <span class="row-table-cell row-table-cell-1of6-minus-half column-heading">Platform</span>
+  <span class="row-table-cell row-table-cell-1of6-plus-half column-heading">Gamertag</span>
   <span class="row-table-cell row-table-cell-1of6 column-heading"><div>Crota's End</div><div>NM / HM / 390</div></span>
   <span class="row-table-cell row-table-cell-1of6 column-heading"><div>Vault of Glass</div><div>NM / HM / 390</div></span>
   <span class="row-table-cell row-table-cell-1of6 column-heading"><div>King's Fall</div><div>NM / HM / 390</div></span>
   <span class="row-table-cell row-table-cell-1of6 column-heading"><div>Wrath of the Machine</div><div>NM / HM / 390</div></span>
 </div>
 <div class="row-table row-table-6cols" ng-repeat="entry in vm.gls.gamertags" ng-class-odd="'striped'">
-  <span class="row-table-cell row-table-cell-1of6 column-entry">{{::entry.platform}}</span>
-  <span class="row-table-cell row-table-cell-1of6 column-entry">
+  <span class="row-table-cell row-table-cell-1of6-minus-half column-entry">{{::entry.platform}}</span>
+  <span class="row-table-cell row-table-cell-1of6-plus-half column-entry">
     {{::entry.gamertag}}
     <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyStatus"></span>
     <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyTracker"></span>
