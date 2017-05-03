@@ -2,8 +2,8 @@
 <div class="row-table row-table-6cols" ng-show="vm.gls.gamertags.length">
   <span class="row-table-cell row-table-cell-1of6-minus-half column-heading">Platform</span>
   <span class="row-table-cell row-table-cell-1of6-plus-half column-heading">Gamertag</span>
-  <span class="row-table-cell row-table-cell-1of6 column-heading"><div>Crota's End</div><div>NM / HM / 390</div></span>
   <span class="row-table-cell row-table-cell-1of6 column-heading"><div>Vault of Glass</div><div>NM / HM / 390</div></span>
+  <span class="row-table-cell row-table-cell-1of6 column-heading"><div>Crota's End</div><div>NM / HM / 390</div></span>
   <span class="row-table-cell row-table-cell-1of6 column-heading"><div>King's Fall</div><div>NM / HM / 390</div></span>
   <span class="row-table-cell row-table-cell-1of6 column-heading"><div>Wrath of the Machine</div><div>NM / HM / 390</div></span>
 </div>
@@ -17,13 +17,13 @@
   <span class="row-table-cell row-table-cell-4of6" ng-show="entry.loading"><i class="fa fa-refresh fa-spin"></i></span>
   <span class="row-table-cell row-table-cell-4of6" ng-show="!entry.loading && entry.error">{{::entry.errorString}}</span>
   <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">
-    <span>{{::entry.ce.nm}} / {{::entry.ce.hm}} / {{::entry.ce[390]}}
-      (<span class="total">{{::entry.ce.total}}</span>)
+    <span>{{::entry.vog.nm}} / {{::entry.vog.hm}} / {{::entry.vog[390]}}
+      (<span class="total">{{::entry.vog.total}}</span>)
     </span>
   </span>
   <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">
-    <span>{{::entry.vog.nm}} / {{::entry.vog.hm}} / {{::entry.vog[390]}}
-      (<span class="total">{{::entry.vog.total}}</span>)
+    <span>{{::entry.ce.nm}} / {{::entry.ce.hm}} / {{::entry.ce[390]}}
+      (<span class="total">{{::entry.ce.total}}</span>)
     </span>
   </span>
   <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">

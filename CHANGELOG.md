@@ -8,6 +8,8 @@
 * Fix Chrome extension version number differing from website.
 * Add 'otherwise' route back to index.
 
+* NOTE: Bungie's raid counter (Grimoire raid card) doesn't show 390 LL raids currently (in case you're wondering why numbers look different compared to Bungie.net).
+
 # 1.0.1
 
 * Add changelog and version number to the footer.
