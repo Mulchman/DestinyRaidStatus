@@ -25,3 +25,5 @@ Get your own API key:
 * Paste your extension url into the `Origin Header` section on bungie.net
 * Create a file named `apiKey.json` in the root of the DRS directory tree that looks like the following (including the curly braces and quotations): `{ "apiKey": "paste_here" }`
 * Copy your API-key from bungie.net into the section where it says `paste_here`. Re-build and you're good to go.
+
+Special thanks to DIM and its awesome developers- the `ActionQueue`, Bungie network error `switch`ing, and `webpack` config were borrowed and adapted from DIM.
