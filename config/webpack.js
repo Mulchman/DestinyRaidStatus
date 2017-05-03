@@ -13,7 +13,7 @@ const ASSET_NAME_PATTERN = 'static/[name]-[hash:6].[ext]';
 
 const packageJson = require('../package.json');
 const apiKeyJson = require('../apiKey.json');
-//const apiKeyJson = require('../apiKey_server.json');
+// const apiKeyJson = require('../apiKey_server.json');
 const nodeModulesDir = path.join(__dirname, '../node_modules');
 
 // https://github.com/dmachat/angular-webpack-cookbook/wiki/Optimizing-Development
@@ -161,8 +161,8 @@ module.exports = (env) => {
 
   if (!isDev) {
     // Bail and fail hard on first error
-    //config.bail = true;
-    //config.stats = 'verbose';
+    // config.bail = true;
+    // config.stats = 'verbose';
 
     // The sql.js library doesnt work at all (reports no tables) when minified,
     // so we exclude it from the regular minification
