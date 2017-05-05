@@ -14,6 +14,7 @@ require('./scripts/drsInputGamertag.directive.js');
 require('./scripts/drsPlatform.service.js');
 require('./scripts/drsQueue.service.js');
 require('./scripts/drsRaid.service.js');
+require('./scripts/drsSettings.service.js');
 require('./scripts/drsUtilities.service.js');
 
 require('./scss/main.scss');

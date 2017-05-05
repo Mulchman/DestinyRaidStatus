@@ -1,3 +1,7 @@
+# Next
+
+* Fix #2 - Persist platform toggle.
+
 # 1.0.2
 
 * Fix #6 - make tab say 'Destiny Raid Status' instead of 'DRS'.

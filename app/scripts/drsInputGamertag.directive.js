@@ -16,18 +16,20 @@ function InputGamertag() {
   return directive;
 }
 
-InputGamertagCtrl.$inject = ['GamertagListService', 'PlatformService'];
+InputGamertagCtrl.$inject = ['GamertagListService', 'PlatformService', 'SettingsService'];
 
-function InputGamertagCtrl(GamertagListService, PlatformService) {
+function InputGamertagCtrl(GamertagListService, PlatformService, SettingsService) {
   const vm = this;
 
   vm.add = add;
   vm.gamertag = "";
   vm.keyup = keyup;
+  vm.toggle = toggle;
 
   angular.extend(vm, {
     ps: PlatformService,
-    gls: GamertagListService
+    gls: GamertagListService,
+    ss: SettingsService
   });
 
   function add() {
@@ -44,5 +46,10 @@ function InputGamertagCtrl(GamertagListService, PlatformService) {
     if (event.keyCode === 13) {
       vm.add();
     }
+  }
+
+  function toggle(platform) {
+    vm.ss.platform = platform;
+    vm.ss.save();
   }
 }

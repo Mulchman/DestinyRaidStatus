@@ -7,7 +7,7 @@ function config($compileProvider, localStorageServiceProvider) {
   // Allow chrome-extension: URLs in ng-src
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*((https?|chrome-extension):|data:image\/)/);
 
-  localStorageServiceProvider.setPrefix('');
+  localStorageServiceProvider.setPrefix('drs');
 }
 
 export default config;
