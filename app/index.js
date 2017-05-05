@@ -2,7 +2,7 @@ require('babel-polyfill');
 
 require('./scripts/google');
 
-// Initialize the main DIM app
+// Initialize the main DRS app
 require('./scripts/app.module');
 
 require('./scripts/drsBungieLookup.service.js');
