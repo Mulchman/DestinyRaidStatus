@@ -5,18 +5,9 @@ angular
   .module('drsApp')
   .factory('BungieLookupService', BungieLookupService);
 
-// 1) Find membershipId through
-// https://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/{membershipType}/{displayName}/
-// 2) Find character Ids through (even deleted ones!)
-// https://www.bungie.net/Platform/Destiny/Stats/Account/{membershipType}/{destinyMembershipId}/
-// 3) Find raid completions through
-// https://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/{membershipType}/{destinyMembershipId}/{characterId}/
-// 4) ...
-// 5) profit. Are there better endpoints to use? We only want very specific data...
+BungieLookupService.$inject = ['$http', '$q', '$translate', 'Constants', 'QueueService'];
 
-BungieLookupService.$inject = ['$http', '$q', 'Constants', 'QueueService'];
-
-function BungieLookupService($http, $q, Constants, QueueService) {
+function BungieLookupService($http, $q, $translate, Constants, QueueService) {
   // same strings from drsPlatform.service.js to streamline the lookup -> "membership[entry.platform]" (long term
   // probably not a good idea and PC support if this goes to D2...?)
   const membership = {
@@ -27,6 +18,14 @@ function BungieLookupService($http, $q, Constants, QueueService) {
   const apiKey = $DRS_API_KEY;
 
   const lookup = QueueService.wrap(function(entry) {
+    // 1) Find membershipId through
+    // https://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/{membershipType}/{displayName}/
+    // 2) Find character Ids through (even deleted ones!)
+    // https://www.bungie.net/Platform/Destiny/Stats/Account/{membershipType}/{destinyMembershipId}/
+    // 3) Find raid completions through
+    // https://www.bungie.net/Platform/Destiny/Stats/AggregateActivityStats/{membershipType}/{destinyMembershipId}/{characterId}/
+    // 4) ...
+    // 5) profit. Are there better endpoints to use? We only want very specific data.
     const data = {
       gamertag: entry.gamertag,
       membership: membership[entry.platform],
@@ -133,8 +132,9 @@ function BungieLookupService($http, $q, Constants, QueueService) {
       .then($http)
       .then(handleErrors, handleErrors)
       .then(function(response) {
+        console.log("[drs] log this code better in handleErrors so we don't need this check here");
         if (response.data.Response.length <= 0) {
-          return $q.reject(new Error('Could not find user. Check spelling and/or platform.'));
+          return $q.reject(new Error($translate.instant('BungieService.NoAccount')));
         }
 
         data.membershipId = response.data.Response[0].membershipId;
@@ -147,19 +147,14 @@ function BungieLookupService($http, $q, Constants, QueueService) {
 
   // copied from DIM with modifications
   function handleErrors(response) {
-    // TODO: do we actually care about anything except 200? If not 200 we can't do anything.
-
-    // TODO: the extra parenthesis are from DIM code having $translate.instant around the strings. I'm lazy
-    // TODO: and haven't added the translation dependency yet.
-
     if (response.status === -1) {
-      return $q.reject(new Error(('BungieService.NotConnected')));
+      return $q.reject(new Error($translate.instant('BungieService.NotConnected')));
     }
     if (response.status === 503 || response.status === 522 /* cloudflare */) {
-      return $q.reject(new Error(('BungieService.Down')));
+      return $q.reject(new Error($translate.instant('BungieService.Down')));
     }
     if (response.status < 200 || response.status >= 400) {
-      return $q.reject(new Error(('BungieService.NetworkError', {
+      return $q.reject(new Error($translate.instant('BungieService.NetworkError', {
         status: response.status,
         statusText: response.statusText
       })));
@@ -171,46 +166,24 @@ function BungieLookupService($http, $q, Constants, QueueService) {
     switch (errorCode) {
     case 1: // Success
       return response;
-    case 1627: // DestinyVendorNotFound
-      return $q.reject(new Error(('BungieService.VendorNotFound')));
-    case 2106: // AuthorizationCodeInvalid
-    case 2108: // AccessNotPermittedByApplicationScope
-        // $rootScope.$broadcast('dim-no-token-found');
-      return $q.reject("DRS does not have permission to perform this action.");
     case 5: // SystemDisabled
-      return $q.reject(new Error(('BungieService.Maintenance')));
+      return $q.reject(new Error($translate.instant('BungieService.Maintenance')));
     case 35: // ThrottleLimitExceededMinutes
     case 36: // ThrottleLimitExceededMomentarily
     case 37: // ThrottleLimitExceededSeconds
-      return $q.reject(new Error(('BungieService.Throttled')));
-    case 2111: // token expired
-    case 99: // WebAuthRequired
-        /*
-         if (window.chrome && window.chrome.extension) {
-         openBungieNetTab();
-         } else {
-         $rootScope.$broadcast('dim-no-token-found');
-         }
-         */
-      return $q.reject(new Error(('BungieService.NotLoggedIn')));
+      return $q.reject(new Error($translate.instant('BungieService.Throttled')));
     case 1601: // DestinyAccountNotFound
     case 1618: // DestinyUnexpectedError
-      if (response.config.url.indexOf('/Account/') >= 0 &&
-          response.config.url.indexOf('/Character/') < 0) {
-        return $q.reject(new Error(('BungieService.NoAccount')));
-      }
+      // TODO: catch getMemebershipId errors here hopefully
+      return $q.reject(new Error($translate.instant('BungieService.NoAccount')));
     case 2101: // ApiInvalidOrExpiredKey
     case 2102: // ApiKeyMissingFromRequest
     case 2107: // OriginHeaderDoesNotMatchKey
-        /*
-         if ($DIM_FLAVOR === 'dev') {
-         $state.go('developer');
-         return $q.reject(new Error($translate.instant('BungieService.DevVersion')));
-         } else {
-         return $q.reject(new Error($translate.instant('BungieService.Difficulties')));
-         }
-         */
-      return $q.reject(new Error(('BungieService.Difficulties')));
+      if ($DRS_FLAVOR === 'dev') {
+        return $q.reject(new Error($translate.instant('BungieService.DevVersion')));
+      } else {
+        return $q.reject(new Error($translate.instant('BungieService.Difficulties')));
+      }
     }
 
     // Any other error
@@ -221,7 +194,7 @@ function BungieLookupService($http, $q, Constants, QueueService) {
         error.status = response.data.ErrorStatus;
         return $q.reject(error);
       } else {
-        return $q.reject(new Error(('BungieService.Difficulties')));
+        return $q.reject(new Error($translate.instant('BungieService.Difficulties')));
       }
     }
 

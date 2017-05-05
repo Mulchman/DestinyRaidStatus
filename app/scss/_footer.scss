@@ -9,7 +9,8 @@
   padding-bottom: 1em;
 
   span {
-    margin-left: 1em;
-    margin-right: 1em;
+    p {
+      display: inline;
+    }
   }
 }

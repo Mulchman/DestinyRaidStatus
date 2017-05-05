@@ -33,7 +33,9 @@ function InputGamertagCtrl($rootScope, Constants, GamertagListService, SettingsS
   vm.platform = getPlatformFromSettings();
 
   function add() {
-    vm.gls.addGamertag(vm.gamertag, vm.ps.active)
+    const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
+
+    vm.gls.addGamertag(vm.gamertag, platform)
       .then(function success() {
         vm.gamertag = "";
       }, function failure(error) {

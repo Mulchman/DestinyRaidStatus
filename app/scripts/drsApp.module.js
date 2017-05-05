@@ -4,6 +4,8 @@ import LocalStorageModule from 'angular-local-storage';
 import MessagesModule from 'angular-messages';
 import RouteModule from 'angular-route';
 import SanitizeModule from 'angular-sanitize';
+import TranslateModule from 'angular-translate';
+import TranslateMessageFormatModule from 'angular-translate-interpolation-messageformat';
 
 import config from './drsApp.config';
 import routes from './drsApp.routes';
@@ -16,7 +18,9 @@ export const DrsAppModule = angular
     LocalStorageModule,
     MessagesModule,
     RouteModule,
-    SanitizeModule
+    SanitizeModule,
+    TranslateModule,
+    TranslateMessageFormatModule
   ])
   .config(config)
   .config(routes)

@@ -1,0 +1,53 @@
+{
+  "Application": {
+    "Name": "Destiny Raid Status",
+    "Version": "v{version}"
+  },
+  "List": {
+    "Player": "Player",
+    "Platform": "Platform",
+    "Header": "NM / HM / 390",
+    "Data": "{nm} / {hm} / {390} ({total})"
+  },
+  "PlayStation": {
+    "Player": "PSN Id",
+    "Platform": "PS4"
+  },
+  "Xbox": {
+    "Player": "Gamertag",
+    "Platform": "XB1"
+  },
+  "Raids": {
+    "VoG": "Vault of Glass",
+    "CE": "Crota's End",
+    "KF": "King's Fall",
+    "WotM": "Wrath of the Machine"
+  },
+  "Links": {
+    "Source": {
+      "Alt": "Source code",
+      "Text": "Source"
+    },
+    "Issues": {
+      "Alt": "Report a bug",
+      "Text": "Issues"
+    },
+    "Changelog": {
+      "Alt": "Changelog",
+      "Text": "Changelog"
+    },
+    "Translate": "Help translate?",
+    "DestinyStatus": "<a href='http://destinystatus.com/{platform}/{player}' target='_blank' alt='View gamertag on Destiny Status'>DS</a>",
+    "DestinyTracker": "<a href='http://destinytracker.com/destiny/overview/{platform}/{player}' target='_blank' alt='View gamertag on Destiny Tracker'>DTR</a>"
+  },
+  "BungieService": {
+    "DevVersion": "Are you running a development version of Destiny Raid Status? You must register your chrome extension with bungie.net.",
+    "Down": "Bungie.net is down.",
+    "Difficulties": "The Bungie API is currently experiencing difficulties.",
+    "NetworkError": "Network error - {status} {statusText}",
+    "Throttled": "Bungie API throttling limit exceeded. Please wait a bit and then retry.",
+    "Maintenance": "Bungie.net servers are down for maintenance.",
+    "NoAccount": "No Destiny account was found on {platform}. Do you have the correct spelling and the correct platform selected?",
+    "NotConnected": "You may not be connected to the internet."
+  }
+}

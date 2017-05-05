@@ -18,7 +18,8 @@ const nodeModulesDir = path.join(__dirname, '../node_modules');
 
 // https://github.com/dmachat/angular-webpack-cookbook/wiki/Optimizing-Development
 const preMinifiedDeps = [
-  'underscore/underscore-min.js'
+  'underscore/underscore-min.js',
+  'messageformat/messageformat.min.js'
 ];
 
 module.exports = (env) => {
@@ -135,6 +136,7 @@ module.exports = (env) => {
 
       new webpack.DefinePlugin({
         $DRS_VERSION: JSON.stringify(version),
+        $DRS_FLAVOR: JSON.stringify(env),
         $DRS_API_KEY: JSON.stringify(apiKey)
       }),
 

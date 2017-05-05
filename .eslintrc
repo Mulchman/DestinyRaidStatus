@@ -17,6 +17,7 @@
   "globals": {
     "chrome": true,
     "$DRS_VERSION": true,
+    "$DRS_FLAVOR": true,
     "$DRS_API_KEY": true
   },
   "rules": {

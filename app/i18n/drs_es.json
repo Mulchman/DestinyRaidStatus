@@ -1,0 +1,11 @@
+{
+  "BungieService": {
+    "DevVersion": "¿Estás corriendo una versión de desarrollo de Destiny Raid Status? Debes primero registrar tu extensión de Chrome con Bungie.net.",
+    "Down": "Bungie.net no esta disponible.",
+    "Difficulties": "La API de Bungie esta teniendo dificultades.",
+    "NetworkError": "Error de red - {status} {statusText}",
+    "Throttled": "El límite de saturación de la API de Bungie se ha excedido. Por favor espere un poco y vuelva a intentarlo.",
+    "Maintenance": "Los servidores de Bungie.net se encuentran en mantenimiento.",
+    "NotConnected": "Es posible que no tengas conexión a Internet."
+  }
+}

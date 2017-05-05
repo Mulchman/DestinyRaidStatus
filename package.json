@@ -77,6 +77,8 @@
     "angular-messages": "^1.6.1",
     "angular-route": "^1.6.4",
     "angular-sanitize": "^1.6.4",
+    "angular-translate": "^2.13.1",
+    "angular-translate-interpolation-messageformat": "^2.13.1",
     "babel-polyfill": "^6.20.0",
     "components-font-awesome": "^4.7.0",
     "file-loader": "^0.10.1",
