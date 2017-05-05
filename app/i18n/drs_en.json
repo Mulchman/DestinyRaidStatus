@@ -11,11 +11,11 @@
   },
   "PlayStation": {
     "Player": "PSN Id",
-    "Platform": "PS4"
+    "Service": "PSN"
   },
   "Xbox": {
     "Player": "Gamertag",
-    "Platform": "XB1"
+    "Service": "XBL"
   },
   "Raids": {
     "VoG": "Vault of Glass",
@@ -36,9 +36,18 @@
       "Alt": "Changelog",
       "Text": "Changelog"
     },
-    "Translate": "Help translate?",
-    "DestinyStatus": "<a href='http://destinystatus.com/{platform}/{player}' target='_blank' alt='View gamertag on Destiny Status'>DS</a>",
-    "DestinyTracker": "<a href='http://destinytracker.com/destiny/overview/{platform}/{player}' target='_blank' alt='View gamertag on Destiny Tracker'>DTR</a>"
+    "Translate": {
+      "Alt": "Help translate?",
+      "Text": "Help translate?"
+    },
+    "DestinyStatus": {
+      "Alt": "View gamertag on Destiny Status TODO: <a href='http://destinystatus.com/{platform}/{player}' target='_blank' alt='View gamertag on Destiny Status'>DS</a>",
+      "Text": "DS"
+    },
+    "DestinyTracker": {
+      "Alt": "View gamertag on Destiny Tracker TODO: <a href='http://destinytracker.com/destiny/overview/{platform}/{player}' target='_blank' alt='View gamertag on Destiny Tracker'>DTR</a>",
+      "Text": "DTR"
+    }
   },
   "BungieService": {
     "DevVersion": "Are you running a development version of Destiny Raid Status? You must register your chrome extension with bungie.net.",
