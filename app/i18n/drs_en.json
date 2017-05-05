@@ -6,8 +6,9 @@
   "List": {
     "Player": "Player",
     "Platform": "Platform",
-    "Header": "NM / HM / 390",
-    "Data": "{nm} / {hm} / {390} ({total})"
+    "RaidVersions": "NM / HM / 390",
+    "DataVersions": "{nm} / {hm} / {390}",
+    "DataTotal": "{total}"
   },
   "PlayStation": {
     "Player": "PSN Id",

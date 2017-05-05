@@ -132,7 +132,7 @@ function BungieLookupService($http, $q, $translate, Constants, QueueService) {
       .then($http)
       .then(handleErrors, handleErrors)
       .then(function(response) {
-        console.log("[drs] log this code better in handleErrors so we don't need this check here");
+        // console.log("[drs] log this code better in handleErrors so we don't need this check here");
         if (response.data.Response.length <= 0) {
           return $q.reject(new Error($translate.instant('BungieService.NoAccount')));
         }

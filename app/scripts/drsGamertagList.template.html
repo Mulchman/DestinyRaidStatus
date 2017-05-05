@@ -1,11 +1,11 @@
 <div class="content">
 <div class="row-table row-table-6cols" ng-show="vm.gls.gamertags.length">
-  <span class="row-table-cell row-table-cell-1of6-minus-half column-heading">Platform</span>
-  <span class="row-table-cell row-table-cell-1of6-plus-half column-heading">Gamertag</span>
-  <span class="row-table-cell row-table-cell-1of6 column-heading"><div>Vault of Glass</div><div>NM / HM / 390</div></span>
-  <span class="row-table-cell row-table-cell-1of6 column-heading"><div>Crota's End</div><div>NM / HM / 390</div></span>
-  <span class="row-table-cell row-table-cell-1of6 column-heading"><div>King's Fall</div><div>NM / HM / 390</div></span>
-  <span class="row-table-cell row-table-cell-1of6 column-heading"><div>Wrath of the Machine</div><div>NM / HM / 390</div></span>
+  <span class="row-table-cell row-table-cell-1of6-minus-half column-heading" translate="{{'List.Platform'}}"></span>
+  <span class="row-table-cell row-table-cell-1of6-plus-half column-heading" translate="{{'List.Player'}}"></span>
+  <span class="row-table-cell row-table-cell-1of6 column-heading"><div translate="{{'Raids.VoG'}}"></div><div translate="{{'List.RaidVersions'}}"></div></span>
+  <span class="row-table-cell row-table-cell-1of6 column-heading"><div translate="{{'Raids.CE'}}"></div><div translate="{{'List.RaidVersions'}}"></div></span>
+  <span class="row-table-cell row-table-cell-1of6 column-heading"><div translate="{{'Raids.KF'}}"></div><div translate="{{'List.RaidVersions'}}"></div></span>
+  <span class="row-table-cell row-table-cell-1of6 column-heading"><div translate="{{'Raids.WotM'}}"></div><div translate="{{'List.RaidVersions'}}"></div></span>
 </div>
 <div class="row-table row-table-6cols" ng-repeat="entry in vm.gls.gamertags" ng-class-odd="'striped'">
   <span class="row-table-cell row-table-cell-1of6-minus-half column-entry">{{::entry.platform}}</span>
@@ -17,24 +17,20 @@
   <span class="row-table-cell row-table-cell-4of6" ng-show="entry.loading"><i class="fa fa-refresh fa-spin"></i></span>
   <span class="row-table-cell row-table-cell-4of6" ng-show="!entry.loading && entry.error">{{::entry.errorString}}</span>
   <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">
-    <span>{{::entry.vog.nm}} / {{::entry.vog.hm}} / {{::entry.vog[390]}}
-      (<span class="total">{{::entry.vog.total}}</span>)
-    </span>
+    <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.vog.nm, hm: entry.vog.hm, 390: entry.vog[390]}"></span>
+    (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.vog.total}"></span>)
   </span>
   <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">
-    <span>{{::entry.ce.nm}} / {{::entry.ce.hm}} / {{::entry.ce[390]}}
-      (<span class="total">{{::entry.ce.total}}</span>)
-    </span>
+    <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.ce.nm, hm: entry.ce.hm, 390: entry.ce[390]}"></span>
+    (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.ce.total}"></span>)
   </span>
   <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">
-    <span>{{::entry.kf.nm}} / {{::entry.kf.hm}} / {{::entry.kf[390]}}
-      (<span class="total">{{::entry.kf.total}}</span>)
-    </span>
+    <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.kf.nm, hm: entry.kf.hm, 390: entry.kf[390]}"></span>
+    (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.kf.total}"></span>)
   </span>
   <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">
-    <span>{{::entry.wotm.nm}} / {{::entry.wotm.hm}} / {{::entry.wotm[390]}}
-      (<span class="total">{{::entry.wotm.total}}</span>)
-    </span>
+    <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.wotm.nm, hm: entry.wotm.hm, 390: entry.wotm[390]}"></span>
+    (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.wotm.total}"></span>)
   </span>
 </div>
 </div>
