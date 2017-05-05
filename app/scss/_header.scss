@@ -4,7 +4,6 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-around;
-  // margin-bottom: 1em;
   background-color: #2d3137;
 
   position: fixed;
@@ -23,13 +22,12 @@
     align-items: center;
     color: white;
 
-    md-switch {
+    p {
       display: inline;
     }
 
     #gamer-tag {
-      margin-left: 1em;
-      margin-right: 1em;
+      margin: 0 5px 0 3px;
     }
   }
 }

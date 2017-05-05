@@ -1,9 +1,6 @@
 import angular from 'angular';
 
-import AriaModule from 'angular-aria';
-import AnimateModule from 'angular-animate';
 import LocalStorageModule from 'angular-local-storage';
-import MaterialModule from 'angular-material';
 import MessagesModule from 'angular-messages';
 import RouteModule from 'angular-route';
 import SanitizeModule from 'angular-sanitize';
@@ -12,12 +9,11 @@ import config from './drsApp.config';
 import routes from './drsApp.routes';
 import run from './drsApp.run';
 
+import constants from './drsConstants';
+
 export const DrsAppModule = angular
   .module('drsApp', [
-    AriaModule,
-    AnimateModule,
     LocalStorageModule,
-    MaterialModule,
     MessagesModule,
     RouteModule,
     SanitizeModule
@@ -25,4 +21,5 @@ export const DrsAppModule = angular
   .config(config)
   .config(routes)
   .run(run)
+  .value('Constants', constants)
   .name;

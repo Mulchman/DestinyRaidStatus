@@ -1,7 +1,12 @@
 <span>
-  <md-switch id="platform" class="md-primary" ng-model="vm.ps.active" ng-true-value="'{{vm.ps.platforms[0]}}'" ng-false-value="'{{vm.ps.platforms[1]}}'" md-no-ink="true" ng-change="vm.toggle(vm.ps.active)" aria-label="Platform Switch">
-    {{vm.ps.active}}
-  </md-switch>
+  <div id="platform-toggle">
+    <p>PS4</p>
+    <label class="switch">
+      <input ng-model="vm.platform" ng-change="vm.toggle(vm.platform)" type="checkbox">
+      <div class="slider round"></div>
+    </label>
+    <p>XB1</p>
+  </div>
   <input id="gamer-tag" type="text" ng-model="vm.gamertag" ng-keyup="vm.keyup($event)" placeholder="Gamertag" maxlength="64" ng-trim="false">
   <span id="submit" ng-click="vm.add()"><i class="fa fa-search"></i></span>
 </span>

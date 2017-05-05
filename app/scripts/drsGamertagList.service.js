@@ -4,9 +4,9 @@ angular
   .module('drsApp')
   .factory('GamertagListService', GamertagListService);
 
-GamertagListService.$inject = ['$q', 'BungieLookupService', 'PlatformService', 'RaidService', 'UtilsService'];
+GamertagListService.$inject = ['$q', 'BungieLookupService', 'Constants', 'UtilsService'];
 
-function GamertagListService($q, BungieLookupService, PlatformService, RaidService, UtilsService) {
+function GamertagListService($q, BungieLookupService, Constants, UtilsService) {
   const service = {
     addGamertag: addGamertag,
     gamertags: []
@@ -50,7 +50,7 @@ function GamertagListService($q, BungieLookupService, PlatformService, RaidServi
       // http://destinystatus.com/xbl/<gamertag>
       // TODO: don't set these in code
       return "<a href='http://destinystatus.com/" +
-        (entry.platform === PlatformService.platforms[0] ? "psn" : "xbl") + "/" + entry.gamertag +
+        (entry.platform === Constants.platforms[0] ? "psn" : "xbl") + "/" + entry.gamertag +
         "' target='_blank' alt='View gamertag on Destiny Status'>DS</a>";
     }
     function buildDestinyTrackerUrl() {
@@ -58,7 +58,7 @@ function GamertagListService($q, BungieLookupService, PlatformService, RaidServi
       // http://destinytracker.com/destiny/overview/xbox/<gamertag>
       // TODO: don't set these in code
       return "<a href='http://destinytracker.com/destiny/overview/" +
-        (entry.platform === PlatformService.platforms[0] ? "ps" : "xbox") + "/" + entry.gamertag +
+        (entry.platform === Constants.platforms[0] ? "ps" : "xbox") + "/" + entry.gamertag +
         "' target='_blank' alt='View gamertag on Destiny Tracker'>DTR</a>";
     }
 
@@ -72,10 +72,10 @@ function GamertagListService($q, BungieLookupService, PlatformService, RaidServi
     function buildStats(start) {
       const stats = {};
       let i = start;
-      stats.nm = entry.stats[RaidService.raids[i++]] || 0;
-      stats.hm = entry.stats[RaidService.raids[i++]] || 0;
+      stats.nm = entry.stats[Constants.raids[i++]] || 0;
+      stats.hm = entry.stats[Constants.raids[i++]] || 0;
       // non-featured + featured. They have different hashes.
-      stats[390] = (entry.stats[RaidService.raids[i++]] || 0) + (entry.stats[RaidService.raids[i++]] || 0);
+      stats[390] = (entry.stats[Constants.raids[i++]] || 0) + (entry.stats[Constants.raids[i++]] || 0);
       stats.total = stats.nm + stats.hm + stats[390];
       return stats;
     }

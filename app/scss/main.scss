@@ -1,8 +1,8 @@
 @import 'table';
 @import 'style';
+@import 'platform-toggle';
 @import 'header';
 @import 'footer';
 
 // Load stylesheets from external dependencies from node_modules
-@import '~angular-material/angular-material.css';
 @import '~components-font-awesome/css/font-awesome.css';

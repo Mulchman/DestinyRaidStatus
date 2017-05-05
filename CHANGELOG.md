@@ -1,6 +1,8 @@
 # Next
 
 * Fix #2 - Persist platform toggle.
+* Replace platform toggle with something better/simpler.
+* Slim down platform/raid services and move their constant values to a single file.
 
 # 1.0.2
 

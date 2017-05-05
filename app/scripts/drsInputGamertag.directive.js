@@ -16,21 +16,21 @@ function InputGamertag() {
   return directive;
 }
 
-InputGamertagCtrl.$inject = ['GamertagListService', 'PlatformService', 'SettingsService'];
+InputGamertagCtrl.$inject = ['$rootScope', 'Constants', 'GamertagListService', 'SettingsService'];
 
-function InputGamertagCtrl(GamertagListService, PlatformService, SettingsService) {
+function InputGamertagCtrl($rootScope, Constants, GamertagListService, SettingsService) {
   const vm = this;
+
+  angular.extend(vm, {
+    gls: GamertagListService,
+    ss: SettingsService
+  });
 
   vm.add = add;
   vm.gamertag = "";
   vm.keyup = keyup;
   vm.toggle = toggle;
-
-  angular.extend(vm, {
-    ps: PlatformService,
-    gls: GamertagListService,
-    ss: SettingsService
-  });
+  vm.platform = getPlatformFromSettings();
 
   function add() {
     vm.gls.addGamertag(vm.gamertag, vm.ps.active)
@@ -42,6 +42,11 @@ function InputGamertagCtrl(GamertagListService, PlatformService, SettingsService
       });
   }
 
+  function getPlatformFromSettings() {
+    // map XBox/PlayStation to true/false. Defaults to PlayStation.
+    return SettingsService.platform === Constants.platforms[1] ? true : false;
+  }
+
   function keyup(event) {
     if (event.keyCode === 13) {
       vm.add();
@@ -49,7 +54,13 @@ function InputGamertagCtrl(GamertagListService, PlatformService, SettingsService
   }
 
   function toggle(platform) {
-    vm.ss.platform = platform;
+    // map true/false to XBox/PlayStation.
+    const active = platform ? Constants.platforms[1] : Constants.platforms[0];
+    vm.ss.platform = active;
     vm.ss.save();
   }
+
+  $rootScope.$on("drs-settings-loaded", function() {
+    vm.platform = getPlatformFromSettings();
+  });
 }

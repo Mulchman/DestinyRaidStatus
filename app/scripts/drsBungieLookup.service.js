@@ -14,9 +14,9 @@ angular
 // 4) ...
 // 5) profit. Are there better endpoints to use? We only want very specific data...
 
-BungieLookupService.$inject = ['$http', '$q', 'QueueService', 'RaidService'];
+BungieLookupService.$inject = ['$http', '$q', 'Constants', 'QueueService'];
 
-function BungieLookupService($http, $q, QueueService, RaidService) {
+function BungieLookupService($http, $q, Constants, QueueService) {
   // same strings from drsPlatform.service.js to streamline the lookup -> "membership[entry.platform]" (long term
   // probably not a good idea and PC support if this goes to D2...?)
   const membership = {
@@ -42,11 +42,11 @@ function BungieLookupService($http, $q, QueueService, RaidService) {
         ];
         return $q.all(promises).then(function(data) {
           const onlyRaidActivities = _.reject(_.flatten(data[0]), function(activity) {
-            return !_.contains(RaidService.raids, activity.activityHash);
+            return !_.contains(Constants.raids, activity.activityHash);
           });
 
           const stats = {};
-          RaidService.raids.forEach(function(raidHash) {
+          Constants.raids.forEach(function(raidHash) {
             stats[raidHash] = 0;
             onlyRaidActivities.forEach(function(activity) {
               if (activity.activityHash === raidHash) {
