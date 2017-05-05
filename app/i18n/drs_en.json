@@ -42,11 +42,11 @@
       "Text": "Help translate?"
     },
     "DestinyStatus": {
-      "Alt": "View gamertag on Destiny Status TODO: <a href='http://destinystatus.com/{platform}/{player}' target='_blank' alt='View gamertag on Destiny Status'>DS</a>",
+      "Alt": "View player on Destiny Status",
       "Text": "DS"
     },
     "DestinyTracker": {
-      "Alt": "View gamertag on Destiny Tracker TODO: <a href='http://destinytracker.com/destiny/overview/{platform}/{player}' target='_blank' alt='View gamertag on Destiny Tracker'>DTR</a>",
+      "Alt": "View player on Destiny Tracker",
       "Text": "DTR"
     }
   },

@@ -4,9 +4,9 @@ angular
   .module('drsApp')
   .factory('GamertagListService', GamertagListService);
 
-GamertagListService.$inject = ['$q', 'BungieLookupService', 'Constants', 'UtilsService'];
+GamertagListService.$inject = ['$q', '$translate', 'BungieLookupService', 'Constants', 'UtilsService'];
 
-function GamertagListService($q, BungieLookupService, Constants, UtilsService) {
+function GamertagListService($q, $translate, BungieLookupService, Constants, UtilsService) {
   const service = {
     addGamertag: addGamertag,
     gamertags: []
@@ -38,7 +38,7 @@ function GamertagListService($q, BungieLookupService, Constants, UtilsService) {
         entry.error = true;
         entry.loading = false;
       });
-
+    
     p.resolve();
 
     return p.promise;
@@ -48,18 +48,20 @@ function GamertagListService($q, BungieLookupService, Constants, UtilsService) {
     function buildDestinyStatusUrl() {
       // http://destinystatus.com/psn/<gamertag>
       // http://destinystatus.com/xbl/<gamertag>
-      // TODO: don't set these in code
+      const alt = $translate.instant('Links.DestinyStatus.Alt');
+      const text = $translate.instant('Links.DestinyStatus.Text');
       return "<a href='http://destinystatus.com/" +
         (entry.platform === Constants.platforms[0] ? "psn" : "xbl") + "/" + entry.gamertag +
-        "' target='_blank' alt='View gamertag on Destiny Status'>DS</a>";
+        "' target='_blank' alt='" + alt + "'>" + text + "</a>";
     }
     function buildDestinyTrackerUrl() {
       // http://destinytracker.com/destiny/overview/ps/<gamertag>
       // http://destinytracker.com/destiny/overview/xbox/<gamertag>
-      // TODO: don't set these in code
+      const alt = $translate.instant('Links.DestinyTracker.Alt');
+      const text = $translate.instant('Links.DestinyTracker.Text');
       return "<a href='http://destinytracker.com/destiny/overview/" +
         (entry.platform === Constants.platforms[0] ? "ps" : "xbox") + "/" + entry.gamertag +
-        "' target='_blank' alt='View gamertag on Destiny Tracker'>DTR</a>";
+        "' target='_blank' alt='" + alt + "'>" + text + "</a>";
     }
 
     const urls = {};
