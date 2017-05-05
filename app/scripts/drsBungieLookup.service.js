@@ -11,8 +11,8 @@ function BungieLookupService($http, $q, $translate, Constants, QueueService) {
   // same strings from drsPlatform.service.js to streamline the lookup -> "membership[entry.platform]" (long term
   // probably not a good idea and PC support if this goes to D2...?)
   const membership = {
-    PS4: 2,
-    XB1: 1
+    PSN: 2,
+    XBL: 1
   };
 
   const apiKey = $DRS_API_KEY;

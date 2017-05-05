@@ -12,7 +12,7 @@ function SettingsService($rootScope, $translate, $window, localStorageService) {
   const destinyLanguages = ['de', 'en', 'fr', 'es', 'it', 'ja', 'pt-br'];
   const service = {
     language: defaultLanguage(),
-    platform: "PS4",
+    platform: "PSN",
     save: save
   };
 

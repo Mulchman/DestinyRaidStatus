@@ -5,6 +5,7 @@
 * Fix #9 - Use 'PSN Id' or 'Gamertag' depending on the platform.
 * Replace platform toggle with something better/simpler.
 * Slim down platform/raid services and move their constant values to a single file.
+* Switch 'PS4' to 'PSN', 'XB1' to 'XBL'
 
 # 1.0.2
 

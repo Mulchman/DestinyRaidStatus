@@ -1,5 +1,5 @@
 const constants = {
-  platforms: ['PS4', 'XB1'],
+  platforms: ['PSN', 'XBL'],
   raids: [
     // Crota's End- nm/hm/non-featured 390/featured 390/
     1836893116, 1836893119, 2324706853, 4000873610,
