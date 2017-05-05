@@ -1,6 +1,8 @@
 # Next
 
 * Fix #2 - Persist platform toggle.
+* Fix #5 - All strings now pulled from language files. Just need translations.
+* Fix #9 - Use 'PSN Id' or 'Gamertag' depending on the platform.
 * Replace platform toggle with something better/simpler.
 * Slim down platform/raid services and move their constant values to a single file.
 
