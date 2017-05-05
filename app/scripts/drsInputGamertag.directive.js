@@ -46,7 +46,7 @@ function InputGamertagCtrl($rootScope, Constants, GamertagListService, SettingsS
 
   function getPlatformFromSettings() {
     // map XBox/PlayStation to true/false. Defaults to PlayStation.
-    return SettingsService.platform === Constants.platforms[1] ? true : false;
+    return SettingsService.platform === Constants.platforms[1];
   }
 
   function keyup(event) {

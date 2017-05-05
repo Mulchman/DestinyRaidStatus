@@ -38,7 +38,7 @@ function GamertagListService($q, $translate, BungieLookupService, Constants, Uti
         entry.error = true;
         entry.loading = false;
       });
-    
+
     p.resolve();
 
     return p.promise;
