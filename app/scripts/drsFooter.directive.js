@@ -16,23 +16,8 @@ function Footer() {
   return directive;
 }
 
-FooterCtrl.$inject = ['SettingsService'];
-
-function FooterCtrl(SettingsService) {
+function FooterCtrl() {
   const vm = this;
 
-  angular.extend(vm, {
-    ss: SettingsService
-  });
-
-  vm.languages = {
-    de: 'Deutsch (incomplete)',
-    en: 'English',
-    es: 'Español (incomplete)',
-    fr: 'Français (incomplete)',
-    it: 'Italiano (incomplete)',
-    'pt-br': 'Português (Brasil) (incomplete)',
-    ja: '日本語 (incomplete)'
-  };
   vm.version = $DRS_VERSION;
 }

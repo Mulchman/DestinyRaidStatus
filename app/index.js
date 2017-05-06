@@ -15,6 +15,7 @@ require('./scripts/drsPlayerList.service.js');
 require('./scripts/drsHeader.directive.js');
 require('./scripts/drsInputPlayer.directive.js');
 require('./scripts/drsQueue.service.js');
+require('./scripts/drsSettings.controller.js');
 require('./scripts/drsSettings.service.js');
 require('./scripts/drsUtilities.service.js');
 
