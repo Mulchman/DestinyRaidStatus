@@ -132,7 +132,6 @@ function BungieLookupService($http, $q, $translate, Constants, QueueService) {
       .then($http)
       .then(handleErrors, handleErrors)
       .then(function(response) {
-        // console.log("[drs] log this code better in handleErrors so we don't need this check here");
         if (response.data.Response.length <= 0) {
           return $q.reject(new Error($translate.instant('BungieService.NoAccount')));
         }
@@ -174,7 +173,6 @@ function BungieLookupService($http, $q, $translate, Constants, QueueService) {
       return $q.reject(new Error($translate.instant('BungieService.Throttled')));
     case 1601: // DestinyAccountNotFound
     case 1618: // DestinyUnexpectedError
-      // TODO: catch getMemebershipId errors here hopefully
       return $q.reject(new Error($translate.instant('BungieService.NoAccount')));
     case 2101: // ApiInvalidOrExpiredKey
     case 2102: // ApiKeyMissingFromRequest
