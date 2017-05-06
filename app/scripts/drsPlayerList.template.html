@@ -1,5 +1,5 @@
 <div class="content">
-<div class="row-table row-table-6cols" ng-show="vm.gls.gamertags.length">
+<div class="row-table row-table-6cols" ng-show="vm.pl.players.length">
   <span class="row-table-cell row-table-cell-1of6-minus-half column-heading" translate="{{'List.Platform'}}"></span>
   <span class="row-table-cell row-table-cell-1of6-plus-half column-heading" translate="{{'List.Player'}}"></span>
   <span class="row-table-cell row-table-cell-1of6 column-heading"><div translate="{{'Raids.VoG'}}"></div><div translate="{{'List.RaidVersions'}}"></div></span>
@@ -7,10 +7,10 @@
   <span class="row-table-cell row-table-cell-1of6 column-heading"><div translate="{{'Raids.KF'}}"></div><div translate="{{'List.RaidVersions'}}"></div></span>
   <span class="row-table-cell row-table-cell-1of6 column-heading"><div translate="{{'Raids.WotM'}}"></div><div translate="{{'List.RaidVersions'}}"></div></span>
 </div>
-<div class="row-table row-table-6cols" ng-repeat="entry in vm.gls.gamertags" ng-class-odd="'striped'">
+<div class="row-table row-table-6cols" ng-repeat="entry in vm.pl.players" ng-class-odd="'striped'">
   <span class="row-table-cell row-table-cell-1of6-minus-half column-entry">{{::entry.platform}}</span>
   <span class="row-table-cell row-table-cell-1of6-plus-half column-entry">
-    {{::entry.gamertag}}
+    {{::entry.player}}
     <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyStatus"></span>
     <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyTracker"></span>
   </span>

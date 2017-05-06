@@ -2,32 +2,32 @@ import angular from 'angular';
 
 angular
   .module('drsApp')
-  .directive('drsInputGamertag', InputGamertag);
+  .directive('drsInputPlayer', InputPlayer);
 
-function InputGamertag() {
+function InputPlayer() {
   const directive = {
     restrict: 'E',
-    templateUrl: require('app/scripts/drsInputGamertag.template.html'),
+    templateUrl: require('app/scripts/drsInputPlayer.template.html'),
     scope: {},
-    controller: InputGamertagCtrl,
+    controller: InputPlayerCtrl,
     controllerAs: 'vm',
     bindToController: true
   };
   return directive;
 }
 
-InputGamertagCtrl.$inject = ['$rootScope', 'Constants', 'GamertagListService', 'SettingsService'];
+InputPlayerCtrl.$inject = ['$rootScope', 'Constants', 'PlayerListService', 'SettingsService'];
 
-function InputGamertagCtrl($rootScope, Constants, GamertagListService, SettingsService) {
+function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsService) {
   const vm = this;
 
   angular.extend(vm, {
-    gls: GamertagListService,
+    pl: PlayerListService,
     ss: SettingsService
   });
 
   vm.add = add;
-  vm.gamertag = "";
+  vm.player = "";
   vm.keyup = keyup;
   vm.toggle = toggle;
   vm.platform = getPlatformFromSettings();
@@ -35,12 +35,12 @@ function InputGamertagCtrl($rootScope, Constants, GamertagListService, SettingsS
   function add() {
     const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
 
-    vm.gls.addGamertag(vm.gamertag, platform)
+    vm.pl.addPlayer(vm.player, platform)
       .then(function success() {
-        vm.gamertag = "";
+        vm.player = "";
       }, function failure(error) {
-        console.log("Gamertag input failure: %o", error);
-        vm.gamertag = "";
+        console.log("PSN Id or Gamertag input failure: %o", error);
+        vm.player = "";
       });
   }
 

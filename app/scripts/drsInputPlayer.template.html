@@ -7,6 +7,6 @@
     </label>
     <p translate="{{'Xbox.Service'}}"></p>
   </div>
-  <input id="gamer-tag" type="text" ng-model="vm.gamertag" ng-keyup="vm.keyup($event)" translate-attr="{placeholder: (vm.platform ? 'Xbox.Player' : 'PlayStation.Player')}" maxlength="64" ng-trim="false">
+  <input id="gamer-tag" type="text" ng-model="vm.player" ng-keyup="vm.keyup($event)" translate-attr="{placeholder: (vm.platform ? 'Xbox.Player' : 'PlayStation.Player')}" maxlength="64" ng-trim="false">
   <span id="submit" ng-click="vm.add()"><i class="fa fa-search"></i></span>
 </span>

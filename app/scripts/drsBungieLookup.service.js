@@ -27,7 +27,7 @@ function BungieLookupService($http, $q, $translate, Constants, QueueService) {
     // 4) ...
     // 5) profit. Are there better endpoints to use? We only want very specific data.
     const data = {
-      gamertag: entry.gamertag,
+      player: entry.player,
       membership: membership[entry.platform],
       membershipId: null,
       characterIds: null
@@ -118,7 +118,7 @@ function BungieLookupService($http, $q, $translate, Constants, QueueService) {
 
   function getMembershipId(data) {
     function getSearchDestinyPlayerUrl() {
-      return 'https://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/' + data.membership + '/' + data.gamertag + '/';
+      return 'https://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/' + data.membership + '/' + data.player + '/';
     }
 
     const url = getSearchDestinyPlayerUrl();

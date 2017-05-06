@@ -2,29 +2,35 @@ import angular from 'angular';
 
 angular
   .module('drsApp')
-  .factory('GamertagListService', GamertagListService);
+  .factory('PlayerListService', PlayerListService);
 
-GamertagListService.$inject = ['$q', '$translate', 'BungieLookupService', 'Constants', 'UtilsService'];
+PlayerListService.$inject = ['$q', '$translate', 'BungieLookupService', 'Constants', 'UtilsService'];
 
-function GamertagListService($q, $translate, BungieLookupService, Constants, UtilsService) {
+function PlayerListService($q, $translate, BungieLookupService, Constants, UtilsService) {
   const service = {
-    addGamertag: addGamertag,
-    gamertags: []
-    // removeGamertag: removeGamertag
+    addPlayer: addPlayer,
+    players: []
+    // removePlayer: removePlayer
   };
   return service;
 
-  function addGamertag(gamertag, platform) {
+  function addPlayer(player, platform) {
     const p = $q.defer();
 
-    gamertag = UtilsService.sanitizeInput(gamertag);
-    if (UtilsService.isUndefinedOrNullOrEmpty(gamertag)) {
-      p.reject("Gamertag input is invalid");
+    player = UtilsService.sanitizeInput(player);
+    if (UtilsService.isUndefinedOrNullOrEmpty(player)) {
+      p.reject("Gamertag or PSN Id input is invalid");
       return p.promise;
     }
 
-    const entry = { gamertag: gamertag, platform: platform, loading: true, error: false };
-    service.gamertags.push(entry);
+    platform = UtilsService.sanitizeInput(platform);
+    if (UtilsService.isUndefinedOrNullOrEmpty(platform)) {
+      p.reject("Platform is invalid");
+      return p.promise;
+    }
+
+    const entry = { player: player, platform: platform, loading: true, error: false };
+    service.players.push(entry);
 
     // do the async stuff
     BungieLookupService.lookup(entry)
@@ -46,21 +52,21 @@ function GamertagListService($q, $translate, BungieLookupService, Constants, Uti
 
   function buildLinks(entry) {
     function buildDestinyStatusUrl() {
-      // http://destinystatus.com/psn/<gamertag>
-      // http://destinystatus.com/xbl/<gamertag>
+      // http://destinystatus.com/psn/<player>
+      // http://destinystatus.com/xbl/<player>
       const alt = $translate.instant('Links.DestinyStatus.Alt');
       const text = $translate.instant('Links.DestinyStatus.Text');
       return "<a href='http://destinystatus.com/" +
-        (entry.platform === Constants.platforms[0] ? "psn" : "xbl") + "/" + entry.gamertag +
+        (entry.platform === Constants.platforms[0] ? "psn" : "xbl") + "/" + entry.player +
         "' target='_blank' alt='" + alt + "'>" + text + "</a>";
     }
     function buildDestinyTrackerUrl() {
-      // http://destinytracker.com/destiny/overview/ps/<gamertag>
-      // http://destinytracker.com/destiny/overview/xbox/<gamertag>
+      // http://destinytracker.com/destiny/overview/ps/<player>
+      // http://destinytracker.com/destiny/overview/xbox/<player>
       const alt = $translate.instant('Links.DestinyTracker.Alt');
       const text = $translate.instant('Links.DestinyTracker.Text');
       return "<a href='http://destinytracker.com/destiny/overview/" +
-        (entry.platform === Constants.platforms[0] ? "ps" : "xbox") + "/" + entry.gamertag +
+        (entry.platform === Constants.platforms[0] ? "ps" : "xbox") + "/" + entry.player +
         "' target='_blank' alt='" + alt + "'>" + text + "</a>";
     }
 
@@ -88,7 +94,7 @@ function GamertagListService($q, $translate, BungieLookupService, Constants, Uti
     entry.wotm = buildStats(12);
   }
 
-  // function removeGamertag(gamertag, platform) {
+  // function removePlayer(player, platform) {
     // console.log("[drs] todo");
   // }
 }
