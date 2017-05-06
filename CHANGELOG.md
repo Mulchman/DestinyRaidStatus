@@ -6,7 +6,7 @@
 * Replace platform toggle with something better/simpler.
 * Slim down platform/raid services and move their constant values to a single file.
 * Switch 'PS4' to 'PSN', 'XB1' to 'XBL'
-* Add Translations.md to help guide translators as to where/what/how to translate.
+* Add [TRANSLATIONS.md](https://github.com/Mulchman/DestinyRaidStatus/blob/master/TRANSLATIONS.md) to help guide translators as to where/what/how to translate.
 
 # 1.0.2
 
