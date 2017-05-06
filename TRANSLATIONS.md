@@ -1,6 +1,6 @@
 # Interested in translating Destiny Raid Status?
 
-Take a look at the [English](https://github.com/Mulchman/DestinyRaidStatus/blob/master/app/i18n/drs_en.js) language file. These are the strings that need to be translated.
+Take a look at the [English](https://github.com/Mulchman/DestinyRaidStatus/blob/master/app/i18n/drs_en.json) language file. These are the strings that need to be translated.
 
 # Join the translation team @ Transifex
 [Transifex](https://www.transifex.com/destinyraidstatus/destinyraidstatus/)
