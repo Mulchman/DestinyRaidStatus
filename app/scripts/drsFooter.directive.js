@@ -26,13 +26,13 @@ function FooterCtrl(SettingsService) {
   });
 
   vm.languages = {
-    de: 'Deutsch',
+    de: 'Deutsch (incomplete)',
     en: 'English',
-    es: 'Español',
-    fr: 'Français',
-    it: 'Italiano',
-    'pt-br': 'Português (Brasil)',
-    ja: '日本語'
+    es: 'Español (incomplete)',
+    fr: 'Français (incomplete)',
+    it: 'Italiano (incomplete)',
+    'pt-br': 'Português (Brasil) (incomplete)',
+    ja: '日本語 (incomplete)'
   };
   vm.version = $DRS_VERSION;
 }
