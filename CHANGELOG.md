@@ -1,4 +1,4 @@
-# Next
+# 1.0.3
 
 * Fix #2 - Persist platform toggle.
 * Fix #5 - All strings now pulled from language files. Just need translations.
