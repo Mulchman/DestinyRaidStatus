@@ -12,8 +12,8 @@ const NotifyPlugin = require('notify-webpack-plugin');
 const ASSET_NAME_PATTERN = 'static/[name]-[hash:6].[ext]';
 
 const packageJson = require('../package.json');
-const apiKeyJson = require('../apiKey.json');
-// const apiKeyJson = require('../apiKey_server.json');
+const configJson = require('../apiKey.json');
+//const configJson = require('../apiKey_server.json');
 const nodeModulesDir = path.join(__dirname, '../node_modules');
 
 // https://github.com/dmachat/angular-webpack-cookbook/wiki/Optimizing-Development
@@ -25,7 +25,8 @@ const preMinifiedDeps = [
 module.exports = (env) => {
   const isDev = env === 'dev';
   const version = packageJson.version.toString();
-  const apiKey = apiKeyJson.apiKey.toString();
+  const apiKey = configJson.apiKey.toString();
+  const the100Endpoint = configJson.the100endpoint || 'http://destinyraidstatus.com/api/the100/game/';
 
   const config = {
     entry: {
@@ -137,7 +138,8 @@ module.exports = (env) => {
       new webpack.DefinePlugin({
         $DRS_VERSION: JSON.stringify(version),
         $DRS_FLAVOR: JSON.stringify(env),
-        $DRS_API_KEY: JSON.stringify(apiKey)
+        $DRS_API_KEY: JSON.stringify(apiKey),
+        $DRS_100_ENDPOINT: JSON.stringify(the100Endpoint)
       }),
 
       // Enable if you want to debug the size of the chunks
