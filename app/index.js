@@ -19,5 +19,7 @@ require('./scripts/drsQueue.service.js');
 require('./scripts/drsSettings.controller.js');
 require('./scripts/drsSettings.service.js');
 require('./scripts/drsUtilities.service.js');
+require('./scripts/drsThe100.service.js');
+
 
 require('./scss/main.scss');
