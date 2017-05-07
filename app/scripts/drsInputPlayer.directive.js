@@ -53,7 +53,7 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
         vm.t100s.scrapeGamertags(gameId)
             .then((function (tags) {
                 tags.forEach(t => {
-                    vm.ls.addPlayer(t, platform)
+                    vm.pl.addPlayer(t, platform)
                 })
                 vm.player = "";
             }))
