@@ -6,6 +6,11 @@ function routes($routeProvider) {
     .when("/", {
       templateUrl: require('app/views/main.html')
     })
+    .when("/:platform/:players*", {
+      templateUrl: require('app/views/main.html'),
+      controller: 'MainCtrl',
+      controllerAs: 'vm'
+    })
     .otherwise({
       redirectTo: "/"
     });

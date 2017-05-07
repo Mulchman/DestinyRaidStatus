@@ -1,3 +1,9 @@
+# Next
+
+* Fix #11 - Allow linking to players directly.
+* Example: http://destinyraidstatus.com/index.html#/psn/username1/username2/etc.
+* Example: http://destinyraidstatus.com/index.html#/xbl/username1/username2/username3/username4/etc.
+
 # 1.0.3
 
 * Fix #2 - Persist platform toggle.
