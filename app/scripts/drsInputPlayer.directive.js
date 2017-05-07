@@ -34,10 +34,9 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
   vm.platform = getPlatformFromSettings();
 
     function run() {
-        var input = vm.player;
+        const input = vm.player;
 
-        var match;
-        match = input.match(/the100\.io\/game\/([0-9]+)$/)
+        const match = input.match(/the100\.io\/game\/([0-9]+)$/)
 
         if (match === null) {
             return add();
