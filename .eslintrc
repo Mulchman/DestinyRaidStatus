@@ -18,7 +18,8 @@
     "chrome": true,
     "$DRS_VERSION": true,
     "$DRS_FLAVOR": true,
-    "$DRS_API_KEY": true
+    "$DRS_API_KEY": true,
+    "$DRS_100_ENDPOINT": true
   },
   "rules": {
     "array-callback-return": "error",

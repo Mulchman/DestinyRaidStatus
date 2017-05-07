@@ -7,7 +7,7 @@ angular
 MainCtrl.$inject = ['$routeParams', '$timeout', 'Constants', 'PlayerListService', 'UtilsService'];
 
 function MainCtrl($routeParams, $timeout, Constants, PlayerListService, UtilsService) {
-  const vm = this;
+  // const vm = this;
 
   function preLoad(platform, players) {
     $timeout(function() {

@@ -33,30 +33,29 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
   vm.toggle = toggle;
   vm.platform = getPlatformFromSettings();
 
-    function run() {
-        const input = vm.player;
+  function run() {
+    const input = vm.player;
 
-        const match = input.match(/the100\.io\/game\/([0-9]+)$/)
+    const match = input.match(/the100\.io\/game\/([0-9]+)$/);
 
-        if (match === null) {
-            return add();
-        } else {
-            return the100(match[1]);
-        }
+    if (match === null) {
+      return add();
+    } else {
+      return the100(match[1]);
     }
+  }
 
-    function the100(gameId) {
+  function the100(gameId) {
+    const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
 
-        const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
-
-        vm.t100s.scrapeGamertags(gameId)
-            .then((function (tags) {
-                tags.forEach(t => {
-                    vm.pl.addPlayer(t, platform)
-                })
-                vm.player = "";
-            }))
-    }
+    vm.t100s.scrapeGamertags(gameId)
+            .then((function(tags) {
+              tags.forEach((t) => {
+                vm.pl.addPlayer(t, platform);
+              });
+              vm.player = "";
+            }));
+  }
 
   function add() {
     const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
