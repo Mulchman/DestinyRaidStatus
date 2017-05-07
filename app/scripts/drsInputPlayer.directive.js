@@ -16,21 +16,48 @@ function InputPlayer() {
   return directive;
 }
 
-InputPlayerCtrl.$inject = ['$rootScope', 'Constants', 'PlayerListService', 'SettingsService'];
+InputPlayerCtrl.$inject = ['$rootScope', 'Constants', 'PlayerListService', 'SettingsService', 'The100Service'];
 
-function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsService) {
+function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsService, The100Service) {
   const vm = this;
 
   angular.extend(vm, {
     pl: PlayerListService,
-    ss: SettingsService
+    ss: SettingsService,
+    t100s: The100Service
   });
 
-  vm.add = add;
+  vm.run = run;
   vm.player = "";
   vm.keyup = keyup;
   vm.toggle = toggle;
   vm.platform = getPlatformFromSettings();
+
+    function run() {
+        var input = vm.player;
+
+        var match;
+        match = input.match(/the100\.io\/game\/([0-9]+)$/)
+
+        if (match === null) {
+            return add();
+        } else {
+            return the100(match[1]);
+        }
+    }
+
+    function the100(gameId) {
+
+        const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
+
+        vm.t100s.scrapeGamertags(gameId)
+            .then((function (tags) {
+                tags.forEach(t => {
+                    vm.ls.addPlayer(t, platform)
+                })
+                vm.player = "";
+            }))
+    }
 
   function add() {
     const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
@@ -51,7 +78,7 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
 
   function keyup(event) {
     if (event.keyCode === 13) {
-      vm.add();
+      vm.run();
     }
   }
 
