@@ -1,5 +1,7 @@
 <?php
 
+// version 1.0.0
+
 header('Content-Type: application/json');
 $result = array();
 
