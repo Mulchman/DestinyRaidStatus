@@ -25,7 +25,7 @@ function The100Service($http, $q) {
       .then($http)
       .then(function(response) {
         const players = _.pluck(response.data, 'player');
-        //console.log("[drs] response: %o, player: %o", response, players);
+        // console.log("[drs] response: %o, player: %o", response, players);
         return players;
       })
       .catch(function(error) {
