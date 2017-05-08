@@ -7,11 +7,24 @@ angular
 function InputPlayer() {
   const directive = {
     restrict: 'E',
-    templateUrl: require('app/scripts/drsInputPlayer.template.html'),
     scope: {},
     controller: InputPlayerCtrl,
     controllerAs: 'vm',
-    bindToController: true
+    bindToController: true,
+    template: `
+      <span>
+        <div id="platform-toggle">
+          <p translate="{{'PlayStation.Service'}}"></p>
+          <label class="switch">
+            <input ng-model="vm.platform" ng-change="vm.toggle(vm.platform)" type="checkbox">
+            <div class="slider round"></div>
+          </label>
+          <p translate="{{'Xbox.Service'}}"></p>
+        </div>
+        <input id="gamer-tag" type="text" ng-model="vm.player" ng-keyup="vm.keyup($event)" translate-attr="{placeholder: (vm.platform ? 'Xbox.Player' : 'PlayStation.Player')}" maxlength="64" ng-trim="false">
+        <span id="submit" ng-click="vm.run()"><i class="fa fa-search"></i></span>
+      </span>
+    `
   };
   return directive;
 }
@@ -32,6 +45,29 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
   vm.player = "";
   vm.run = run;
   vm.toggle = toggle;
+
+  function add() {
+    const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
+
+    vm.pls.addPlayer(vm.player, platform)
+      .then(function success() {
+        vm.player = "";
+      }, function failure(error) {
+        console.log("PSN Id or Gamertag input failure: %o", error);
+        vm.player = "";
+      });
+  }
+
+  function getPlatformFromSettings() {
+    // map XBox/PlayStation to true/false. Defaults to PlayStation.
+    return SettingsService.platform === Constants.platforms[1];
+  }
+
+  function keyup(event) {
+    if (event.keyCode === 13) {
+      vm.run();
+    }
+  }
 
   function run() {
     const input = vm.player;
@@ -58,29 +94,6 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
         vm.player = "";
         console.log("Error scraping the100.io game %o: %o", gameId, error);
       });
-  }
-
-  function add() {
-    const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
-
-    vm.pls.addPlayer(vm.player, platform)
-      .then(function success() {
-        vm.player = "";
-      }, function failure(error) {
-        console.log("PSN Id or Gamertag input failure: %o", error);
-        vm.player = "";
-      });
-  }
-
-  function getPlatformFromSettings() {
-    // map XBox/PlayStation to true/false. Defaults to PlayStation.
-    return SettingsService.platform === Constants.platforms[1];
-  }
-
-  function keyup(event) {
-    if (event.keyCode === 13) {
-      vm.run();
-    }
   }
 
   function toggle(platform) {

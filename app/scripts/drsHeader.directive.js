@@ -7,8 +7,13 @@ angular
 function Header() {
   const directive = {
     restrict: 'E',
-    templateUrl: require('app/scripts/drsHeader.template.html'),
-    scope: {}
+    scope: {},
+    template: `
+      <div class="header">
+        <h1 translate="{{'Application.Name'}}"></h1>
+        <drs-input-player></drs-input-player>
+      </div>
+    `
   };
   return directive;
 }
