@@ -45,15 +45,12 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
   }
 
   function the100(gameId) {
-    // TODO: pull platform from the the100.io game page instead? It's not intuitive
-    // that you need to set the platform in the app before pasting in the 100.io
-    // game link and doing the search.
-    const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
-
     vm.t100s.scrapePlayers(gameId)
-      .then(function(tags) {
-        tags.forEach((t) => {
-          vm.pls.addPlayer(t, platform);
+      .then(function(platformAndPlayers) {
+        const platform = platformAndPlayers.platform;
+        const players = platformAndPlayers.players;
+        players.forEach((player) => {
+          vm.pls.addPlayer(player, platform);
         });
         vm.player = "";
       })

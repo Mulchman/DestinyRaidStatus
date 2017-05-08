@@ -13,10 +13,24 @@ $doc->recover = true;
 $doc->loadHTML($contents);
 
 $xpath = new DOMXPath($doc);
-$query = "//*[contains(@class, 'gamertag')]/a";
-$entries = $xpath->query($query);
+
+$queryPlayers = "//*[contains(@class, 'gamertag')]/a";
+$entries = $xpath->query($queryPlayers);
+
+$queryPsn = "//*[contains(@class, 'ps4')]";
+$entriesPsn = $xpath->query($queryPsn);
+
+$queryXbl = "//*[contains(@class, 'xbox-one')]";
+$entriesXbl = $xpath->query($queryXbl);
 
 $result = array();
+
+if ($entriesPsn->length) {
+  array_push($result, array('platform' => "PSN"));
+} elseif ($entriesXbl->length) {
+  array_push($result, array('platform' => "XBL"));
+}
+
 foreach ($entries as $entry) {
   $data = array(
     'player' => $entry->textContent

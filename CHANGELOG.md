@@ -1,8 +1,12 @@
 # Next
 
 * Fix #11 - Allow linking to players directly.
-* Example: http://destinyraidstatus.com/index.html#/psn/username1/username2/etc.
-* Example: http://destinyraidstatus.com/index.html#/xbl/username1/username2/username3/username4/etc.
+* Example #1: http://destinyraidstatus.com/index.html#/psn/username1/username2/etc.
+* Example #2: http://destinyraidstatus.com/index.html#/xbl/username1/username2/username3/username4/etc.
+
+* Fix #8 - scrape the100.io games: the100.io game URLs can be entered in the PSN/Gamertag search box.
+* Example #1: paste the full URL to a the100.io game in the search box. Player list will auto-populate with players from that game.
+* Example #2: link to the app with the the100.io game id: https://destinyraidstatus.com/index.html#/api/the100/<gameId>
 
 # 1.0.3
 

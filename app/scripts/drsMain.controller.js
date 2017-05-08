@@ -10,6 +10,7 @@ function MainCtrl($routeParams, $timeout, Constants, PlayerListService, UtilsSer
   // const vm = this;
 
   function preLoad(platform, players) {
+    console.log("[drs] is this getting invoked? %o %o", platform, players);
     $timeout(function() {
       if (UtilsService.isUndefinedOrNullOrEmpty(platform) ||
         UtilsService.isUndefinedOrNullOrEmpty(players) ||
