@@ -1,5 +1,7 @@
 # 1.0.4
 
+* Remove '!' bang from address.
+
 * Fix #11 - Allow linking to players directly.
 * Example #1: http://destinyraidstatus.com/index.html#/psn/username1
 * Example #2: http://destinyraidstatus.com/index.html#/psn/username1/username2/etc.
