@@ -27,4 +27,4 @@ Get your own API key:
 * Create a file named `apiKey.json` in the root of the DRS directory tree that looks like the following (including the curly braces and quotations): `{ "apiKey": "paste_here" }`
 * Copy your API-key from bungie.net into the section where it says `paste_here`. Re-build and you're good to go.
 
-Special thanks to DIM and its awesome developers- the `ActionQueue`, Bungie network response `switch`ing, `webpack` config, and some other misc. bits were borrowed and adapted from DIM.
+Special thanks to DIM and its awesome developers- the `ActionQueue`, Bungie network response `switch`ing, `webpack` config, `settings`, and some other misc. bits were borrowed and adapted from DIM.
