@@ -1,8 +1,21 @@
 <?php
 
 header('Content-Type: application/json');
+$result = array();
+
+if (!isset($_GET['game'])) {
+  $result['error'] = "Unknown gameId.";
+  echo json_encode($result);
+  return;
+}
 
 $game = $_GET['game'];
+if (!ctype_digit($game)) {
+  $result['error'] = "Invalid gameId.";
+  echo json_encode($result);
+  return;
+}
+
 $url = 'https://www.the100.io/game/' . $game;
 $contents = file_get_contents($url);
 
@@ -26,25 +39,22 @@ $entriesPsn = $xpath->query($queryPsn);
 $queryXbl = "//*[contains(@class, 'xbox-one')]";
 $entriesXbl = $xpath->query($queryXbl);
 
-$result = array();
-
 if ($entriesPsn->length) {
-  array_push($result, array('platform' => "PSN"));
+  $result['platform'] = "PSN";
 } elseif ($entriesXbl->length) {
-  array_push($result, array('platform' => "XBL"));
+  $result['platform'] = "XBL";
+} else {
+  $result['error'] = "Unknown platform.";
+  echo json_encode($result);
+  return;
 }
 
+$players = array();
 foreach ($entries as $entry) {
-  $data = array(
-    'player' => $entry->textContent
-  );
-  array_push($result, $data);
+  array_push($players, $entry->textContent);
 }
+$result['players'] = $players;
 
 echo json_encode($result);
-
-//foreach ($entries as $entry) {
-  //echo $entry->textContent;
-//}
 
 ?>
