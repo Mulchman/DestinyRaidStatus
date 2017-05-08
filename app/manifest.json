@@ -15,7 +15,6 @@
     ]
   },
   "permissions": [
-    "*://*/*"
   ],
   "browser_action": {
     "default_icon": {
