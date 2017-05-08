@@ -6,6 +6,11 @@ function routes($routeProvider) {
     .when("/", {
       templateUrl: require('app/views/main.html')
     })
+    .when("/api/the100/:gameId", {
+      templateUrl: require('app/views/main.html'),
+      controller: 'The100Ctrl',
+      controllerAs: 'vm'
+    })
     .when("/:platform/:players*", {
       templateUrl: require('app/views/main.html'),
       controller: 'MainCtrl',

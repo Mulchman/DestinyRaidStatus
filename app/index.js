@@ -19,7 +19,9 @@ require('./scripts/drsQueue.service.js');
 require('./scripts/drsSettings.controller.js');
 require('./scripts/drsSettings.service.js');
 require('./scripts/drsUtilities.service.js');
-require('./scripts/drsThe100.service.js');
 
+// TODO: move to a separate module
+require('./scripts/api/the100/drsThe100.controller.js');
+require('./scripts/api/the100/drsThe100.service.js');
 
 require('./scss/main.scss');

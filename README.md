@@ -17,6 +17,7 @@ Check code Style
 
 Build in dev mode (Chrome extension)
 * `npm start`. This will bundle and copy all the assets, as well as watch for changes. You can now run locally by enabling [Chrome Extensions Developer Mode](https://developer.chrome.com/extensions/faq#faq-dev-01) and point to the `dist` folder.
+* If you want to test the the100.io integration you need to allow CORS. Add `"*://*/*"` to the `manifest.json` `permissions` and reload (through the Chrome extensions page) the extension.
 
 Get your own API key:
 

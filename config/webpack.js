@@ -26,7 +26,6 @@ module.exports = (env) => {
   const isDev = env === 'dev';
   const version = packageJson.version.toString();
   const apiKey = configJson.apiKey.toString();
-  const the100Endpoint = configJson.the100endpoint || 'http://destinyraidstatus.com/api/the100/game/';
 
   const config = {
     entry: {
@@ -138,8 +137,7 @@ module.exports = (env) => {
       new webpack.DefinePlugin({
         $DRS_VERSION: JSON.stringify(version),
         $DRS_FLAVOR: JSON.stringify(env),
-        $DRS_API_KEY: JSON.stringify(apiKey),
-        $DRS_100_ENDPOINT: JSON.stringify(the100Endpoint)
+        $DRS_API_KEY: JSON.stringify(apiKey)
       }),
 
       // Enable if you want to debug the size of the chunks
