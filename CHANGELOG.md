@@ -1,4 +1,4 @@
-# Next
+# 1.0.4
 
 * Fix #11 - Allow linking to players directly.
 * Example #1: http://destinyraidstatus.com/index.html#/psn/username1
