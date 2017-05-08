@@ -22,22 +22,21 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
   const vm = this;
 
   angular.extend(vm, {
-    pl: PlayerListService,
+    pls: PlayerListService,
     ss: SettingsService,
     t100s: The100Service
   });
 
-  vm.run = run;
-  vm.player = "";
   vm.keyup = keyup;
-  vm.toggle = toggle;
   vm.platform = getPlatformFromSettings();
+  vm.player = "";
+  vm.run = run;
+  vm.toggle = toggle;
 
   function run() {
     const input = vm.player;
 
     const match = input.match(/the100\.io\/game\/([0-9]+)$/);
-
     if (match === null) {
       return add();
     } else {
@@ -46,21 +45,28 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
   }
 
   function the100(gameId) {
+    // TODO: pull platform from the the100.io game page instead? It's not intuitive
+    // that you need to set the platform in the app before pasting in the 100.io
+    // game link and doing the search.
     const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
 
-    vm.t100s.scrapeGamertags(gameId)
-            .then((function(tags) {
-              tags.forEach((t) => {
-                vm.pl.addPlayer(t, platform);
-              });
-              vm.player = "";
-            }));
+    vm.t100s.scrapePlayers(gameId)
+      .then(function(tags) {
+        tags.forEach((t) => {
+          vm.pls.addPlayer(t, platform);
+        });
+        vm.player = "";
+      })
+      .catch(function(error) {
+        vm.player = "";
+        console.log("Error scraping the100.io game %o: %o", gameId, error);
+      });
   }
 
   function add() {
     const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
 
-    vm.pl.addPlayer(vm.player, platform)
+    vm.pls.addPlayer(vm.player, platform)
       .then(function success() {
         vm.player = "";
       }, function failure(error) {

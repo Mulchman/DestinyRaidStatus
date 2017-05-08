@@ -22,6 +22,6 @@ function PlayerListCtrl(PlayerListService) {
   const vm = this;
 
   angular.extend(vm, {
-    pl: PlayerListService
+    pls: PlayerListService
   });
 }

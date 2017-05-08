@@ -1,27 +1,35 @@
 import angular from 'angular';
+import _ from 'underscore';
 
 angular
     .module('drsApp')
     .factory('The100Service', The100Service);
 
-The100Service.$inject = ['$http'];
+The100Service.$inject = ['$http', '$q'];
 
-const the100endpoint = $DRS_100_ENDPOINT;
-
-function The100Service($http) {
+function The100Service($http, $q) {
+  const endpoint = "http://api.destinyraidstatus.com/the100/scrape.php";
   const service = {
-    scrapeGamertags: scrapeGamertags,
+    scrapePlayers: scrapePlayers,
   };
   return service;
 
-  function scrapeGamertags(gameId) {
-    const url = the100endpoint + gameId;
-
-    return $http.get(url).then(function(data) {
-      return data.data;
+  function scrapePlayers(gameId) {
+    return $q.when({
+      method: 'GET',
+      url: endpoint,
+      params: {
+        game: gameId
+      }
     })
-      .catch(function(data) {
-        console.error(data);
+      .then($http)
+      .then(function(response) {
+        const players = _.pluck(response.data, 'player');
+        //console.log("[drs] response: %o, player: %o", response, players);
+        return players;
+      })
+      .catch(function(error) {
+        return $q.reject(error);
       });
   }
 }
