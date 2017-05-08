@@ -2,6 +2,7 @@
 
 // version 1.0.0
 
+header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 $result = array();
 
