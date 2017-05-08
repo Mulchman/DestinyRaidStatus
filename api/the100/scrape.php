@@ -10,7 +10,10 @@ $doc = new DOMDocument;
 $doc->preserveWhiteSpace = false;
 $doc->strictErrorChecking = false;
 $doc->recover = true;
+
+libxml_use_internal_errors(true);
 $doc->loadHTML($contents);
+libxml_clear_errors();
 
 $xpath = new DOMXPath($doc);
 
