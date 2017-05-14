@@ -960,12 +960,12 @@ FileETag None
 
 <IfModule mod_rewrite.c>
     RewriteEngine on
+    RewriteBase /
 
-    # Don't rewrite files or directories
-    RewriteCond %{REQUEST_FILENAME} -f [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^ - [L]
+    # Built-in - player lookups from address
+    RewriteRule ^psn/(.+)$ index.html [L]
+    RewriteRule ^xbl/(.+)$ index.html [L]
 
-    # Rewrite everything else to index.html to allow html5 state links
-    RewriteRule ^ index.html [L]
+    # API - the100.io - game id from address
+    RewriteRule ^api/the100/[0-9]+$ index.html [L]
 </IfModule>
