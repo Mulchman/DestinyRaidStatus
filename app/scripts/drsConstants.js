@@ -1,4 +1,5 @@
 const constants = {
+  isExtension: window.chrome && window.chrome.extension,
   platforms: ['PSN', 'XBL'],
   raids: [
     // Crota's End- nm/hm/non-featured 390/featured 390/

@@ -6,6 +6,8 @@ import es from '../i18n/drs_es.json';
 import ja from '../i18n/drs_ja.json';
 import ptBr from '../i18n/drs_pt_BR.json';
 
+import constants from './drsConstants';
+
 config.$inject = ['$compileProvider', '$locationProvider', '$translateProvider', '$translateMessageFormatInterpolationProvider', 'localStorageServiceProvider'];
 
 function config($compileProvider, $locationProvider, $translateProvider, $translateMessageFormatInterpolationProvider, localStorageServiceProvider) {
@@ -15,6 +17,9 @@ function config($compileProvider, $locationProvider, $translateProvider, $transl
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*((https?|chrome-extension):|data:image\/)/);
 
   $locationProvider.hashPrefix('');
+  if (!constants.isExtension) {
+    $locationProvider.html5Mode(true);
+  }
 
   // See https://angular-translate.github.io/docs/#/guide
   $translateProvider.useSanitizeValueStrategy('escape');
