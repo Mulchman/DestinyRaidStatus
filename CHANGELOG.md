@@ -1,7 +1,6 @@
 # 1.0.4
 
 * Remove '#!' from addresses on the web version (HTML5 mode) for #11. (Chrome extension version still has the '#'.)
-* Enforce 'https' in the address to the web version.
 
 * Fix #11 - Allow linking to players directly. Specify the platform ('psn' or 'xbl') then a list of players:
 * Example #1: https://destinyraidstatus.com/psn/username1
@@ -11,6 +10,10 @@
 * Fix #8 - scrape the100.io games. the100.io game URLs can be entered in the PSN/Gamertag search box.
 * Example #1: paste the full URL to a the100.io game in the search box. Player list will auto-populate with players from that game.
 * Example #2: or link to the app with a the100.io game id: https://destinyraidstatus.com/api/the100/<gameId>
+
+# 1.0.3 - https
+
+* Moved everything behind https.
 
 # 1.0.3
 
