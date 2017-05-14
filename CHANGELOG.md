@@ -1,12 +1,10 @@
 # 1.0.4
 
 * Remove '#!' from addresses on the web version (HTML5 mode) for #11. (Chrome extension version still has the '#'.)
-
 * Fix #11 - Allow linking to players directly. Specify the platform ('psn' or 'xbl') then a list of players:
 * Example #1: https://destinyraidstatus.com/psn/username1
 * Example #2: https://destinyraidstatus.com/psn/username1/username2/etc.
 * Example #3: https://destinyraidstatus.com/xbl/username1/username2/username3/username4/etc.
-
 * Fix #8 - scrape the100.io games. the100.io game URLs can be entered in the PSN/Gamertag search box.
 * Example #1: paste the full URL to a the100.io game in the search box. Player list will auto-populate with players from that game.
 * Example #2: or link to the app with a the100.io game id: https://destinyraidstatus.com/api/the100/<gameId>
@@ -35,7 +33,6 @@
 * Fixes to gamertag input (empty, whitespace).
 * Fix Chrome extension version number differing from website.
 * Add 'otherwise' route back to index.
-
 * NOTE: Bungie's raid counter (Grimoire raid card) doesn't show 390 LL raids currently (in case you're wondering why numbers look different compared to Bungie.net).
 
 # 1.0.1
