@@ -8,7 +8,7 @@ angular
 The100Service.$inject = ['$http', '$q', 'Constants'];
 
 function The100Service($http, $q, Constants) {
-  const endpoint = "http://api.destinyraidstatus.com/the100/scrape.php";
+  const endpoint = "https://api.destinyraidstatus.com/the100/scrape.php";
   const service = {
     scrapePlayers: scrapePlayers,
   };

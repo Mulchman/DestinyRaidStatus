@@ -476,7 +476,7 @@ AddDefaultCharset utf-8
 
 <IfModule mod_headers.c>
 
-    Header set Content-Security-Policy "default-src 'none'; script-src 'self' 'unsafe-eval' https://apis.google.com https://www.google-analytics.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/css; connect-src 'self' http://api.destinyraidstatus.com https://www.bungie.net; img-src 'self' https://www.bungie.net http://www.google-analytics.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com data:; font-src 'self' https://fonts.gstatic.com; child-src 'self' https://accounts.google.com; object-src 'self'"
+    Header set Content-Security-Policy "default-src 'none'; script-src 'self' 'unsafe-eval' https://apis.google.com https://www.google-analytics.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/css; connect-src 'self' https://api.destinyraidstatus.com https://www.bungie.net; img-src 'self' https://www.bungie.net http://www.google-analytics.com https://www.google-analytics.com https://ssl.google-analytics.com https://csi.gstatic.com data:; font-src 'self' https://fonts.gstatic.com; child-src 'self' https://accounts.google.com; object-src 'self'"
 
     # `mod_headers` cannot match based on the content-type, however,
     # the `Content-Security-Policy` response header should be send
@@ -952,4 +952,20 @@ FileETag None
         Header merge Cache-Control "immutable"
     </FilesMatch>
 
+</IfModule>
+
+# ----------------------------------------------------------------------
+# | HTML5 mode with Angular's ngRoute
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+    # Don't rewrite files or directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Rewrite everything else to index.html to allow html5 state links
+    RewriteRule ^ index.html [L]
 </IfModule>

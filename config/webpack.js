@@ -13,7 +13,6 @@ const ASSET_NAME_PATTERN = 'static/[name]-[hash:6].[ext]';
 
 const packageJson = require('../package.json');
 const configJson = require('../apiKey.json');
-// const configJson = require('../apiKey_server.json');
 const nodeModulesDir = path.join(__dirname, '../node_modules');
 
 // https://github.com/dmachat/angular-webpack-cookbook/wiki/Optimizing-Development
@@ -26,6 +25,8 @@ module.exports = (env) => {
   const isDev = env === 'dev';
   const version = packageJson.version.toString();
   const apiKey = configJson.apiKey.toString();
+  // const apiKey = configJson.apiKeyServerWeb.toString();
+  // const apiKey = configJson.apiKeyServerDev.toString();
 
   const config = {
     entry: {
@@ -41,9 +42,12 @@ module.exports = (env) => {
     devServer: {
       contentBase: path.resolve(__dirname, './app'),
       publicPath: '/',
-      https: false,
-      host: '127.0.0.1',
-      hot: false
+      https: true,
+      host: '0.0.0.0',
+      hot: false,
+      historyApiFallback: {
+        index: '/index.html'
+      }
     },
 
     devtool: 'source-map',
