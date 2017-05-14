@@ -1,12 +1,6 @@
-import angular from 'angular';
+export function The100Ctrl($routeParams, $timeout, PlayerListService, The100Service, UtilsService) {
+  'ngInject';
 
-angular
-  .module('drsApp')
-  .controller('The100Ctrl', The100Ctrl);
-
-The100Ctrl.$inject = ['$routeParams', '$timeout', 'PlayerListService', 'The100Service', 'UtilsService'];
-
-function The100Ctrl($routeParams, $timeout, PlayerListService, The100Service, UtilsService) {
   // const vm = this;
 
   function preLoad(gameId) {

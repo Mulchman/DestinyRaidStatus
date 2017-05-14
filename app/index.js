@@ -20,8 +20,4 @@ require('./scripts/drsSettings.controller.js');
 require('./scripts/services/drsSettings.factory.js');
 require('./scripts/services/drsUtilities.factory.js');
 
-// TODO: move to a separate module
-require('./scripts/api/the100/drsThe100.controller.js');
-require('./scripts/api/the100/drsThe100.factory.js');
-
 require('./scss/main.scss');

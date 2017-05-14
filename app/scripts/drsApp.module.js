@@ -7,6 +7,8 @@ import SanitizeModule from 'angular-sanitize';
 import TranslateModule from 'angular-translate';
 import TranslateMessageFormatModule from 'angular-translate-interpolation-messageformat';
 
+import drsThe100Module from './api/the100/drsThe100.module';
+
 import config from './drsApp.config';
 import routes from './drsApp.routes';
 import run from './drsApp.run';
@@ -20,7 +22,8 @@ export const DrsAppModule = angular
     RouteModule,
     SanitizeModule,
     TranslateModule,
-    TranslateMessageFormatModule
+    TranslateMessageFormatModule,
+    drsThe100Module
   ])
   .config(config)
   .config(routes)

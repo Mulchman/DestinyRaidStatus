@@ -1,13 +1,8 @@
-import angular from 'angular';
 import _ from 'underscore';
 
-angular
-  .module('drsApp')
-  .factory('The100Service', The100Service);
+export function The100Service($http, $q, Constants) {
+  'ngInject';
 
-The100Service.$inject = ['$http', '$q', 'Constants'];
-
-function The100Service($http, $q, Constants) {
   const endpoint = "https://api.destinyraidstatus.com/the100/scrape.php";
   const service = {
     scrapePlayers: scrapePlayers,
