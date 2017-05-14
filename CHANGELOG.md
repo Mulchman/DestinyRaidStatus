@@ -1,3 +1,7 @@
+# 1.0.3 - https
+
+* Moved everything behind https.
+
 # 1.0.3
 
 * Fix #2 - Persist platform toggle.
