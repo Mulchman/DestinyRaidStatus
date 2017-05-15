@@ -59,5 +59,14 @@
     "Maintenance": "Bungie.net servers are down for maintenance.",
     "NoAccount": "No Destiny account was found. Do you have the correct spelling and the correct platform selected?",
     "NotConnected": "You may not be connected to the internet."
+  },
+  "The100Service": {
+    "NotConnected": "You may not be connected to the internet.",
+    "Down": "the100.io is down",
+    "NetworkError": "Network error - {status} {statusText}",
+    "Difficulties": "The DRS the100.io API is currently experiencing difficulties.",
+    "GameId": "Unknown or invalid the100.io game Id.",
+    "Platform": "Unknown or invalid the100.io platform.",
+    "NoPlayers": "No players found in the specified the100.io game."
   }
 }
