@@ -1,4 +1,5 @@
 import angular from 'angular';
+import _ from 'underscore';
 
 angular
   .module('drsApp')
@@ -8,47 +9,64 @@ PlayerListService.$inject = ['$q', '$translate', 'BungieLookupService', 'Constan
 
 function PlayerListService($q, $translate, BungieLookupService, Constants, UtilsService) {
   const service = {
-    addGroup: addGroup,
+    startGroup: startGroup,
+    endGroup: endGroup,
     addPlayer: addPlayer,
     players: []
     // removePlayer: removePlayer
   };
   return service;
 
-  function addGroup(player, platform, promise) {
+  function startGroup(player, platform, id) {
     const p = $q.defer();
 
-    const entry = { player: player, platform: platform, loading: true, error: false, group: true };
+    if (UtilsService.isUndefinedOrNullOrEmpty(id)) {
+      p.reject(new Error("Invalid group Id"));
+      return p.promise;
+    }
+
+    const entry = newEntry(player, platform, id);
     service.players.push(entry);
 
-    promise.then(function success() {
-      entry.loading = false;
-
-      p.resolve();
-    }, function failure(response) {
-      entry.errorString = response;
-      entry.error = true;
-      entry.loading = false;
-
-      p.reject(response);
-    });
-
+    p.resolve(entry.group);
     return p.promise;
   }
 
-  function addPlayer(player, platform) {
+  function endGroup(group, error) {
+    const parent = findParent(group);
+    if (!parent) {
+      return $q.reject(new Error("Could not find group"));
+    }
+
+    if (error) {
+      parent.errorString = error;
+      parent.error = true;
+    }
+
+    parent.loading = false;
+  }
+
+  function addPlayer(player, platform, group) {
     player = UtilsService.sanitizeInput(player);
     if (UtilsService.isUndefinedOrNullOrEmpty(player)) {
-      return $q.reject("Gamertag or PSN Id input is invalid");
+      return $q.reject(new Error("Gamertag or PSN Id input is invalid"));
     }
 
     platform = UtilsService.sanitizeInput(platform);
     if (UtilsService.isUndefinedOrNullOrEmpty(platform)) {
-      return $q.reject("Platform is invalid");
+      return $q.reject(new Error("Platform is invalid"));
     }
 
-    const entry = { player: player, platform: platform, loading: true, error: false, group: false };
-    service.players.push(entry);
+    const entry = newEntry(player, platform, group ? group.id : null);
+    if (group) {
+      const parent = findParent(group);
+      if (!parent) {
+        return $q.reject(new Error("Could not find group"));
+      }
+      parent.group.children.push(entry);
+    } else {
+      service.players.push(entry);
+    }
 
     // do the async stuff
     return BungieLookupService.lookup(entry)
@@ -94,6 +112,10 @@ function PlayerListService($q, $translate, BungieLookupService, Constants, Utils
     entry.urls = urls;
   }
 
+  function findParent(group) {
+    return _.find(service.players, (entry) => group && entry.group ? entry.group.id === group.id : false);
+  }
+
   function parseStats(entry) {
     function buildStats(start) {
       const stats = {};
@@ -110,6 +132,23 @@ function PlayerListService($q, $translate, BungieLookupService, Constants, Utils
     entry.vog = buildStats(4);
     entry.kf = buildStats(8);
     entry.wotm = buildStats(12);
+  }
+
+  function newEntry(player, platform, groupId) {
+    const entry = {
+      player: player,
+      platform: platform,
+      loading: true,
+      error: false
+    };
+
+    if (groupId !== null) {
+      entry.group = {};
+      entry.group.id = groupId;
+      entry.group.children = [];
+    }
+
+    return entry;
   }
 
   // function removePlayer(player, platform) {

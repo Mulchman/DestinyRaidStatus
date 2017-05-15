@@ -19,7 +19,8 @@
     "install": "napa"
   },
   "napa": {
-    "zip-js": "https://github.com/gildas-lormeau/zip.js"
+    "zip-js": "https://github.com/gildas-lormeau/zip.js",
+    "angular-uuid2": "https://github.com/MBehtemam/angular-uuid"
   },
   "repository": {
     "type": "git",
