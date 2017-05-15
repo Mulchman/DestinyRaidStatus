@@ -8,46 +8,64 @@ PlayerListService.$inject = ['$q', '$translate', 'BungieLookupService', 'Constan
 
 function PlayerListService($q, $translate, BungieLookupService, Constants, UtilsService) {
   const service = {
+    addGroup: addGroup,
     addPlayer: addPlayer,
     players: []
     // removePlayer: removePlayer
   };
   return service;
 
-  function addPlayer(player, platform) {
+  function addGroup(player, platform, promise) {
     const p = $q.defer();
 
+    const entry = { player: player, platform: platform, loading: true, error: false, group: true };
+    service.players.push(entry);
+
+    promise.then(function success() {
+      entry.loading = false;
+
+      p.resolve();
+    }, function failure(response) {
+      entry.errorString = response;
+      entry.error = true;
+      entry.loading = false;
+
+      p.reject(response);
+    });
+
+    return p.promise;
+  }
+
+  function addPlayer(player, platform) {
     player = UtilsService.sanitizeInput(player);
     if (UtilsService.isUndefinedOrNullOrEmpty(player)) {
-      p.reject("Gamertag or PSN Id input is invalid");
-      return p.promise;
+      return $q.reject("Gamertag or PSN Id input is invalid");
     }
 
     platform = UtilsService.sanitizeInput(platform);
     if (UtilsService.isUndefinedOrNullOrEmpty(platform)) {
-      p.reject("Platform is invalid");
-      return p.promise;
+      return $q.reject("Platform is invalid");
     }
 
-    const entry = { player: player, platform: platform, loading: true, error: false };
+    const entry = { player: player, platform: platform, loading: true, error: false, group: false };
     service.players.push(entry);
 
     // do the async stuff
-    BungieLookupService.lookup(entry)
+    return BungieLookupService.lookup(entry)
       .then(function success(response) {
         entry.stats = response;
         buildLinks(entry);
         parseStats(entry);
         entry.loading = false;
+
+        return $q.resolve();
       }, function failure(response) {
         entry.errorString = response;
         entry.error = true;
         entry.loading = false;
+
+        return $q.reject(response);
       });
-
-    p.resolve();
-
-    return p.promise;
   }
 
   function buildLinks(entry) {

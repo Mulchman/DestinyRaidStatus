@@ -10,25 +10,26 @@
 <div class="row-table row-table-6cols" ng-repeat="entry in vm.pls.players" ng-class-odd="'striped'">
   <span class="row-table-cell row-table-cell-1of6-minus-half column-entry">{{::entry.platform}}</span>
   <span class="row-table-cell row-table-cell-1of6-plus-half column-entry">
-    {{::entry.player}}
+    <span ng-bind-html="entry.player"></span>
     <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyStatus"></span>
     <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyTracker"></span>
   </span>
   <span class="row-table-cell row-table-cell-4of6" ng-show="entry.loading"><i class="fa fa-refresh fa-spin"></i></span>
   <span class="row-table-cell row-table-cell-4of6" ng-show="!entry.loading && entry.error">{{::entry.errorString}}</span>
-  <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">
+  <span class="row-table-cell row-table-cell-4of6" ng-show="!entry.loading && !entry.error && entry.group"></span>
+  <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
     <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.vog.nm, hm: entry.vog.hm, 390: entry.vog[390]}"></span>
     (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.vog.total}"></span>)
   </span>
-  <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">
+  <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
     <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.ce.nm, hm: entry.ce.hm, 390: entry.ce[390]}"></span>
     (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.ce.total}"></span>)
   </span>
-  <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">
+  <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
     <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.kf.nm, hm: entry.kf.hm, 390: entry.kf[390]}"></span>
     (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.kf.total}"></span>)
   </span>
-  <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error">
+  <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
     <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.wotm.nm, hm: entry.wotm.hm, 390: entry.wotm[390]}"></span>
     (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.wotm.total}"></span>)
   </span>

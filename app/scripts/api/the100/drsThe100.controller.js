@@ -4,14 +4,13 @@ export function The100Ctrl($routeParams, $timeout, The100Matcher) {
   // const vm = this;
 
   function preLoad(gameId) {
-    $timeout(function() {
+    $timeout(function () {
       const userdata = { match: [] };
       userdata.match[1] = gameId;
 
       The100Matcher.runFn('', '', userdata)
-        .then(function success() {
-        }, function failure(error) {
-          console.log("Failure with %o: %o", The100Matcher.name, error);
+        .catch(function() {
+          // console.log("Failure with %o: %o", The100Matcher.name, error);
         });
     });
   }

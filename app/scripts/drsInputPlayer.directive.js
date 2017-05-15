@@ -44,12 +44,11 @@ function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListS
     const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
 
     PlayerListService.addPlayer(vm.player, platform)
-      .then(function success() {
-        vm.player = "";
-      }, function failure(error) {
-        vm.player = "";
-        console.log("PSN Id or Gamertag input failure: %o", error);
+      .catch(function() {
+        // console.log("PSN Id or Gamertag input failure: %o", error);
       });
+
+    vm.player = "";
   }
 
   function getPlatformFromSettings() {
@@ -73,13 +72,14 @@ function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListS
 
       const userdata = {};
       if (matcher.testFn(player, platform, userdata)) {
-        return matcher.runFn(player, platform, userdata)
-          .then(function success() {
-            vm.player = "";
-          }, function failure(error) {
-            vm.player = "";
-            console.log("PSN Id or Gamertag input failure with %o: %o", matcher.name, error);
+        vm.player = "";
+
+        matcher.runFn(player, platform, userdata)
+          .catch(function() {
+            // console.log("PSN Id or Gamertag input failure with %o: %o", matcher.name, error);
           });
+
+        return;
       }
     }
 

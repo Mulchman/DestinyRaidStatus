@@ -12,29 +12,30 @@ export function The100Matcher($q, $translate, PlayerListService, The100Service) 
   return service;
 
   function runFn(player, platform, userdata) {
-    const p = $q.defer();
 
     const gameId = userdata.match[1];
     if (angular.isUndefined(gameId) || gameId === null || gameId.trim() === '') {
-      p.reject(new Error($translate.instant('The100Service.GameId')));
-      return p.promise;
+      return $q.reject(new Error($translate.instant('The100Service.GameId')));
     }
 
-    The100Service.scrapePlayers(gameId)
+    const promise = The100Service.scrapePlayers(gameId)
       .then(function (platformAndPlayers) {
         const platform = platformAndPlayers.platform;
         const players = platformAndPlayers.players;
-        players.forEach((player) => {
-          PlayerListService.addPlayer(player, platform);
-        });
-      })
-      .catch(function(error) {
-        console.log("Error scraping the100.io game %o: %o", gameId, error);
+
+        const promises = [];
+        players.forEach((player) => promises.push(PlayerListService.addPlayer(player, platform)));
+
+        return $q.all(promises)
+          .then(function() {
+            return $q.resolve();
+          });
       });
 
-    p.resolve();
+    const endpoint = "https://www.the100.io/game/" + gameId;
+    const url = "<a href='" + endpoint + "' target='_blank'>" + gameId + "</a>";
 
-    return p.promise;
+    return PlayerListService.addGroup(url, service.name, promise);
   }
 
   function testFn(player, platform, userdata) {
