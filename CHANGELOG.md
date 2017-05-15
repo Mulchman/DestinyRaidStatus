@@ -1,3 +1,7 @@
+# 1.0.5
+
+* Add in visual grouping to the the100.io games. Display error messages so it doesn't appear like nothing happened.
+
 # 1.0.4
 
 * Remove '#!' from addresses on the web version (HTML5 mode) for #11. (Chrome extension version still has the '#'.)
