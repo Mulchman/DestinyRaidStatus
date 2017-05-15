@@ -1,24 +1,17 @@
-export function The100Ctrl($routeParams, $timeout, PlayerListService, The100Service, UtilsService) {
+export function The100Ctrl($routeParams, $timeout, The100Matcher) {
   'ngInject';
 
   // const vm = this;
 
   function preLoad(gameId) {
     $timeout(function() {
-      if (UtilsService.isUndefinedOrNullOrEmpty(gameId)) {
-        return;
-      }
+      const userdata = { match: [] };
+      userdata.match[1] = gameId;
 
-      The100Service.scrapePlayers(gameId)
-        .then(function(platformAndPlayers) {
-          const platform = platformAndPlayers.platform;
-          const players = platformAndPlayers.players;
-          players.forEach((player) => {
-            PlayerListService.addPlayer(player, platform);
-          });
-        })
-        .catch(function(error) {
-          console.log("Error scraping the100.io game %o: %o", gameId, error);
+      The100Matcher.runFn('', '', userdata)
+        .then(function success() {
+        }, function failure(error) {
+          console.log("Failure with %o: %o", The100Matcher.name, error);
         });
     });
   }

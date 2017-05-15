@@ -29,16 +29,10 @@ function InputPlayer() {
   return directive;
 }
 
-InputPlayerCtrl.$inject = ['$rootScope', 'Constants', 'PlayerListService', 'SettingsService', 'The100Service'];
+InputPlayerCtrl.$inject = ['$rootScope', 'Constants', 'InputMatcherService', 'PlayerListService', 'SettingsService'];
 
-function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsService, The100Service) {
+function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListService, SettingsService) {
   const vm = this;
-
-  angular.extend(vm, {
-    pls: PlayerListService,
-    ss: SettingsService,
-    t100s: The100Service
-  });
 
   vm.keyup = keyup;
   vm.platform = getPlatformFromSettings();
@@ -49,12 +43,12 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
   function add() {
     const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
 
-    vm.pls.addPlayer(vm.player, platform)
+    PlayerListService.addPlayer(vm.player, platform)
       .then(function success() {
         vm.player = "";
       }, function failure(error) {
-        console.log("PSN Id or Gamertag input failure: %o", error);
         vm.player = "";
+        console.log("PSN Id or Gamertag input failure: %o", error);
       });
   }
 
@@ -70,37 +64,33 @@ function InputPlayerCtrl($rootScope, Constants, PlayerListService, SettingsServi
   }
 
   function run() {
-    const input = vm.player;
+    const player = vm.player;
+    const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
 
-    const match = input.match(/the100\.io\/game\/([0-9]+)$/);
-    if (match === null) {
-      return add();
-    } else {
-      return the100(match[1]);
+    const matcherFns = InputMatcherService.getMatcherFns();
+    for (let i = 0; i < matcherFns.length; i++) {
+      const matcher = matcherFns[i];
+
+      const userdata = {};
+      if (matcher.testFn(player, platform, userdata)) {
+        return matcher.runFn(player, platform, userdata)
+          .then(function success() {
+            vm.player = "";
+          }, function failure(error) {
+            vm.player = "";
+            console.log("PSN Id or Gamertag input failure with %o: %o", matcher.name, error);
+          });
+      }
     }
-  }
 
-  function the100(gameId) {
-    vm.t100s.scrapePlayers(gameId)
-      .then(function(platformAndPlayers) {
-        const platform = platformAndPlayers.platform;
-        const players = platformAndPlayers.players;
-        players.forEach((player) => {
-          vm.pls.addPlayer(player, platform);
-        });
-        vm.player = "";
-      })
-      .catch(function(error) {
-        vm.player = "";
-        console.log("Error scraping the100.io game %o: %o", gameId, error);
-      });
+    return add();
   }
 
   function toggle(platform) {
     // map true/false to XBox/PlayStation.
     const active = platform ? Constants.platforms[1] : Constants.platforms[0];
-    vm.ss.platform = active;
-    vm.ss.save();
+    SettingsService.platform = active;
+    SettingsService.save();
   }
 
   $rootScope.$on("drs-settings-loaded", function() {
