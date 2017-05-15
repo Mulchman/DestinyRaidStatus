@@ -83,7 +83,7 @@ function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListS
       }
     }
 
-    return add();
+    add();
   }
 
   function toggle(platform) {

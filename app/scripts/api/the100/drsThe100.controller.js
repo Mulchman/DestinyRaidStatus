@@ -4,7 +4,7 @@ export function The100Ctrl($routeParams, $timeout, The100Matcher) {
   // const vm = this;
 
   function preLoad(gameId) {
-    $timeout(function () {
+    $timeout(function() {
       const userdata = { match: [] };
       userdata.match[1] = gameId;
 

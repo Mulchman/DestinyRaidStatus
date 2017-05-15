@@ -44,6 +44,8 @@ function PlayerListService($q, $translate, BungieLookupService, Constants, Utils
     }
 
     parent.loading = false;
+
+    return $q.resolve();
   }
 
   function addPlayer(player, platform, group) {
@@ -113,7 +115,7 @@ function PlayerListService($q, $translate, BungieLookupService, Constants, Utils
   }
 
   function findParent(group) {
-    return _.find(service.players, (entry) => group && entry.group ? entry.group.id === group.id : false);
+    return _.find(service.players, (entry) => { return (group && entry.group) ? (entry.group.id === group.id) : false; });
   }
 
   function parseStats(entry) {
