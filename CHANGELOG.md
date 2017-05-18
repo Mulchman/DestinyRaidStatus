@@ -1,6 +1,6 @@
 # 1.0.5
 
-* Add in visual grouping to the the100.io games. Display error messages so it doesn't appear like nothing happened.
+* Add in visual grouping to the the100.io games. Also display error messages in certain cases so it doesn't appear like nothing happened.
 
 # 1.0.4
 
