@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Destiny Raid Status",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Easily check raid status of Destiny player(s)",
   "icons": {
     "16": "icon16.png",
