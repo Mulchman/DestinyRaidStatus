@@ -24,7 +24,10 @@ function MainCtrl($routeParams, $timeout, Constants, PlayerListService, UtilsSer
           continue;
         }
 
-        PlayerListService.addPlayer(players[i], platform);
+        PlayerListService.addPlayer(players[i], platform)
+          .catch(function() {
+            // console.log("PSN Id or Gamertag input failure: %o", error);
+          });
       }
     });
   }
