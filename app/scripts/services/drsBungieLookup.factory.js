@@ -5,9 +5,9 @@ angular
   .module('drsApp')
   .factory('BungieLookupService', BungieLookupService);
 
-BungieLookupService.$inject = ['$http', '$q', '$translate', 'Constants', 'QueueService'];
-
 function BungieLookupService($http, $q, $translate, Constants, QueueService) {
+  'ngInject';
+
   // same strings from drsPlatform.service.js to streamline the lookup -> "membership[entry.platform]" (long term
   // probably not a good idea and PC support if this goes to D2...?)
   const membership = {

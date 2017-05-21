@@ -5,9 +5,9 @@ angular
   .module('drsApp')
   .factory('PlayerListService', PlayerListService);
 
-PlayerListService.$inject = ['$q', '$translate', 'BungieLookupService', 'Constants', 'UtilsService'];
-
 function PlayerListService($q, $translate, BungieLookupService, Constants, UtilsService) {
+  'ngInject';
+
   const service = {
     startGroup: startGroup,
     endGroup: endGroup,

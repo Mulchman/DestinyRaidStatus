@@ -4,9 +4,9 @@ angular
   .module('drsApp')
   .factory('UtilsService', Utils);
 
-Utils.$inject = ['$sanitize'];
-
 function Utils($sanitize) {
+  'ngInject';
+
   const service = {
     isUndefinedOrNullOrEmpty: isUndefinedOrNullOrEmpty,
     sanitizeInput: sanitizeInput

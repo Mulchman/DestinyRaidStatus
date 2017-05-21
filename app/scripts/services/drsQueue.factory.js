@@ -4,10 +4,10 @@ angular
   .module('drsApp')
   .factory('QueueService', QueueService);
 
-QueueService.$inject = ['$q'];
-
 // a copied and modified DIM's ActionQueue
 function QueueService($q) {
+  'ngInject';
+
   const _queue = [];
   const service = {
     enqueue: enqueue,

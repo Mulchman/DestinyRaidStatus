@@ -5,9 +5,9 @@ angular
   .module('drsApp')
   .factory('SettingsService', SettingsService);
 
-SettingsService.$inject = ['$rootScope', '$translate', '$window', 'localStorageService'];
-
 function SettingsService($rootScope, $translate, $window, localStorageService) {
+  'ngInject';
+
   let loaded = false;
   const destinyLanguages = ['de', 'en', 'fr', 'es', 'it', 'ja', 'pt-br'];
   const service = {
