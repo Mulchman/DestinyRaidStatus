@@ -11,8 +11,8 @@ import 'angular-uuid2/dist/angular-uuid2.js';
 import constants from './drsConstants';
 import { HeaderComponent } from './drsHeader.component';
 import { FooterComponent } from './drsFooter.component';
-import { InputPlayerComponent } from './drsInputPlayer.directive';
-import { PlayerListComponent } from './drsPlayerList.directive';
+import { InputPlayerComponent } from './drsInputPlayer.component';
+import { PlayerListComponent } from './drsPlayerList.component';
 import MainController from './drsMain.controller';
 import SettingsController from './drsSettings.controller';
 
