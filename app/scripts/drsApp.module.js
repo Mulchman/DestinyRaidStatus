@@ -8,6 +8,7 @@ import TranslateModule from 'angular-translate';
 import TranslateMessageFormatModule from 'angular-translate-interpolation-messageformat';
 import 'angular-uuid2/dist/angular-uuid2.js';
 
+import { FooterComponent } from './drsFooter.directive';
 import drsThe100Module from './api/the100/drsThe100.module';
 
 import config from './drsApp.config';
@@ -31,4 +32,5 @@ export const DrsAppModule = angular
   .config(routes)
   .run(run)
   .value('Constants', constants)
+  .component('drsFooter', FooterComponent)
   .name;

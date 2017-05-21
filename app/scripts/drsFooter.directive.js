@@ -1,20 +1,15 @@
-import angular from 'angular';
+function FooterCtrl() {
+  const vm = this;
 
-angular
-  .module('drsApp')
-  .directive('drsFooter', Footer);
+  vm.version = $DRS_VERSION;
+}
 
-function Footer() {
-  const directive = {
-    restrict: 'E',
-    scope: {},
-    controller: FooterCtrl,
-    controllerAs: 'vm',
-    bindToController: true,
-    template: `
+export const FooterComponent = {
+  controller: FooterCtrl,
+  template: `
       <div class="footer">
         <span>
-          <p translate="{{'Application.Version'}}" translate-values="{version: vm.version}"></p> |
+          <p translate="{{'Application.Version'}}" translate-values="{version: $ctrl.version}"></p> |
           <p ng-controller="SettingsCtrl as sc">
             <select id="language" ng-model="sc.ss.language" ng-options="code as name for (code, name) in sc.languages" required ng-change="sc.changeLanguage()"></select>
           </p>
@@ -25,12 +20,4 @@ function Footer() {
         </span>
       </div>
     `
-  };
-  return directive;
-}
-
-function FooterCtrl() {
-  const vm = this;
-
-  vm.version = $DRS_VERSION;
-}
+};

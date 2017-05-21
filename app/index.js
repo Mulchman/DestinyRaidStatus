@@ -8,7 +8,6 @@ window.MessageFormat = require('messageformat');
 require('./scripts/app.module');
 
 require('./scripts/drsConstants');
-require('./scripts/drsFooter.directive.js');
 require('./scripts/drsHeader.directive.js');
 require('./scripts/drsInputPlayer.directive.js');
 require('./scripts/drsMain.controller.js');
