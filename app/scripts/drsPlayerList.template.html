@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="row-table row-table-6cols" ng-show="vm.pls.players.length">
+  <div class="row-table row-table-6cols" ng-show="$ctrl.pls.players.length">
     <span class="row-table-cell row-table-cell-1of6-minus-half column-heading" translate="{{'List.Platform'}}"></span>
     <span class="row-table-cell row-table-cell-1of6-plus-half column-heading" translate="{{'List.Player'}}"></span>
     <span class="row-table-cell row-table-cell-1of6 column-heading">
@@ -16,7 +16,7 @@
     </span>
   </div>
 
-  <div class="row-table row-table-6cols" ng-repeat="entry in vm.pls.players" ng-class-odd="'striped'">
+  <div class="row-table row-table-6cols" ng-repeat="entry in $ctrl.pls.players" ng-class-odd="'striped'">
     <span class="row-table-cell row-table-cell-1of6-minus-half column-entry">{{::entry.platform}}</span>
     <span class="row-table-cell row-table-cell-1of6-plus-half column-entry">
       <span ng-bind-html="entry.player"></span>

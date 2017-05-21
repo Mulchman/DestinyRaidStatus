@@ -1,37 +1,6 @@
-import angular from 'angular';
-
-angular
-  .module('drsApp')
-  .directive('drsInputPlayer', InputPlayer);
-
-function InputPlayer() {
-  const directive = {
-    restrict: 'E',
-    scope: {},
-    controller: InputPlayerCtrl,
-    controllerAs: 'vm',
-    bindToController: true,
-    template: `
-      <span>
-        <div id="platform-toggle">
-          <p translate="{{'PlayStation.Service'}}"></p>
-          <label class="switch">
-            <input ng-model="vm.platform" ng-change="vm.toggle(vm.platform)" type="checkbox">
-            <div class="slider round"></div>
-          </label>
-          <p translate="{{'Xbox.Service'}}"></p>
-        </div>
-        <input id="gamer-tag" type="text" ng-model="vm.player" ng-keyup="vm.keyup($event)" translate-attr="{placeholder: (vm.platform ? 'Xbox.Player' : 'PlayStation.Player')}" maxlength="64" ng-trim="false">
-        <span id="submit" ng-click="vm.run()"><i class="fa fa-search"></i></span>
-      </span>
-    `
-  };
-  return directive;
-}
-
-InputPlayerCtrl.$inject = ['$rootScope', 'Constants', 'InputMatcherService', 'PlayerListService', 'SettingsService'];
-
 function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListService, SettingsService) {
+  'ngInject';
+
   const vm = this;
 
   vm.keyup = keyup;
@@ -97,3 +66,21 @@ function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListS
     vm.platform = getPlatformFromSettings();
   });
 }
+
+export const InputPlayerComponent = {
+  controller: InputPlayerCtrl,
+  template: `
+    <span>
+      <div id="platform-toggle">
+        <p translate="{{'PlayStation.Service'}}"></p>
+        <label class="switch">
+          <input ng-model="$ctrl.platform" ng-change="$ctrl.toggle($ctrl.platform)" type="checkbox">
+          <div class="slider round"></div>
+        </label>
+        <p translate="{{'Xbox.Service'}}"></p>
+      </div>
+      <input id="gamer-tag" type="text" ng-model="$ctrl.player" ng-keyup="$ctrl.keyup($event)" translate-attr="{placeholder: ($ctrl.platform ? 'Xbox.Player' : 'PlayStation.Player')}" maxlength="64" ng-trim="false">
+      <span id="submit" ng-click="$ctrl.run()"><i class="fa fa-search"></i></span>
+    </span>
+  `
+};

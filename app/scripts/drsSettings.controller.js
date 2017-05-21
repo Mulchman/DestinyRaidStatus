@@ -1,12 +1,8 @@
 import angular from 'angular';
 
-angular
-  .module('drsApp')
-  .controller('SettingsCtrl', SettingsCtrl);
+function SettingsController($translate, SettingsService) {
+  'ngInject';
 
-SettingsCtrl.$inject = ['$translate', 'SettingsService'];
-
-function SettingsCtrl($translate, SettingsService) {
   const vm = this;
 
   angular.extend(vm, {
@@ -31,3 +27,5 @@ function SettingsCtrl($translate, SettingsService) {
     $translate.fallbackLanguage('en');
   }
 }
+
+export default SettingsController;

@@ -1,12 +1,6 @@
-import angular from 'angular';
+function MainController($routeParams, $timeout, Constants, PlayerListService, UtilsService) {
+  'ngInject';
 
-angular
-  .module('drsApp')
-  .controller('MainCtrl', MainCtrl);
-
-MainCtrl.$inject = ['$routeParams', '$timeout', 'Constants', 'PlayerListService', 'UtilsService'];
-
-function MainCtrl($routeParams, $timeout, Constants, PlayerListService, UtilsService) {
   // const vm = this;
 
   function preLoad(platform, players) {
@@ -34,3 +28,5 @@ function MainCtrl($routeParams, $timeout, Constants, PlayerListService, UtilsSer
 
   preLoad($routeParams.platform, $routeParams.players);
 }
+
+export default MainController;

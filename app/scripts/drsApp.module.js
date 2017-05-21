@@ -8,15 +8,19 @@ import TranslateModule from 'angular-translate';
 import TranslateMessageFormatModule from 'angular-translate-interpolation-messageformat';
 import 'angular-uuid2/dist/angular-uuid2.js';
 
+import constants from './drsConstants';
 import { HeaderComponent } from './drsHeader.component';
 import { FooterComponent } from './drsFooter.component';
+import { InputPlayerComponent } from './drsInputPlayer.directive';
+import { PlayerListComponent } from './drsPlayerList.directive';
+import MainController from './drsMain.controller';
+import SettingsController from './drsSettings.controller';
+
 import drsThe100Module from './api/the100/drsThe100.module';
 
 import config from './drsApp.config';
 import routes from './drsApp.routes';
 import run from './drsApp.run';
-
-import constants from './drsConstants';
 
 export const DrsAppModule = angular
   .module('drsApp', [
@@ -35,4 +39,8 @@ export const DrsAppModule = angular
   .value('Constants', constants)
   .component('drsHeader', HeaderComponent)
   .component('drsFooter', FooterComponent)
+  .component('drsInputPlayer', InputPlayerComponent)
+  .component('drsPlayerList', PlayerListComponent)
+  .controller('MainCtrl', MainController)
+  .controller('SettingsCtrl', SettingsController)
   .name;
