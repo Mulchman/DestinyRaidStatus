@@ -1,3 +1,5 @@
+import template from './drsInputPlayer.template.html';
+
 function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListService, SettingsService) {
   'ngInject';
 
@@ -69,18 +71,5 @@ function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListS
 
 export const InputPlayerComponent = {
   controller: InputPlayerCtrl,
-  template: `
-    <span>
-      <div id="platform-toggle">
-        <p translate="{{'PlayStation.Service'}}"></p>
-        <label class="switch">
-          <input ng-model="$ctrl.platform" ng-change="$ctrl.toggle($ctrl.platform)" type="checkbox">
-          <div class="slider round"></div>
-        </label>
-        <p translate="{{'Xbox.Service'}}"></p>
-      </div>
-      <input id="gamer-tag" type="text" ng-model="$ctrl.player" ng-keyup="$ctrl.keyup($event)" translate-attr="{placeholder: ($ctrl.platform ? 'Xbox.Player' : 'PlayStation.Player')}" maxlength="64" ng-trim="false">
-      <span id="submit" ng-click="$ctrl.run()"><i class="fa fa-search"></i></span>
-    </span>
-  `
+  template: template
 };

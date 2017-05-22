@@ -1,18 +1,19 @@
+import main from '../views/main.html';
 
 routes.$inject = ['$routeProvider'];
 
 function routes($routeProvider) {
   $routeProvider
     .when("/", {
-      templateUrl: require('app/views/main.html')
+      template: main
     })
     .when("/api/the100/:gameId", {
-      templateUrl: require('app/views/main.html'),
+      template: main,
       controller: 'The100Ctrl',
       controllerAs: 'vm'
     })
     .when("/:platform/:players*", {
-      templateUrl: require('app/views/main.html'),
+      template: main,
       controller: 'MainCtrl',
       controllerAs: 'vm'
     })

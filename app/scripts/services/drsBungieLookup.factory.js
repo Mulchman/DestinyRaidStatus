@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'underscore';
+import _ from 'lodash';
 
 angular
   .module('drsApp')
@@ -41,7 +41,7 @@ function BungieLookupService($http, $q, $translate, Constants, QueueService) {
         ];
         return $q.all(promises).then(function(data) {
           const onlyRaidActivities = _.reject(_.flatten(data[0]), function(activity) {
-            return !_.contains(Constants.raids, activity.activityHash);
+            return !_.includes(Constants.raids, activity.activityHash);
           });
 
           const stats = {};
@@ -111,7 +111,7 @@ function BungieLookupService($http, $q, $translate, Constants, QueueService) {
       .then($http)
       .then(handleErrors, handleErrors)
       .then(function(response) {
-        data.characterIds = _.pluck(response.data.Response.characters, 'characterId');
+        data.characterIds = _.map(response.data.Response.characters, 'characterId');
         return data;
       });
   }

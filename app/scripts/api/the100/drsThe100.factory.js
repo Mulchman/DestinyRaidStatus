@@ -1,4 +1,4 @@
-import _ from 'underscore';
+import _ from 'lodash';
 
 export function The100Service($http, $q, $translate, Constants) {
   'ngInject';

@@ -19,7 +19,7 @@
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <meta name="theme-color" content="#434444">
 
-    {{#each htmlWebpackPlugin.files.chunks.main.css}}
+    {{#each htmlWebpackPlugin.files.css}}
       <link href="{{webpackConfig.output.publicPath}}{{this}}" rel="stylesheet">
     {{/each}}
 
@@ -27,7 +27,10 @@
 
   <body ng-strict-di>
     <app></app>
-    <script type="text/javascript" src="{{webpackConfig.output.publicPath}}{{htmlWebpackPlugin.files.chunks.main.entry}}"></script>
+
+    {{#each htmlWebpackPlugin.files.js}}
+    <script type="text/javascript" src="{{webpackConfig.output.publicPath}}{{this}}"></script>
+    {{/each}}
   </body>
 
 </html>

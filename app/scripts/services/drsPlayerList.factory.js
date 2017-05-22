@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'underscore';
+import _ from 'lodash';
 
 angular
   .module('drsApp')

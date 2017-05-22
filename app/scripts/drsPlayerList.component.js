@@ -13,5 +13,5 @@ function PlayerListCtrl(PlayerListService) {
 
 export const PlayerListComponent = {
   controller: PlayerListCtrl,
-  templateUrl: template
+  template: template
 };

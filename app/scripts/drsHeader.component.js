@@ -1,8 +1,5 @@
+import template from './drsHeader.template.html';
+
 export const HeaderComponent = {
-  template: `
-    <div class="header">
-      <h1 translate="{{'Application.Name'}}"></h1>
-      <drs-input-player></drs-input-player>
-    </div>
-  `
+  template: template
 };

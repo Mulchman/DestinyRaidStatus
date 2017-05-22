@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 // const Visualizer = require('webpack-visualizer-plugin');
 
 const NotifyPlugin = require('notify-webpack-plugin');
@@ -17,7 +18,6 @@ const nodeModulesDir = path.join(__dirname, '../node_modules');
 
 // https://github.com/dmachat/angular-webpack-cookbook/wiki/Optimizing-Development
 const preMinifiedDeps = [
-  'underscore/underscore-min.js',
   'messageformat/messageformat.min.js'
 ];
 
@@ -64,7 +64,7 @@ module.exports = (env) => {
           test: /\.js$/,
           exclude: /node_modules/,
           use: [
-            'babel-loader?presets[]=es2015'
+	    'babel-loader'
           ]
         }, {
           test: /\.json$/,
@@ -72,10 +72,7 @@ module.exports = (env) => {
         }, {
           test: /\.html$/,
           use: [
-            {
-              loader: 'file-loader',
-              options: { name: ASSET_NAME_PATTERN }
-            },
+            'raw-loader',
             'extract-loader',
             'html-loader'
           ]
@@ -120,7 +117,7 @@ module.exports = (env) => {
 
       new NotifyPlugin('DRS', !isDev),
 
-      new ExtractTextPlugin('styles-[hash:6].css'),
+      new ExtractTextPlugin('styles-[contenthash:6].css'),
 
       new HtmlWebpackPlugin({
         inject: false,
@@ -138,10 +135,32 @@ module.exports = (env) => {
         { from: `./icons/` }
       ]),
 
+      // Optimize chunk IDs
+      new webpack.optimize.OccurrenceOrderPlugin(true),
+
       new webpack.DefinePlugin({
         $DRS_VERSION: JSON.stringify(version),
         $DRS_FLAVOR: JSON.stringify(env),
         $DRS_API_KEY: JSON.stringify(apiKey)
+      }),
+
+      new LodashModuleReplacementPlugin({
+        shorthands: true,
+        // cloning: true,
+        // currying: true,
+        // caching: true,
+        collections: true,
+        exotics: true,
+        guards: true,
+        // metadata: true,
+        deburring: true,
+        unicode: true,
+        chaining: true,
+        // memoizing: true,
+        // coercions: true,
+        flattening: true,
+        paths: true,
+        placeholders: true
       }),
 
       // Enable if you want to debug the size of the chunks
