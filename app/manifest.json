@@ -15,7 +15,9 @@
     ]
   },
   "permissions": [
-    "*://www.bungie.net/*"
+    "*://www.bungie.net/*",
+    "contextMenus",
+    "tabs"
   ],
   "browser_action": {
     "default_icon": {
