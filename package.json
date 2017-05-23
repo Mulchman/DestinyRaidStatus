@@ -1,6 +1,6 @@
 {
   "name": "DestinyRaidStatus",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Easily check raid status of Destiny player(s)",
   "main": "app/index.html",
   "engines": {
@@ -89,6 +89,7 @@
     "components-font-awesome": "^4.7.0",
     "file-loader": "^0.11.1",
     "lodash": "^4.17.3",
-    "messageformat": "^1.0.2"
+    "messageformat": "^1.0.2",
+    "ng-http-rate-limiter": "^1.0.1"
   }
 }

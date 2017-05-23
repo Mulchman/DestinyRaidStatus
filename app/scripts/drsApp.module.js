@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import LocalStorageModule from 'angular-local-storage';
 import MessagesModule from 'angular-messages';
+import RateLimiterModule from 'ng-http-rate-limiter';
 import RouteModule from 'angular-route';
 import SanitizeModule from 'angular-sanitize';
 import TranslateModule from 'angular-translate';
@@ -15,6 +16,12 @@ import { InputPlayerComponent } from './drsInputPlayer.component';
 import { PlayerListComponent } from './drsPlayerList.component';
 import MainController from './drsMain.controller';
 import SettingsController from './drsSettings.controller';
+import BungieLookupService from './services/drsBungieLookup.factory';
+import InputMatcherService from './services/drsInputMatcher.factory';
+import PlayerListService from './services/drsPlayerList.factory';
+import QueueService from './services/drsQueue.factory';
+import SettingsService from './services/drsSettings.factory';
+import UtilsService from './services/drsUtilities.factory';
 
 import drsThe100Module from './api/the100/drsThe100.module';
 
@@ -26,6 +33,7 @@ export const DrsAppModule = angular
   .module('drsApp', [
     LocalStorageModule,
     MessagesModule,
+    RateLimiterModule,
     RouteModule,
     SanitizeModule,
     TranslateModule,
@@ -43,4 +51,10 @@ export const DrsAppModule = angular
   .component('drsPlayerList', PlayerListComponent)
   .controller('MainCtrl', MainController)
   .controller('SettingsCtrl', SettingsController)
+  .factory('BungieLookupService', BungieLookupService)
+  .factory('InputMatcherService', InputMatcherService)
+  .factory('PlayerListService', PlayerListService)
+  .factory('QueueService', QueueService)
+  .factory('SettingsService', SettingsService)
+  .factory('UtilsService', UtilsService)
   .name;

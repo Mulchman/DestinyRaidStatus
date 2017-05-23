@@ -1,3 +1,8 @@
+# 1.0.6
+
+* Add rate limiting to Bungie.net queries.
+* Internal reorganization.
+
 # 1.0.5
 
 * Add in visual grouping to the the100.io games. Also display error messages in certain cases so it doesn't appear like nothing happened.
