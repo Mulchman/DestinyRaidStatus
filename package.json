@@ -19,7 +19,6 @@
     "install": "napa"
   },
   "napa": {
-    "zip-js": "https://github.com/gildas-lormeau/zip.js",
     "angular-uuid2": "https://github.com/MBehtemam/angular-uuid"
   },
   "repository": {
@@ -71,7 +70,6 @@
     "sass-loader": "^6.0.2",
     "style-loader": "^0.17.0",
     "uglify-js": "^2.7.0",
-    "unzip": "^0.1.11",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.0-rc.0",
     "webpack-dev-server": "^2.2.0-rc.0",
