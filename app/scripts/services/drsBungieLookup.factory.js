@@ -1,9 +1,4 @@
-import angular from 'angular';
 import _ from 'lodash';
-
-angular
-  .module('drsApp')
-  .factory('BungieLookupService', BungieLookupService);
 
 function BungieLookupService($http, $q, $translate, Constants, QueueService) {
   'ngInject';
@@ -199,3 +194,5 @@ function BungieLookupService($http, $q, $translate, Constants, QueueService) {
     return response;
   }
 }
+
+export default BungieLookupService;

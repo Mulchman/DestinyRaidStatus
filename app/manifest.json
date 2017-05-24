@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Destiny Raid Status",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Easily check raid status of Destiny player(s)",
   "icons": {
     "16": "icon16.png",
@@ -15,6 +15,9 @@
     ]
   },
   "permissions": [
+    "*://www.bungie.net/*",
+    "contextMenus",
+    "tabs"
   ],
   "browser_action": {
     "default_icon": {

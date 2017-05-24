@@ -1,9 +1,3 @@
-import angular from 'angular';
-
-angular
-  .module('drsApp')
-  .factory('QueueService', QueueService);
-
 // a copied and modified DIM's ActionQueue
 function QueueService($q) {
   'ngInject';
@@ -41,3 +35,5 @@ function QueueService($q) {
     };
   }
 }
+
+export default QueueService;

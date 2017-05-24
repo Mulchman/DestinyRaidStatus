@@ -8,9 +8,10 @@ import ptBr from '../i18n/drs_pt_BR.json';
 
 import constants from './drsConstants';
 
-config.$inject = ['$compileProvider', '$locationProvider', '$translateProvider', '$translateMessageFormatInterpolationProvider', 'localStorageServiceProvider'];
+function config($compileProvider, $locationProvider, $httpProvider, $translateProvider,
+                $translateMessageFormatInterpolationProvider, localStorageServiceProvider, ngHttpRateLimiterConfigProvider) {
+  'ngInject';
 
-function config($compileProvider, $locationProvider, $translateProvider, $translateMessageFormatInterpolationProvider, localStorageServiceProvider) {
   // TODO: remove this depenency by fixing component bindings https://github.com/angular/angular.js/blob/master/CHANGELOG.md#breaking-changes-1
   $compileProvider.preAssignBindingsEnabled(true);
   // Allow chrome-extension: URLs in ng-src
@@ -20,6 +21,9 @@ function config($compileProvider, $locationProvider, $translateProvider, $transl
   if (!constants.isExtension) {
     $locationProvider.html5Mode(true);
   }
+
+  $httpProvider.interceptors.push('ngHttpRateLimiterInterceptor');
+  $httpProvider.useApplyAsync(true);
 
   // See https://angular-translate.github.io/docs/#/guide
   $translateProvider.useSanitizeValueStrategy('escape');
@@ -41,6 +45,8 @@ function config($compileProvider, $locationProvider, $translateProvider, $transl
     .fallbackLanguage('en');
 
   localStorageServiceProvider.setPrefix('drs');
+
+  ngHttpRateLimiterConfigProvider.addLimiter(/www\.bungie\.net\/Platform\/Stats/, 1, 1100);
 }
 
 export default config;

@@ -1,9 +1,3 @@
-import angular from 'angular';
-
-angular
-  .module('drsApp')
-  .factory('InputMatcherService', InputMatcherService);
-
 function InputMatcherService() {
   const matcherFns = [];
   const service = {
@@ -20,3 +14,5 @@ function InputMatcherService() {
     return matcherFns;
   }
 }
+
+export default InputMatcherService;

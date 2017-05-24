@@ -1,10 +1,6 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-angular
-  .module('drsApp')
-  .factory('SettingsService', SettingsService);
-
 function SettingsService($rootScope, $translate, $window, localStorageService) {
   'ngInject';
 
@@ -46,3 +42,5 @@ function SettingsService($rootScope, $translate, $window, localStorageService) {
     });
   }
 }
+
+export default SettingsService;

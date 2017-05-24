@@ -1,10 +1,4 @@
-import angular from 'angular';
-
-angular
-  .module('drsApp')
-  .factory('UtilsService', Utils);
-
-function Utils($sanitize) {
+function UtilsService($sanitize) {
   'ngInject';
 
   const service = {
@@ -21,3 +15,5 @@ function Utils($sanitize) {
     return isUndefinedOrNullOrEmpty(input) ? null : $sanitize(input.trim());
   }
 }
+
+export default UtilsService;

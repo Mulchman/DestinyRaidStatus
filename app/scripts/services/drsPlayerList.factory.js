@@ -1,9 +1,4 @@
-import angular from 'angular';
 import _ from 'lodash';
-
-angular
-  .module('drsApp')
-  .factory('PlayerListService', PlayerListService);
 
 function PlayerListService($q, $translate, BungieLookupService, Constants, UtilsService) {
   'ngInject';
@@ -157,3 +152,5 @@ function PlayerListService($q, $translate, BungieLookupService, Constants, Utils
     // console.log("[drs] todo");
   // }
 }
+
+export default PlayerListService;
