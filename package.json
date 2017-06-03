@@ -9,13 +9,14 @@
   "scripts": {
     "test": "echo \"No tests\"",
     "dev-chrome": "npm start -s",
-    "generate-css": "echo \"No need to run this any more. Just run 'npm start'!\n\"",
     "lint": "eslint . --fix=true",
-    "bundle": "webpack --config ./config/webpack.js --hide-modules",
-    "build-release": "npm run bundle -s -- --env=release",
-    "build-dev": "npm run bundle -s -- --env=dev --watch",
+    "bundle-prod": "webpack --config ./config/webpack.prod.js --hide-modules",
+    "bundle-dev": "webpack --config ./config/webpack.dev.js --hide-modules",
+    "build-prod": "npm run bundle-prod -s -- --env=prod",
+    "build-dev": "npm run bundle-dev -s -- --env=dev --watch",
     "start": "npm run build-dev -s",
-    "server": "webpack-dev-server --config ./config/webpack.js --env=dev",
+    "server-prod": "webpack-dev-server --config ./config/webpack.prod.js --env=prod",
+    "server-dev": "webpack-dev-server --config ./config/webpack.dev.js --env=dev",
     "install": "napa"
   },
   "napa": {
@@ -25,7 +26,7 @@
     "type": "git",
     "url": "https://github.com/Mulchman/DestinyRaidStatus"
   },
-  "author": "",
+  "author": "Mulchman",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Mulchman/DestinyRaidStatus/issues"
@@ -73,6 +74,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^2.2.0-rc.0",
     "webpack-dev-server": "^2.2.0-rc.0",
+    "webpack-merge": "^4.1.0",
     "webpack-visualizer-plugin": "^0.1.6"
   },
   "dependencies": {

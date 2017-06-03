@@ -6,20 +6,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-// const Visualizer = require('webpack-visualizer-plugin');
-
 const NotifyPlugin = require('notify-webpack-plugin');
-
-const ASSET_NAME_PATTERN = 'static/[name]-[hash:6].[ext]';
+// const Visualizer = require('webpack-visualizer-plugin');
 
 const packageJson = require('../package.json');
 const configJson = require('../apiKey.json');
-const nodeModulesDir = path.join(__dirname, '../node_modules');
-
-// https://github.com/dmachat/angular-webpack-cookbook/wiki/Optimizing-Development
-const preMinifiedDeps = [
-  'messageformat/messageformat.min.js'
-];
 
 module.exports = (env) => {
   const isDev = env === 'dev';
@@ -64,7 +55,7 @@ module.exports = (env) => {
           test: /\.js$/,
           exclude: /node_modules/,
           use: [
-	    'babel-loader'
+            'babel-loader'
           ]
         }, {
           test: /\.json$/,
@@ -78,11 +69,7 @@ module.exports = (env) => {
           ]
         }, {
           test: /\.(png|eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
-          loader: 'url-loader',
-          options: {
-            limit: 5 * 1024, // only inline if less than 5kb
-            name: ASSET_NAME_PATTERN
-          }
+          loader: 'url-loader'
         }, {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract({
@@ -95,16 +82,10 @@ module.exports = (env) => {
           })
         }
       ],
-
-      noParse: [
-        /\/jquery\.slim\.min\.js$/,
-        /\/sql\.js$/
-      ]
     },
 
     resolve: {
       extensions: ['.js', '.json'],
-
       alias: {
         app: path.resolve('./app')
       }
@@ -161,7 +142,7 @@ module.exports = (env) => {
       }),
 
       // Enable if you want to debug the size of the chunks
-      //new Visualizer(),
+      // new Visualizer(),
     ],
 
     node: {
@@ -170,31 +151,6 @@ module.exports = (env) => {
       tls: 'empty'
     }
   };
-
-  // Run through big deps and extract the first part of the path,
-  // as that is what you use to require the actual node modules
-  // in your code. Then use the complete path to point to the correct
-  // file and make sure webpack does not try to parse it
-  preMinifiedDeps.forEach(function(dep) {
-    var depPath = path.resolve(nodeModulesDir, dep);
-    config.resolve.alias[dep.split(path.sep)[0]] = depPath;
-    config.module.noParse.push(new RegExp(depPath));
-  });
-
-  if (!isDev) {
-    // Bail and fail hard on first error
-    // config.bail = true;
-    // config.stats = 'verbose';
-
-    // The sql.js library doesnt work at all (reports no tables) when minified,
-    // so we exclude it from the regular minification
-    // FYI, uglification runs on final chunks rather than individual modules
-    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
-      output: { comments: false },
-      sourceMap: true
-    }));
-  }
 
   return config;
 };
