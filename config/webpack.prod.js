@@ -23,6 +23,7 @@ module.exports = (env) => {
           keep_fnames: true
         },
         compress: {
+          warnings: false,
           screw_ie8: true
         },
         comments: false
