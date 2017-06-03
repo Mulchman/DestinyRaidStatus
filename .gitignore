@@ -2,6 +2,7 @@ dist/
 .DS_Store
 .settings/
 .idea/
+.vscode/
 node_modules/
 apiKey.json
 npm-debug.log
