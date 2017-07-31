@@ -36,7 +36,7 @@
     }
   });
 
-  chrome.tabs.onRemoved.addListener(function(tabId/*, removeInfo*/) {
+  chrome.tabs.onRemoved.addListener(function(tabId/* , removeInfo*/) {
     if (tabId === appInfo.id) {
       appInfo.id = -1;
       appInfo.loaded = false;
@@ -48,16 +48,15 @@
   chrome.runtime.onInstalled.addListener(function() {
     var title = "Destiny Raid Status";
 
-    var parent = chrome.contextMenus.create({ "title": title, "id": "drs_parent", "contexts": ["page", "selection"] });
-    chrome.contextMenus.create({ "title": "Select some text", "parentId": parent, "id": "drs_child1", "contexts": ["page"], "enabled": false });
-    chrome.contextMenus.create({ "title": "Lookup in DRS", "parentId": parent, "id": "drs_child2", "contexts": ["selection"], "onclick": function(info/*, tab*/) {
-
+    var parent = chrome.contextMenus.create({ title: title, id: "drs_parent", contexts: ["page", "selection"] });
+    chrome.contextMenus.create({ title: "Select some text", parentId: parent, id: "drs_child1", contexts: ["page"], enabled: false });
+    chrome.contextMenus.create({ title: "Lookup in DRS", parentId: parent, id: "drs_child2", contexts: ["selection"], onclick: function(info/* , tab*/) {
       if ((appInfo.id !== -1) && appInfo.loaded) {
         chrome.tabs.sendMessage(appInfo.id, { lookup: info.selectionText });
       } else {
         appInfo.pending = { lookup: info.selectionText };
         openExtension();
       }
-    }});
+    } });
   });
 })();
