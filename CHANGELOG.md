@@ -1,6 +1,8 @@
 # 1.0.7
 
 * Update Destiny API endpoints due to Bungie changes.
+* Fix rate limiting regex but disable altogether in the meantime.
+* Fix path to fonts after 1.0.6 re-org.
 
 # 1.0.6
 
