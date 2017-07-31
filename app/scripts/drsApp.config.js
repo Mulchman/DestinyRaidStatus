@@ -9,7 +9,7 @@ import ptBr from '../i18n/drs_pt_BR.json';
 import constants from './drsConstants';
 
 function config($compileProvider, $locationProvider, $httpProvider, $translateProvider,
-                $translateMessageFormatInterpolationProvider, localStorageServiceProvider, ngHttpRateLimiterConfigProvider) {
+                $translateMessageFormatInterpolationProvider, localStorageServiceProvider, /* ngHttpRateLimiterConfigProvider */) {
   'ngInject';
 
   // TODO: remove this depenency by fixing component bindings https://github.com/angular/angular.js/blob/master/CHANGELOG.md#breaking-changes-1
@@ -46,7 +46,7 @@ function config($compileProvider, $locationProvider, $httpProvider, $translatePr
 
   localStorageServiceProvider.setPrefix('drs');
 
-  ngHttpRateLimiterConfigProvider.addLimiter(/www\.bungie\.net\/Platform\/Stats/, 1, 1100);
+  // ngHttpRateLimiterConfigProvider.addLimiter(/www\.bungie\.net\/d1\/Platform\/Destiny\/Stats/, 1, 1100);
 }
 
 export default config;
