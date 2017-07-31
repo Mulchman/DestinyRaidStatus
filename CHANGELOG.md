@@ -1,3 +1,7 @@
+# 1.0.7
+
+* Update Destiny API endpoints due to Bungie changes.
+
 # 1.0.6
 
 * Add rate limiting to Bungie.net queries.
