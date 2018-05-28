@@ -10,7 +10,7 @@ Install dependencies:
 
 * Install [NodeJS].
 * Run `npm install`
-* Windows-based developers night need to install `windows-build-tools` (`npm install --global windows-build-tools`) globally prior to running `npm install`.
+* Windows-based developers need to install `windows-build-tools` (`npm install --global windows-build-tools`) globally prior to running `npm install`.
 
 Check code Style
 * `npm run lint`
