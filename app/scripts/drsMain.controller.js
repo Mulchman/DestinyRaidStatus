@@ -26,6 +26,7 @@ function MainController($routeParams, $timeout, Constants, PlayerListService, Ut
     });
   }
 
+  // TODO: figure out what to do now that there are 2 games supported and parameters are different
   preLoad($routeParams.platform, $routeParams.players);
 }
 

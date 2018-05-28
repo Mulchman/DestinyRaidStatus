@@ -3,12 +3,19 @@
     "Name": "Destiny Raid Status",
     "Version": "v{version}"
   },
+  "Game": {
+    "Destiny1": "Destiny 1",
+    "Destiny2": "Destiny 2"
+  },
   "List": {
     "Player": "Player",
     "Platform": "Platform",
     "RaidVersions": "NM / HM / 390",
+    "RaidVersionsD2": "Normal / Prestige",
     "DataVersions": "{nm} / {hm} / {390}",
-    "DataTotal": "{total}"
+    "DataVersions2": "{nm} / {pm}",
+    "DataTotal": "{total}",
+    "DataTotal2": "{total}"
   },
   "PlayStation": {
     "Player": "PSN Id",
@@ -18,11 +25,19 @@
     "Player": "Gamertag",
     "Service": "XBL"
   },
+  "Destiny2": {
+    "Player": "PSN Id or Gamertag or Battle.net ID"
+  },
   "Raids": {
     "VoG": "Vault of Glass",
     "CE": "Crota's End",
     "KF": "King's Fall",
     "WotM": "Wrath of the Machine"
+  },
+  "RaidsD2": {
+    "Leviathan": "Leviathan",
+    "EaterOfWorlds": "Eater of Worlds",
+    "SpireOfStars": "Spire of Stars"
   },
   "Links": {
     "Source": {

@@ -1,3 +1,6 @@
 <drs-header></drs-header>
-<drs-player-list></drs-player-list>
+<div ng-controller="SettingsCtrl as sc">
+  <drs-player-list ng-if="sc.isDestiny1()"></drs-player-list>
+  <drs-player-list2 ng-if="sc.isDestiny2()"></drs-player-list2>
+</div>
 <drs-footer></drs-footer>

@@ -1,6 +1,6 @@
 {
   "name": "DestinyRaidStatus",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "Easily check raid status of Destiny player(s)",
   "main": "app/index.html",
   "engines": {

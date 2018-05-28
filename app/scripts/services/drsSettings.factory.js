@@ -7,8 +7,9 @@ function SettingsService($rootScope, $translate, $window, localStorageService) {
   let loaded = false;
   const destinyLanguages = ['de', 'en', 'fr', 'es', 'it', 'ja', 'pt-br'];
   const service = {
+    game: "D2", // match Constants value
     language: defaultLanguage(),
-    platform: "PSN",
+    platform: "PSN", // match Constants value
     save: save
   };
 

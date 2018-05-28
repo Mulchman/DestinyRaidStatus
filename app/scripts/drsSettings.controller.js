@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-function SettingsController($translate, SettingsService) {
+function SettingsController($translate, Constants, SettingsService) {
   'ngInject';
 
   const vm = this;
@@ -10,6 +10,8 @@ function SettingsController($translate, SettingsService) {
   });
 
   vm.changeLanguage = changeLanguage;
+  vm.isDestiny1 = isDestiny1;
+  vm.isDestiny2 = isDestiny2;
   vm.languages = {
     de: 'Deutsch (incomplete)',
     en: 'English',
@@ -25,6 +27,14 @@ function SettingsController($translate, SettingsService) {
 
     $translate.use(vm.ss.language);
     $translate.fallbackLanguage('en');
+  }
+
+  function isDestiny1() {
+    return vm.ss.game === Constants.games[0];
+  }
+
+  function isDestiny2() {
+    return vm.ss.game === Constants.games[1];
   }
 }
 
