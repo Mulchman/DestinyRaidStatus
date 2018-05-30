@@ -54,6 +54,12 @@ export function The100Matcher($q, $translate, PlayerListService, The100Service, 
 
   function testFn(player, platform, userdata) {
     userdata.match = player.match(/the100\.io\/game\/([0-9]+)$/);
+
+    // try new format that came online at some point (?)
+    if (userdata.match === null) {
+      userdata.match = player.match(/the100\.io\/gaming_sessions\/([0-9]+)$/);
+    }
+
     return userdata.match !== null;
   }
 }
