@@ -1,4 +1,4 @@
-function MainController($rootScope, $routeParams, $timeout, Constants, PlayerListService, PlayerList2Service, SettingsService, UtilsService) {
+function MainController($rootScope, $routeParams, $timeout, Constants, PlayerListService, PlayerListD2Service, SettingsService, UtilsService) {
   'ngInject';
 
   // const vm = this;
@@ -33,7 +33,7 @@ function MainController($rootScope, $routeParams, $timeout, Constants, PlayerLis
           continue;
         }
 
-        PlayerList2Service.addPlayer(players[i])
+        PlayerListD2Service.addPlayer(players[i])
           .catch(function() {
             // console.log("PSN Id or Gamertag or Battle.net ID input failure: %o", error);
           });

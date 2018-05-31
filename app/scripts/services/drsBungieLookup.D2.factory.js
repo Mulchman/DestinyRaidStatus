@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-function Bungie2LookupService($http, $q, $translate, Constants, QueueService) {
+function BungieLookupD2Service($http, $q, $translate, Constants, QueueService) {
   'ngInject';
 
   const apiKey = $DRS_API_KEY;
@@ -267,4 +267,4 @@ function Bungie2LookupService($http, $q, $translate, Constants, QueueService) {
   }
 }
 
-export default Bungie2LookupService;
+export default BungieLookupD2Service;

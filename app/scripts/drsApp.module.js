@@ -14,16 +14,16 @@ import { HeaderComponent } from './drsHeader.component';
 import { FooterComponent } from './drsFooter.component';
 import { InputGameComponent } from './drsInputGame.component';
 import { InputPlayerComponent } from './drsInputPlayer.component';
-import { InputPlayer2Component } from './drsInputPlayer2.component';
+import { InputPlayerD2Component } from './drsInputPlayer.D2.component';
 import { PlayerListComponent } from './drsPlayerList.component';
-import { PlayerList2Component } from './drsPlayerList2.component';
+import { PlayerListD2Component } from './drsPlayerList.D2.component';
 import MainController from './drsMain.controller';
 import SettingsController from './drsSettings.controller';
 import BungieLookupService from './services/drsBungieLookup.factory';
-import Bungie2LookupService from './services/drsBungie2Lookup.factory';
+import BungieLookupD2Service from './services/drsBungieLookup.D2.factory';
 import InputMatcherService from './services/drsInputMatcher.factory';
 import PlayerListService from './services/drsPlayerList.factory';
-import PlayerList2Service from './services/drsPlayerList2.factory';
+import PlayerListD2Service from './services/drsPlayerList.D2.factory';
 import QueueService from './services/drsQueue.factory';
 import SettingsService from './services/drsSettings.factory';
 import UtilsService from './services/drsUtilities.factory';
@@ -54,16 +54,16 @@ export const DrsAppModule = angular
   .component('drsFooter', FooterComponent)
   .component('drsInputGame', InputGameComponent)
   .component('drsInputPlayer', InputPlayerComponent)
-  .component('drsInputPlayer2', InputPlayer2Component)
+  .component('drsInputPlayerD2', InputPlayerD2Component)
   .component('drsPlayerList', PlayerListComponent)
-  .component('drsPlayerList2', PlayerList2Component)
+  .component('drsPlayerListD2', PlayerListD2Component)
   .controller('MainCtrl', MainController)
   .controller('SettingsCtrl', SettingsController)
   .factory('BungieLookupService', BungieLookupService)
-  .factory('Bungie2LookupService', Bungie2LookupService)
+  .factory('BungieLookupD2Service', BungieLookupD2Service)
   .factory('InputMatcherService', InputMatcherService)
   .factory('PlayerListService', PlayerListService)
-  .factory('PlayerList2Service', PlayerList2Service)
+  .factory('PlayerListD2Service', PlayerListD2Service)
   .factory('QueueService', QueueService)
   .factory('SettingsService', SettingsService)
   .factory('UtilsService', UtilsService)

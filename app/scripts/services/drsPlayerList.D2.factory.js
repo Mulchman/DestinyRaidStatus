@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-function PlayerList2Service($q, $translate, Bungie2LookupService, Constants, SettingsService, UtilsService) {
+function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, SettingsService, UtilsService) {
   'ngInject';
 
   const service = {
@@ -61,7 +61,7 @@ function PlayerList2Service($q, $translate, Bungie2LookupService, Constants, Set
     }
 
     // do the async stuff
-    return Bungie2LookupService.lookup(entry)
+    return BungieLookupD2Service.lookup(entry)
       .then(function success(response) {
         entry.memberships = response.memberships;
         entry.stats = response.stats;
@@ -222,4 +222,4 @@ function PlayerList2Service($q, $translate, Bungie2LookupService, Constants, Set
   // }
 }
 
-export default PlayerList2Service;
+export default PlayerListD2Service;

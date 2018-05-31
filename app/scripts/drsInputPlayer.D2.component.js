@@ -1,6 +1,6 @@
-import template from './drsInputPlayer2.template.html';
+import template from './drsInputPlayer.D2.template.html';
 
-function InputPlayer2Ctrl(PlayerList2Service) {
+function InputPlayerD2Ctrl(PlayerListD2Service) {
   'ngInject';
 
   const vm = this;
@@ -10,7 +10,7 @@ function InputPlayer2Ctrl(PlayerList2Service) {
   vm.run = run;
 
   function add(player) {
-    PlayerList2Service.addPlayer(player)
+    PlayerListD2Service.addPlayer(player)
       .catch(function() {
         // console.log("PSN Id or Gamertag or Battle.net ID input failure: %o", error);
       });
@@ -42,7 +42,7 @@ function InputPlayer2Ctrl(PlayerList2Service) {
   */
 }
 
-export const InputPlayer2Component = {
-  controller: InputPlayer2Ctrl,
+export const InputPlayerD2Component = {
+  controller: InputPlayerD2Ctrl,
   template: template
 };
