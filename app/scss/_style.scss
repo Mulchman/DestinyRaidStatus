@@ -28,6 +28,22 @@
   .striped {
     background-color: #DCDCDC;
   }
+
+  .player-aliases {
+    @extend .column-heading;
+  }
+
+  .player-raids {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+
+    span + span {
+      font-weight: bold;
+      margin-left: 10px;
+    }
+  }
 }
 
 body {

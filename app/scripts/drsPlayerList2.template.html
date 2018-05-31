@@ -14,26 +14,31 @@
 
   <div class="row-table row-table-4cols" ng-repeat="entry in $ctrl.pls.players" ng-class-odd="'striped'">
     <span class="row-table-cell row-table-cell-1of4 column-entry">
-      <span ng-bind-html="entry.aliases"></span>
-      <!-- <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyStatus"></span> -->
-      <!-- <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyTracker"></span> -->
+      <span ng-show="entry.aliases.length === 0" ng-bind-html="entry.player"></span>
+      <span ng-show="entry.aliases.length !== 0" class="player-aliases">
+        <span ng-repeat="alias in entry.aliases">
+          <span translate="{{'List.DataAlias'}}" translate-values="{platform: alias.platform, name: alias.name}"></span>
+          <span ng-bind-html="::alias.urls.destinyStatus"></span>
+          <span ng-bind-html="::alias.urls.destinyTracker"></span>
+        </span>
+      </span>
     </span>
     
-    <span class="row-table-cell row-table-cell-3of4" ng-show="entry.loading"><i class="fa fa-refresh fa-spin"></i></span>
-    <span class="row-table-cell row-table-cell-3of4" ng-show="!entry.loading && entry.error">{{::entry.errorString}}</span>
-    <span class="row-table-cell row-table-cell-3of4" ng-show="!entry.loading && !entry.error && entry.group"></span>
+    <span class="row-table-cell row-table-cell-3of4" ng-if="entry.loading"><i class="fa fa-refresh fa-spin"></i></span>
+    <span class="row-table-cell row-table-cell-3of4" ng-if="!entry.loading && entry.error">{{::entry.errorString}}</span>
+    <span class="row-table-cell row-table-cell-3of4" ng-if="!entry.loading && !entry.error && entry.group"></span>
 
-    <span class="row-table-cell row-table-cell-1of4 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
-      <span translate="{{'List.DataVersions2'}}" translate-values="{nm: entry.l.nm, pm: entry.l.pm}"></span>
-      (<span class="total" translate="{{'List.DataTotal2'}}" translate-values="{total: entry.l.total}"></span>)
+    <span class="row-table-cell row-table-cell-1of4 column-entry player-raids" ng-if="!entry.loading && !entry.error && !entry.group">
+      <span translate="{{'List.DataVersions2'}}" translate-values="{nm: entry.l.nm, g: entry.l.g, pm: entry.l.pm}"></span>
+      <span translate="{{'List.DataTotal2'}}" translate-values="{total: entry.l.total}"></span>
     </span>
-    <span class="row-table-cell row-table-cell-1of4 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
-      <span translate="{{'List.DataVersions2'}}" translate-values="{nm: entry.eow.nm, pm: entry.eow.pm}"></span>
-      (<span class="total" translate="{{'List.DataTotal2'}}" translate-values="{total: entry.eow.total}"></span>)
+    <span class="row-table-cell row-table-cell-1of4 column-entry player-raids" ng-if="!entry.loading && !entry.error && !entry.group">
+      <span translate="{{'List.DataVersions2'}}" translate-values="{nm: entry.eow.nm, g: entry.eow.g, pm: entry.eow.pm}"></span>
+      <span translate="{{'List.DataTotal2'}}" translate-values="{total: entry.eow.total}"></span>
     </span>
-    <span class="row-table-cell row-table-cell-1of4 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
-      <span translate="{{'List.DataVersions2'}}" translate-values="{nm: entry.sos.nm, pm: entry.sos.pm}"></span>
-      (<span class="total" translate="{{'List.DataTotal2'}}" translate-values="{total: entry.sos.total}"></span>)
+    <span class="row-table-cell row-table-cell-1of4 column-entry player-raids" ng-if="!entry.loading && !entry.error && !entry.group">
+      <span translate="{{'List.DataVersions2'}}" translate-values="{nm: entry.sos.nm, g: entry.sos.g, pm: entry.sos.pm}"></span>
+      <span translate="{{'List.DataTotal2'}}" translate-values="{total: entry.sos.total}"></span>
     </span>
 
   </div>

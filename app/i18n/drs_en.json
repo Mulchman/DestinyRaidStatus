@@ -11,11 +11,12 @@
     "Player": "Player",
     "Platform": "Platform",
     "RaidVersions": "NM / HM / 390",
-    "RaidVersionsD2": "Normal / Prestige",
+    "RaidVersionsD2": "Normal / Guided / Prestige",
     "DataVersions": "{nm} / {hm} / {390}",
-    "DataVersions2": "{nm} / {pm}",
+    "DataVersions2": "{nm} / {g} / {pm}",
     "DataTotal": "{total}",
-    "DataTotal2": "{total}"
+    "DataTotal2": "({total})",
+    "DataAlias": "{platform}: {name}"
   },
   "PlayStation": {
     "Player": "PSN Id",
