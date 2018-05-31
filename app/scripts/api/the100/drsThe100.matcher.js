@@ -21,7 +21,7 @@ export function The100Matcher($q, $translate, PlayerListService, The100Service, 
       return $q.reject(new Error($translate.instant('The100Service.GameId')));
     }
 
-    const endpoint = "https://www.the100.io/game/" + gameId;
+    const endpoint = "https://www.the100.io/gaming_sessions/" + gameId;
     const url = "<a href='" + endpoint + "' target='_blank'>" + gameId + "</a>";
 
     return PlayerListService.startGroup(url, service.name, uuid2.newguid())
@@ -53,13 +53,7 @@ export function The100Matcher($q, $translate, PlayerListService, The100Service, 
   }
 
   function testFn(player, platform, userdata) {
-    userdata.match = player.match(/the100\.io\/game\/([0-9]+)$/);
-
-    // try new format that came online at some point (?)
-    if (userdata.match === null) {
-      userdata.match = player.match(/the100\.io\/gaming_sessions\/([0-9]+)$/);
-    }
-
+    userdata.match = player.match(/the100\.io\/gaming_sessions\/([0-9]+)$/);
     return userdata.match !== null;
   }
 }
