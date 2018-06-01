@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export function The100D2Service($http, $q, $translate, Constants) {
+export function The100D2Service($http, $q, $translate) {
   'ngInject';
 
   const endpoint = "https://api.destinyraidstatus.com/the100/scrape3.php";
@@ -76,7 +76,7 @@ export function The100D2Service($http, $q, $translate, Constants) {
           if (player.aliases.PC) {
             return player.aliases.PC;
           }
-         return player.name;
+          return player.name;
         });
 
         return { players: players };

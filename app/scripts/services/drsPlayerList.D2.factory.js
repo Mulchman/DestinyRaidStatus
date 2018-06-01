@@ -150,7 +150,7 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
     }
     offset += 6;
 
-    entry.l.total = entry.l.nm +  entry.l.g + entry.l.pm;
+    entry.l.total = entry.l.nm + entry.l.g + entry.l.pm;
 
     // caclculate Eater of Worlds normal mode
     for (let i = 0; i < 1; i++) {
@@ -173,7 +173,7 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
     }
     offset += 1;
 
-    entry.eow.total = entry.eow.nm +  entry.eow.g + entry.eow.pm;
+    entry.eow.total = entry.eow.nm + entry.eow.g + entry.eow.pm;
 
     // caclculate Spire of Stars normal mode
     for (let i = 0; i < 1; i++) {
@@ -196,7 +196,7 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
     }
     offset += 1;
 
-    entry.sos.total = entry.sos.nm +  entry.sos.g + entry.sos.pm;
+    entry.sos.total = entry.sos.nm + entry.sos.g + entry.sos.pm;
   }
 
   function newEntry(player, groupId) {

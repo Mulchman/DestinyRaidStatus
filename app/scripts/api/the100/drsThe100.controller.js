@@ -13,7 +13,7 @@ export function The100Ctrl($rootScope, $routeParams, $timeout, Constants, Settin
     if (SettingsService.game === Constants.games[0]) {
       preLoadDestiny1(gameId);
     } else if (SettingsService.game === Constants.games[1]) {
-      preLoadDestiny2(gameId)
+      preLoadDestiny2(gameId);
     } else {
       console.log("Unknown game when attempting to preload");
     }
@@ -44,7 +44,7 @@ export function The100Ctrl($rootScope, $routeParams, $timeout, Constants, Settin
   }
 
   $rootScope.$on("drs-settings-loaded", function() {
-    preload($routeParams.gameId);
+    preLoad($routeParams.gameId);
   });
 
   if (SettingsService.loaded) {
