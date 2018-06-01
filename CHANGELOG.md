@@ -1,3 +1,7 @@
+# 2.0.1
+
+* Style fixes for small screens.
+
 # 2.0.0
 
 * Destiny 2 support.

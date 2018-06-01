@@ -28,7 +28,7 @@
     "Service": "XBL"
   },
   "Destiny2": {
-    "Player": "PSN Id or Gamertag or Battle.net ID"
+    "Player": "PSN Id, Gamertag, Battle.net ID"
   },
   "Raids": {
     "VoG": "Vault of Glass",

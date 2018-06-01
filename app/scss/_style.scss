@@ -54,8 +54,6 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-
-  border: 1;
 }
 
 body {
@@ -69,6 +67,14 @@ body {
 
   a, div, input, span {
     font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  #player-destiny2 {
+    input {
+      width: 260px;
+    }
   }
 }
 
