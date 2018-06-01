@@ -12,7 +12,7 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
   };
   return service;
 
-  function startGroup(player, platform, id) {
+  function startGroup(player, unused, id) {
     const p = $q.defer();
 
     if (UtilsService.isUndefinedOrNullOrEmpty(id)) {
@@ -20,7 +20,7 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
       return p.promise;
     }
 
-    const entry = newEntry(player, platform, id);
+    const entry = newEntry(player, id);
     service.players.push(entry);
 
     p.resolve(entry.group);
@@ -217,7 +217,7 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
     return entry;
   }
 
-  // function removePlayer(player, platform) {
+  // function removePlayer(player) {
     // console.log("[drs] todo");
   // }
 }

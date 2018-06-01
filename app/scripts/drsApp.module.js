@@ -22,6 +22,7 @@ import SettingsController from './drsSettings.controller';
 import BungieLookupService from './services/drsBungieLookup.factory';
 import BungieLookupD2Service from './services/drsBungieLookup.D2.factory';
 import InputMatcherService from './services/drsInputMatcher.factory';
+import InputMatcherD2Service from './services/drsInputMatcher.D2.factory';
 import PlayerListService from './services/drsPlayerList.factory';
 import PlayerListD2Service from './services/drsPlayerList.D2.factory';
 import QueueService from './services/drsQueue.factory';
@@ -62,6 +63,7 @@ export const DrsAppModule = angular
   .factory('BungieLookupService', BungieLookupService)
   .factory('BungieLookupD2Service', BungieLookupD2Service)
   .factory('InputMatcherService', InputMatcherService)
+  .factory('InputMatcherD2Service', InputMatcherD2Service)
   .factory('PlayerListService', PlayerListService)
   .factory('PlayerListD2Service', PlayerListD2Service)
   .factory('QueueService', QueueService)

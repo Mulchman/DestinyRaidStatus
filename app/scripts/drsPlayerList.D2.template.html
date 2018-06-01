@@ -41,84 +41,33 @@
       <span translate="{{'List.DataTotal2'}}" translate-values="{total: entry.sos.total}"></span>
     </span>
 
-  </div>
-
-  <!--
-  <div class="row-table row-table-6cols" ng-show="$ctrl.pls.players.length">
-    <span class="row-table-cell row-table-cell-1of6-minus-half column-heading" translate="{{'List.Platform'}}"></span>
-    <span class="row-table-cell row-table-cell-1of6-plus-half column-heading" translate="{{'List.Player'}}"></span>
-    <span class="row-table-cell row-table-cell-1of6 column-heading">
-      <div translate="{{'Raids.VoG'}}"></div><div translate="{{'List.RaidVersions'}}"></div>
-    </span>
-    <span class="row-table-cell row-table-cell-1of6 column-heading">
-      <div translate="{{'Raids.CE'}}"></div><div translate="{{'List.RaidVersions'}}"></div>
-    </span>
-    <span class="row-table-cell row-table-cell-1of6 column-heading">
-      <div translate="{{'Raids.KF'}}"></div><div translate="{{'List.RaidVersions'}}"></div>
-    </span>
-    <span class="row-table-cell row-table-cell-1of6 column-heading">
-      <div translate="{{'Raids.WotM'}}"></div><div translate="{{'List.RaidVersions'}}"></div>
-    </span>
-  </div>
-
-  <div class="row-table row-table-6cols" ng-repeat="entry in $ctrl.pls.players" ng-class-odd="'striped'">
-    <span class="row-table-cell row-table-cell-1of6-minus-half column-entry">{{::entry.platform}}</span>
-    <span class="row-table-cell row-table-cell-1of6-plus-half column-entry">
-      <span ng-bind-html="entry.player"></span>
-      <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyStatus"></span>
-      <span ng-show="!entry.loading && !entry.error" ng-bind-html="::entry.urls.destinyTracker"></span>
-    </span>
-
-    <span class="row-table-cell row-table-cell-4of6" ng-show="entry.loading"><i class="fa fa-refresh fa-spin"></i></span>
-    <span class="row-table-cell row-table-cell-4of6" ng-show="!entry.loading && entry.error">{{::entry.errorString}}</span>
-    <span class="row-table-cell row-table-cell-4of6" ng-show="!entry.loading && !entry.error && entry.group"></span>
-
-    <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
-      <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.vog.nm, hm: entry.vog.hm, 390: entry.vog[390]}"></span>
-      (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.vog.total}"></span>)
-    </span>
-    <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
-      <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.ce.nm, hm: entry.ce.hm, 390: entry.ce[390]}"></span>
-      (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.ce.total}"></span>)
-    </span>
-    <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
-      <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.kf.nm, hm: entry.kf.hm, 390: entry.kf[390]}"></span>
-      (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.kf.total}"></span>)
-    </span>
-    <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!entry.loading && !entry.error && !entry.group">
-      <span translate="{{'List.DataVersions'}}" translate-values="{nm: entry.wotm.nm, hm: entry.wotm.hm, 390: entry.wotm[390]}"></span>
-      (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: entry.wotm.total}"></span>)
-    </span>
-
-    <div class="row-table row-table-6cols" ng-repeat="subEntry in entry.group.children">
-      <span class="row-table-cell row-table-cell-1of6-minus-half column-entry">{{::subEntry.platform}}</span>
-      <span class="row-table-cell row-table-cell-1of6-plus-half column-entry">
-        <span ng-bind-html="subEntry.player"></span>
-        <span ng-show="!subEntry.loading && !subEntry.error" ng-bind-html="::subEntry.urls.destinyStatus"></span>
-        <span ng-show="!subEntry.loading && !subEntry.error" ng-bind-html="::subEntry.urls.destinyTracker"></span>
+    <div class="row-table row-table-4cols" ng-repeat="subEntry in entry.group.children">
+      <span class="row-table-cell row-table-cell-1of4 column-entry">
+        <span ng-show="subEntry.aliases.length === 0" ng-bind-html="subEntry.player"></span>
+        <span ng-show="subEntry.aliases.length !== 0" class="player-aliases">
+          <span ng-repeat="alias in subEntry.aliases">
+            <span translate="{{'List.DataAlias'}}" translate-values="{platform: alias.platform, name: alias.name}"></span>
+            <span ng-bind-html="::alias.urls.destinyStatus"></span>
+            <span ng-bind-html="::alias.urls.destinyTracker"></span>
+          </span>
+        </span>
       </span>
 
-      <span class="row-table-cell row-table-cell-4of6" ng-show="subEntry.loading"><i class="fa fa-refresh fa-spin"></i></span>
-      <span class="row-table-cell row-table-cell-4of6" ng-show="!subEntry.loading && subEntry.error">{{::subEntry.errorString}}</span>
+      <span class="row-table-cell row-table-cell-3of4" ng-if="subEntry.loading"><i class="fa fa-refresh fa-spin"></i></span>
+      <span class="row-table-cell row-table-cell-3of4" ng-if="!subEntry.loading && subEntry.error">{{::subEntry.errorString}}</span>
 
-      <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!subEntry.loading && !subEntry.error">
-        <span translate="{{'List.DataVersions'}}" translate-values="{nm: subEntry.vog.nm, hm: subEntry.vog.hm, 390: subEntry.vog[390]}"></span>
-        (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: subEntry.vog.total}"></span>)
-      </span>
-        <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!subEntry.loading && !subEntry.error">
-        <span translate="{{'List.DataVersions'}}" translate-values="{nm: subEntry.ce.nm, hm: subEntry.ce.hm, 390: subEntry.ce[390]}"></span>
-        (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: subEntry.ce.total}"></span>)
-      </span>
-        <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!subEntry.loading && !subEntry.error">
-        <span translate="{{'List.DataVersions'}}" translate-values="{nm: subEntry.kf.nm, hm: subEntry.kf.hm, 390: subEntry.kf[390]}"></span>
-        (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: subEntry.kf.total}"></span>)
-      </span>
-        <span class="row-table-cell row-table-cell-1of6 column-entry" ng-show="!subEntry.loading && !subEntry.error">
-        <span translate="{{'List.DataVersions'}}" translate-values="{nm: subEntry.wotm.nm, hm: subEntry.wotm.hm, 390: subEntry.wotm[390]}"></span>
-        (<span class="total" translate="{{'List.DataTotal'}}" translate-values="{total: subEntry.wotm.total}"></span>)
-      </span>
+      <span class="row-table-cell row-table-cell-1of4 column-entry player-raids" ng-if="!subEntry.loading && !subEntry.error">
+          <span translate="{{'List.DataVersions2'}}" translate-values="{nm: subEntry.l.nm, g: subEntry.l.g, pm: subEntry.l.pm}"></span>
+          <span translate="{{'List.DataTotal2'}}" translate-values="{total: subEntry.l.total}"></span>
+        </span>
+        <span class="row-table-cell row-table-cell-1of4 column-entry player-raids" ng-if="!subEntry.loading && !subEntry.error">
+          <span translate="{{'List.DataVersions2'}}" translate-values="{nm: subEntry.eow.nm, g: subEntry.eow.g, pm: subEntry.eow.pm}"></span>
+          <span translate="{{'List.DataTotal2'}}" translate-values="{total: subEntry.eow.total}"></span>
+        </span>
+        <span class="row-table-cell row-table-cell-1of4 column-entry player-raids" ng-if="!subEntry.loading && !subEntry.error">
+          <span translate="{{'List.DataVersions2'}}" translate-values="{nm: subEntry.sos.nm, g: subEntry.sos.g, pm: subEntry.sos.pm}"></span>
+          <span translate="{{'List.DataTotal2'}}" translate-values="{total: subEntry.sos.total}"></span>
+        </span>
     </div>
-
   </div>
--->
 </div>
