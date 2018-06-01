@@ -1,7 +1,26 @@
-function MainController($rootScope, $routeParams, $timeout, Constants, PlayerListService, PlayerListD2Service, SettingsService, UtilsService) {
+function MainController($rootScope, $routeParams, $timeout, $window, Constants, PlayerListService, PlayerListD2Service, SettingsService, UtilsService) {
   'ngInject';
 
-  // const vm = this;
+  const vm = this;
+  vm.problematicUrl = false;
+  vm.fixedUrl = '';
+
+  let preloaded = false;
+
+  function preLoad(platform, players) {
+    if (preloaded) {
+      return;
+    }
+
+    preloaded = true;
+    if (SettingsService.game === Constants.games[0]) {
+      preLoadDestiny1(platform, players);
+    } else if (SettingsService.game === Constants.games[1]) {
+      preLoadDestiny2(players);
+    } else {
+      console.log("Unknown game when attempting to preload");
+    }
+  }
 
   function preLoadDestiny1(platform, players) {
     $timeout(function() {
@@ -40,15 +59,34 @@ function MainController($rootScope, $routeParams, $timeout, Constants, PlayerLis
     }
   }
 
-  $rootScope.$on("drs-settings-loaded", function() {
-    if (SettingsService.game === Constants.games[0]) {
-      preLoadDestiny1($routeParams.platform, $routeParams.players);
-    } else if (SettingsService.game === Constants.games[1]) {
-      preLoadDestiny2($routeParams.players);
-    } else {
-      console.log("Unknown game when attempting to preload");
+  function problematicUrl() {
+    const offset = Constants.isExtension ? $window.location.href.indexOf('#') : 0;
+    vm.problematicUrl = $window.location.href.indexOf('#', offset + 1) !== -1;
+
+    if (vm.problematicUrl) {
+      vm.fixedUrl = $window.location.href.replace(/#/g, function(match, p1) {
+        if (Constants.isExtension && (p1 === offset)) {
+          return '#';
+        } else {
+          return '%23';
+        }
+      });
+
+      vm.fixedUrl = vm.fixedUrl.replace(/%2F/g, '/');
     }
-  });
+
+    return vm.problematicUrl;
+  }
+
+  if (!problematicUrl()) {
+    $rootScope.$on("drs-settings-loaded", function() {
+      preLoad($routeParams.platform, $routeParams.players);
+    });
+
+    if (!preloaded) {
+      preLoad($routeParams.platform, $routeParams.players);
+    }
+  }
 }
 
 export default MainController;

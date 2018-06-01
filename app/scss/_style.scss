@@ -46,6 +46,18 @@
   }
 }
 
+.problematic-url {
+  padding-top: 124px; // header height x 2
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+
+  border: 1;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, sans-serif;
   margin: 0;

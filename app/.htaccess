@@ -965,6 +965,7 @@ FileETag None
     # Built-in - player lookups from address
     RewriteRule ^psn/(.+)$ index.html [L]
     RewriteRule ^xbl/(.+)$ index.html [L]
+    RewriteRule ^pc/(.+)$ index.html [L]
 
     # API - the100.io - game id from address
     RewriteRule ^api/the100/[0-9]+$ index.html [L]

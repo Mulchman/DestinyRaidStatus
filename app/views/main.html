@@ -1,5 +1,9 @@
 <drs-header></drs-header>
 <div ng-controller="SettingsCtrl as sc">
+  <div class="row-table row-table-4cols problematic-url" ng-if="vm && vm.problematicUrl && sc.isDestiny2()">
+    <span translate="{{'List.ProblematicUrl'}}"></span>
+    <a ng-href="{{vm.fixedUrl}}">{{vm.fixedUrl}}</a>
+  </div>
   <drs-player-list ng-if="sc.isDestiny1()"></drs-player-list>
   <drs-player-list-d2 ng-if="sc.isDestiny2()"></drs-player-list-d2>
 </div>

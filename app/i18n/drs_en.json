@@ -16,7 +16,8 @@
     "DataVersions2": "{nm} / {g} / {pm}",
     "DataTotal": "{total}",
     "DataTotal2": "({total})",
-    "DataAlias": "{platform}: {name}"
+    "DataAlias": "{platform}: {name}",
+    "ProblematicUrl": "The URL is invalid. Battle.net ID hashtags must be encoded to '%23'. Here's a fixed URL."
   },
   "PlayStation": {
     "Player": "PSN Id",
