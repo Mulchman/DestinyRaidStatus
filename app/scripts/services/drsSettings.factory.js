@@ -4,11 +4,11 @@ import _ from 'lodash';
 function SettingsService($rootScope, $translate, $window, localStorageService) {
   'ngInject';
 
-  let loaded = false;
   const destinyLanguages = ['de', 'en', 'fr', 'es', 'it', 'ja', 'pt-br'];
   const service = {
     game: "D2", // match Constants value
     language: defaultLanguage(),
+    loaded: false,
     platform: "PSN", // match Constants value
     save: save
   };
@@ -29,13 +29,13 @@ function SettingsService($rootScope, $translate, $window, localStorageService) {
       angular.merge(service, savedSettings);
       $translate.use(service.language);
       $translate.fallbackLanguage('en');
-      loaded = true;
       $rootScope.$broadcast('drs-settings-loaded');
+      service.loaded = true;
     });
   }
 
   function save() {
-    if (!loaded) {
+    if (!service.loaded) {
       throw new Error("Settings haven't loaded - they can't be saved");
     }
     $rootScope.$evalAsync(function() {
