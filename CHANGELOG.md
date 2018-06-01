@@ -1,3 +1,7 @@
+# 2.0.0
+
+* Destiny 2 support.
+
 # 1.0.7
 
 * Update Destiny API endpoints due to Bungie changes.
