@@ -28,7 +28,7 @@
         "*://*.destinyraidstatus.com/*"
       ],
       "js": [
-        "extension-scripts/content.js"
+        "extension-scripts/content-destinyraidstatus.js"
       ]
     },
     {
