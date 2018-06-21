@@ -111,10 +111,7 @@ module.exports = (env) => {
         { from: './app/.htaccess' },
         { from: `./icons/` },
         // Chrome extension stuff
-        { from: './app/chrome-extension/background.js', to: 'chrome-extension/' },
-        { from: './app/chrome-extension/content-destinyraidstatus.js', to: 'chrome-extension/' },
-        { from: './app/chrome-extension/content-destinylfg.js', to: 'chrome-extension/' },
-        { from: './app/chrome-extension/manifest.json', to: 'chrome-extension/' },
+        { from: './app/chrome-extension/', to: 'chrome-extension/' },
         { from: `./icons/`, to: 'chrome-extension/' },
       ]),
 
