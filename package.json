@@ -1,6 +1,6 @@
 {
   "name": "DestinyRaidStatus",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Easily check raid status of Destiny player(s)",
   "main": "app/index.html",
   "engines": {
@@ -13,8 +13,7 @@
     "bundle-prod": "webpack --config ./config/webpack.prod.js --hide-modules",
     "bundle-dev": "webpack --config ./config/webpack.dev.js --hide-modules",
     "build-prod": "npm run bundle-prod -s -- --env=prod",
-    "build-dev": "npm run bundle-dev -s -- --env=dev --watch",
-    "start": "npm run build-dev -s",
+    "build-dev": "npm run bundle-dev -s -- --env=dev",
     "server-prod": "webpack-dev-server --config ./config/webpack.prod.js --env=prod",
     "server-dev": "webpack-dev-server --config ./config/webpack.dev.js --env=dev",
     "install": "napa"
@@ -66,7 +65,6 @@
     "uglify-js": "2.8.29",
     "url-loader": "0.5.9",
     "webpack": "3.12.0",
-    "webpack-dev-server": "2.11.2",
     "webpack-merge": "4.1.2",
     "webpack-visualizer-plugin": "0.1.11"
   },

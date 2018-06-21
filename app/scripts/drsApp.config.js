@@ -6,8 +6,6 @@ import es from '../i18n/drs_es.json';
 import ja from '../i18n/drs_ja.json';
 import ptBr from '../i18n/drs_pt_BR.json';
 
-import constants from './drsConstants';
-
 function config($compileProvider, $locationProvider, $httpProvider, $translateProvider,
                 $translateMessageFormatInterpolationProvider, localStorageServiceProvider, /* ngHttpRateLimiterConfigProvider */) {
   'ngInject';
@@ -16,9 +14,7 @@ function config($compileProvider, $locationProvider, $httpProvider, $translatePr
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*((https?|chrome-extension):|data:image\/)/);
 
   $locationProvider.hashPrefix('');
-  if (!constants.isExtension) {
-    $locationProvider.html5Mode(true);
-  }
+  $locationProvider.html5Mode(true);
 
   $httpProvider.interceptors.push('ngHttpRateLimiterInterceptor');
   $httpProvider.useApplyAsync(true);

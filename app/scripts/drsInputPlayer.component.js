@@ -67,14 +67,6 @@ function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListS
   $rootScope.$on("drs-settings-loaded", function() {
     vm.platform = getPlatformFromSettings();
   });
-
-  if (Constants.isExtension) {
-    chrome.runtime.onMessage.addListener(function(request) {
-      console.log("Looking up '%o' via context menu tie-in!", request.lookup);
-      vm.player = request.lookup;
-      vm.run();
-    });
-  }
 }
 
 export const InputPlayerComponent = {

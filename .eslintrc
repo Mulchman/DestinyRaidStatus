@@ -16,6 +16,7 @@
     "sourceType": "module"
   },
   "globals": {
+    "BroadcastChannel": true,
     "chrome": true,
     "$DRS_VERSION": true,
     "$DRS_FLAVOR": true,

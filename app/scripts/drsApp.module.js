@@ -28,6 +28,7 @@ import PlayerListD2Service from './services/drsPlayerList.D2.factory';
 import QueueService from './services/drsQueue.factory';
 import SettingsService from './services/drsSettings.factory';
 import UtilsService from './services/drsUtilities.factory';
+import BroadcastChannelRun from './services/drsBroadcastChannel.run';
 
 import drsThe100Module from './api/the100/drsThe100.module';
 
@@ -50,6 +51,7 @@ export const DrsAppModule = angular
   .config(config)
   .config(routes)
   .run(run)
+  .run(BroadcastChannelRun)
   .value('Constants', constants)
   .component('drsHeader', HeaderComponent)
   .component('drsFooter', FooterComponent)

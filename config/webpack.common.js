@@ -15,9 +15,9 @@ const configJson = require('../apiKey.json');
 module.exports = (env) => {
   const isDev = env === 'dev';
   const version = packageJson.version.toString();
-  const apiKey = configJson.apiKey.toString();
+  // const apiKey = configJson.apiKey.toString();
   // const apiKey = configJson.apiKeyServerWeb.toString();
-  // const apiKey = configJson.apiKeyServerDev.toString();
+  const apiKey = configJson.apiKeyServerDev.toString();
 
   const config = {
     entry: {
@@ -108,7 +108,9 @@ module.exports = (env) => {
 
       new CopyWebpackPlugin([
         { from: './app/.htaccess' },
-        { from: './app/extension-scripts/main.js', to: 'extension-scripts/' },
+        { from: './app/extension-scripts/background.js', to: 'extension-scripts/' },
+        { from: './app/extension-scripts/content.js', to: 'extension-scripts/' },
+        { from: './app/extension-scripts/content-destinylfg.js', to: 'extension-scripts/' },
         { from: './app/manifest.json' },
         { from: `./icons/` }
       ]),

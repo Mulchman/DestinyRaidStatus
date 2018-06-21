@@ -20,7 +20,7 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
       return p.promise;
     }
 
-    const entry = newEntry(player, id);
+    const entry = newEntry({ player: player, original: player }, id);
     service.players.push(entry);
 
     p.resolve(entry.group);
@@ -44,12 +44,13 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
   }
 
   function addPlayer(player, group) {
+    const original = player.trim();
     player = UtilsService.sanitizeInput(player);
     if (UtilsService.isUndefinedOrNullOrEmpty(player)) {
       return $q.reject(new Error("Gamertag or PSN Id or Battle.net ID input is invalid"));
     }
 
-    const entry = newEntry(player, group ? group.id : null);
+    const entry = newEntry({ player: player, original: original }, group ? group.id : null);
     if (group) {
       const parent = findParent(group);
       if (!parent) {
@@ -205,7 +206,8 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
       error: false,
       loading: true,
       memberships: null,
-      player: player
+      original: encodeURIComponent(player.original),
+      player: player.player
     };
 
     if (groupId !== null) {

@@ -12,7 +12,7 @@ function BungieLookupD2Service($http, $q, $translate, Constants, QueueService) {
     // 4) Take all characters and find raid completions
     const data = {
       player: entry.player,
-      bootstrap: { type: -1, id: null, name: entry.player }, // starting point
+      bootstrap: { type: -1, id: null, name: entry.original }, // starting point
       memberships: null,
       stats: null
     };
@@ -59,10 +59,7 @@ function BungieLookupD2Service($http, $q, $translate, Constants, QueueService) {
   return service;
 
   function bungifyUrl(url) {
-    let newUrl = encodeURI(url);
-    newUrl = newUrl.replace(/#/g, '%23');
-    // console.log("[DRS] [bungifyUrl] url: %o", newUrl);
-    return newUrl;
+    return url;
   }
 
   function getActivities(data) {

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Destiny Raid Status",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Easily check raid status of Destiny player(s)",
   "icons": {
     "16": "icon16.png",
@@ -11,13 +11,34 @@
   "short_name": "DRS",
   "background": {
     "scripts": [
-      "extension-scripts/main.js"
-    ]
+      "extension-scripts/background.js"
+    ],
+    "persistent": false
   },
   "permissions": [
-    "*://www.bungie.net/*",
     "contextMenus",
-    "tabs"
+    "tabs",
+    "*://127.0.0.1/*",
+    "*://*.destinyraidstatus.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://127.0.0.1/*",
+        "*://*.destinyraidstatus.com/*"
+      ],
+      "js": [
+        "extension-scripts/content.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.destinylfg.net/*"
+      ],
+      "js": [
+        "extension-scripts/content-destinylfg.js"
+      ]
+    }
   ],
   "browser_action": {
     "default_icon": {
@@ -25,13 +46,11 @@
       "38": "icon38.png"
     }
   },
-  "options_ui": {
-    "page": "index.html",
-    "chrome_style": false,
-    "open_in_tab": true
-  },
-  "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.google-analytics.com https://apis.google.com; object-src 'self'",
+  "content_security_policy": "script-src 'self'; object-src 'self'",
   "incognito": "split",
   "offline_enabled": false,
-  "minimum_chrome_version": "51"
+  "minimum_chrome_version": "51",
+  "web_accessible_resources": [
+    "icon16.png"
+  ]
 }

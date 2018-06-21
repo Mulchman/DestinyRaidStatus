@@ -9,15 +9,30 @@ Clone the repository:
 Install dependencies:
 
 * Install [NodeJS].
-* Run `npm install`
 * Windows-based developers need to install `windows-build-tools` (`npm install --global windows-build-tools`) globally prior to running `npm install`.
+* Run `npm install`
+* Windows-based developers need to install `openssl` manually and/or add it to the path. Try [this](https://www.cloudinsidr.com/content/how-to-install-the-most-recent-version-of-openssl-on-windows-10-in-64-bit/).
+* If you want to be able to test locally, run `npm install --global spa-http-server`.
 
 Check code Style
 * `npm run lint`
 
-Build in dev mode (Chrome extension)
-* `npm start`. This will bundle and copy all the assets, as well as watch for changes. You can now run locally by enabling [Chrome Extensions Developer Mode](https://developer.chrome.com/extensions/faq#faq-dev-01) and point to the `dist` folder.
-* If you want to test the the100.io integration you need to allow CORS. Add `"*://*/*"` to the `manifest.json` `permissions` and reload (through the Chrome extensions page) the extension.
+Development on a locally run web server
+* Building:
+ * `npm run build-dev -- --watch`. This will bundle and copy all the assets, as well as watch for changes.
+* Generating `openssl` stuff:
+ * Open a command prompt in the `dist` subdirectory.
+  * Windows-based developers:
+   * `openssl genrsa -out key.pem 1024`
+   * `openssl req -new -key key.pem -out key.csr`. Accept all the defaults.
+   * `openssl x509 -req -days 365 -in key.csr -signkey key.pem -out cert.pem`
+  * Non Windows-based developers-
+   * ??? use openssl to create key.pem and cert.pem ???
+* Running the local web server:
+ * Open a command prompt in the `dist` subdirectory and run `http-server --push-state -S`
+
+Chrome extension
+* This gets 'built' when `npm run build-dev` is run. Point Chrome (`Load Unpacked`) at the `dist` directory. The Chrome extension offers a context menu that can facilitate in getting names to [Destiny Raid Status](https://destinyraidstatus.com) quicker and without the need to copy/paste. The Chrome extension also adds a DRS icon next to player names on destinylfg.net to make looking up players quicker and without the need for copy/paste or selecting text.
 
 Get your own API key:
 

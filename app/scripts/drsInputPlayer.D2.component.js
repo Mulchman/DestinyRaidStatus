@@ -46,17 +46,6 @@ function InputPlayerD2Ctrl(InputMatcherD2Service, PlayerListD2Service) {
 
     add(player);
   }
-
-  // TODO: route in Destiny 2 lookups (this functionality was never finished w/ the D1 version, either)
-  /*
-  if (Constants.isExtension) {
-    chrome.runtime.onMessage.addListener(function(request) {
-      console.log("Looking up '%o' via context menu tie-in!", request.lookup);
-      vm.player = request.lookup;
-      vm.run();
-    });
-  }
-  */
 }
 
 export const InputPlayerD2Component = {

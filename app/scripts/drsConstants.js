@@ -1,6 +1,5 @@
 const constants = {
   games: ['D1', 'D2'],
-  isExtension: window.chrome && window.chrome.extension,
   platforms: ['PSN', 'XBL', 'PC'],
   platformsLookup: { 1: 'XBL', 2: 'PSN', 4: 'PC' }, // match names in platforms
   raids: [

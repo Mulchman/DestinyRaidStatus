@@ -60,18 +60,10 @@ function MainController($rootScope, $routeParams, $timeout, $window, Constants, 
   }
 
   function problematicUrl() {
-    const offset = Constants.isExtension ? $window.location.href.indexOf('#') : 0;
-    vm.problematicUrl = $window.location.href.indexOf('#', offset + 1) !== -1;
+    vm.problematicUrl = $window.location.href.indexOf('#') !== -1;
 
     if (vm.problematicUrl) {
-      vm.fixedUrl = $window.location.href.replace(/#/g, function(match, p1) {
-        if (Constants.isExtension && (p1 === offset)) {
-          return '#';
-        } else {
-          return '%23';
-        }
-      });
-
+      vm.fixedUrl = $window.location.href.replace(/#/g, '%23');
       vm.fixedUrl = vm.fixedUrl.replace(/%2F/g, '/');
     }
 
