@@ -107,12 +107,15 @@ module.exports = (env) => {
       }),
 
       new CopyWebpackPlugin([
+        // Web app stuff
         { from: './app/.htaccess' },
-        { from: './app/extension-scripts/background.js', to: 'extension-scripts/' },
-        { from: './app/extension-scripts/content-destinyraidstatus.js', to: 'extension-scripts/' },
-        { from: './app/extension-scripts/content-destinylfg.js', to: 'extension-scripts/' },
-        { from: './app/manifest.json' },
-        { from: `./icons/` }
+        { from: `./icons/` },
+        // Chrome extension stuff
+        { from: './app/extension-scripts/background.js', to: 'chrome-extension/' },
+        { from: './app/extension-scripts/content-destinyraidstatus.js', to: 'chrome-extension/' },
+        { from: './app/extension-scripts/content-destinylfg.js', to: 'chrome-extension/' },
+        { from: './app/manifest.json', to: 'chrome-extension/' },
+        { from: `./icons/`, to: 'chrome-extension/' },
       ]),
 
       // Optimize chunk IDs

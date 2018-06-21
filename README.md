@@ -32,7 +32,7 @@ Development on a locally run web server
  * Open a command prompt in the `dist` subdirectory and run `http-server --push-state -S`
 
 Chrome extension
-* This gets 'built' when `npm run build-dev` is run. Point Chrome (`Load Unpacked`) at the `dist` directory. The Chrome extension offers a context menu that can facilitate in getting names to [Destiny Raid Status](https://destinyraidstatus.com) quicker and without the need to copy/paste. The Chrome extension also adds a DRS icon next to player names on destinylfg.net to make looking up players quicker and without the need for copy/paste or selecting text.
+* This gets 'built' when `npm run build-dev` is run. Point Chrome (`Load Unpacked`) at the `dist/chrome-extension` directory. The Chrome extension offers a context menu that can facilitate in getting names to [Destiny Raid Status](https://destinyraidstatus.com) quicker and without the need to copy/paste. The Chrome extension also adds a DRS icon next to player names on destinylfg.net to make looking up players quicker and without the need for copy/paste or selecting text.
 
 Get your own API key:
 

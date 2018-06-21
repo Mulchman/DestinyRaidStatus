@@ -11,7 +11,7 @@
   "short_name": "DRS",
   "background": {
     "scripts": [
-      "extension-scripts/background.js"
+      "background.js"
     ],
     "persistent": false
   },
@@ -28,7 +28,7 @@
         "*://*.destinyraidstatus.com/*"
       ],
       "js": [
-        "extension-scripts/content-destinyraidstatus.js"
+        "content-destinyraidstatus.js"
       ]
     },
     {
@@ -36,7 +36,7 @@
         "*://*.destinylfg.net/*"
       ],
       "js": [
-        "extension-scripts/content-destinylfg.js"
+        "content-destinylfg.js"
       ]
     }
   ],
