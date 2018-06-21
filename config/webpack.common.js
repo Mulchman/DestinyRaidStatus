@@ -114,7 +114,7 @@ module.exports = (env) => {
         { from: './app/extension-scripts/background.js', to: 'chrome-extension/' },
         { from: './app/extension-scripts/content-destinyraidstatus.js', to: 'chrome-extension/' },
         { from: './app/extension-scripts/content-destinylfg.js', to: 'chrome-extension/' },
-        { from: './app/manifest.json', to: 'chrome-extension/' },
+        { from: './app/extension-scripts/manifest.json', to: 'chrome-extension/' },
         { from: `./icons/`, to: 'chrome-extension/' },
       ]),
 
