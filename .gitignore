@@ -8,3 +8,4 @@ apiKey.json
 package-lock.json
 npm-debug.log
 backups/
+openssl.cmd
