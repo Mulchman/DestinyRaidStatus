@@ -19,17 +19,17 @@ Check code Style
 
 Development on a locally run web server
 * Building:
- * `npm run build-dev -- --watch`. This will bundle and copy all the assets, as well as watch for changes.
+  * `npm run build-dev -- --watch`. This will bundle and copy all the assets, as well as watch for changes.
 * Generating `openssl` stuff:
- * Open a command prompt in the `dist` subdirectory.
-  * Windows-based developers:
-   * `openssl genrsa -out key.pem 1024`
-   * `openssl req -new -key key.pem -out key.csr`. Accept all the defaults.
-   * `openssl x509 -req -days 365 -in key.csr -signkey key.pem -out cert.pem`
-  * Non Windows-based developers-
-   * ??? use openssl to create key.pem and cert.pem ???
+  * Open a command prompt in the `dist` subdirectory.
+    * Windows-based developers:
+      * `openssl genrsa -out key.pem 1024`
+      * `openssl req -new -key key.pem -out key.csr`. Accept all the defaults.
+      * `openssl x509 -req -days 365 -in key.csr -signkey key.pem -out cert.pem`
+    * Non Windows-based developers-
+      * ??? use openssl to create key.pem and cert.pem ???
 * Running the local web server:
- * Open a command prompt in the `dist` subdirectory and run `http-server --push-state -S`
+  * Open a command prompt in the `dist` subdirectory and run `http-server --push-state -S`
 
 Chrome extension
 * This gets 'built' when `npm run build-dev` is run. Point Chrome (`Load Unpacked`) at the `dist/chrome-extension` directory. The Chrome extension offers a context menu that can facilitate in getting names to [Destiny Raid Status](https://destinyraidstatus.com) quicker and without the need to copy/paste. The Chrome extension also adds a DRS icon next to player names on destinylfg.net to make looking up players quicker and without the need for copy/paste or selecting text.
