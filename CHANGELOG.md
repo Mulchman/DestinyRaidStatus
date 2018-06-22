@@ -3,7 +3,7 @@
 * Removed the ability to run the whole application as an extension. The extension features will simply hook/call in to the web version.
 * Updated [README.md](https://github.com/Mulchman/DestinyRaidStatus/blob/master/README.md) with instructions on how to host the web version locally for development purposes.
 * Created a Chrome extension that adds some DRS related context menu entries when you select text on any web page. This lets you look up players by simply highlighting their name on any web page, right clicking, and selecting the platform-specific context menu action. A DRS tab will open (if one isn't already opened) and queue the lookup. The Chrome extension also adds a DRS icon next to player names on destinylfg.net to aid in looking up players without having to copy/paste or select any text.
-* TODO: Added a copy icon next to player names to easily copy said name to the clipboard.
+* Added a copy icon next to player names to easily copy said name to the clipboard.
 
 # 2.0.1
 
