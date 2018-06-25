@@ -1,6 +1,7 @@
 # 2.1.1
 
 * Reduce CSS size.
+* Add the copy icon next to player names in the100.io groupings.
 
 # 2.1.0
 
