@@ -2,8 +2,8 @@
   console.log("DRS extension (id: " + chrome.runtime.id + "): background script is loading.");
 
   const appInfo = { id: chrome.runtime.id, loaded: false, pending: [], tabId: -1 };
-  const urlDrs = "https://127.0.0.1:8080/";
-  // const urlDrs = "https://destinyraidstatus.com/";
+  // const urlDrs = "https://127.0.0.1:8080/";
+  const urlDrs = "https://destinyraidstatus.com/";
   const constants = {
     D1: 'D1',
     D2: 'D2',

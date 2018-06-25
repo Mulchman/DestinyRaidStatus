@@ -18,13 +18,11 @@
   "permissions": [
     "contextMenus",
     "tabs",
-    "*://127.0.0.1/*",
     "*://*.destinyraidstatus.com/*"
   ],
   "content_scripts": [
     {
       "matches": [
-        "*://127.0.0.1/*",
         "*://*.destinyraidstatus.com/*"
       ],
       "js": [
