@@ -1,3 +1,7 @@
+# 2.1.1
+
+* Reduce CSS size.
+
 # 2.1.0
 
 * Removed the ability to run the whole application as an extension. The extension features will simply hook/call in to the web version.

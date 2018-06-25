@@ -11,6 +11,7 @@ const NotifyPlugin = require('notify-webpack-plugin');
 
 const packageJson = require('../package.json');
 const configJson = require('../apiKey.json');
+const ASSET_NAME_PATTERN = 'static/[name]-[hash:6].[ext]';
 
 module.exports = (env) => {
   const isDev = env === 'dev';
@@ -69,7 +70,11 @@ module.exports = (env) => {
           ]
         }, {
           test: /\.(png|eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
-          loader: 'url-loader'
+          loader: 'url-loader',
+          options: {
+            limit: 5 * 1024,
+            name: ASSET_NAME_PATTERN
+          }
         }, {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract({
