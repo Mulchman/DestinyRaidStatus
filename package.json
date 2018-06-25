@@ -14,8 +14,6 @@
     "bundle-dev": "webpack --config ./config/webpack.dev.js --hide-modules",
     "build-prod": "npm run bundle-prod -s -- --env=prod",
     "build-dev": "npm run bundle-dev -s -- --env=dev",
-    "server-prod": "webpack-dev-server --config ./config/webpack.prod.js --env=prod",
-    "server-dev": "webpack-dev-server --config ./config/webpack.dev.js --env=dev",
     "install": "napa"
   },
   "napa": {
