@@ -1,6 +1,6 @@
 # 2.1.2
 
-* More robust parsing for the The100.io scraper.
+* More robust parsing for the the100.io scraper.
 
 # 2.1.1
 
