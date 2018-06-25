@@ -50,6 +50,9 @@
         <span ng-show="subEntry.aliases.length !== 0" class="player-aliases">
           <span ng-repeat="alias in subEntry.aliases">
             <span translate="{{'List.DataAlias'}}" translate-values="{platform: alias.platform, name: alias.name}"></span>
+            <button class="btn" ng-click="$ctrl.copyClicked(alias.name)">
+              <i class="fa fa-copy"></i>
+            </button>
             <span ng-bind-html="::alias.urls.destinyStatus"></span>
             <span ng-bind-html="::alias.urls.destinyTracker"></span>
           </span>
