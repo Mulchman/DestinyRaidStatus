@@ -12,15 +12,14 @@ function PlayerListD2Ctrl(PlayerListD2Service) {
   });
 
   function copyClicked(alias) {
-    // https://stackoverflow.com/a/43483323
-    function handler(event) {
-      event.clipboardData.setData('text/plain', alias);
-      event.preventDefault();
-      document.removeEventListener('copy', handler, true);
-    }
+    const copyFrom = document.createElement('textarea');
+    copyFrom.textContent = alias;
 
-    document.addEventListener('copy', handler, true);
+    const body = document.getElementsByTagName('body')[0];
+    body.appendChild(copyFrom);
+    copyFrom.select();
     document.execCommand('copy');
+    body.removeChild(copyFrom);
   }
 }
 

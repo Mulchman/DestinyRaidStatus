@@ -2,7 +2,6 @@
   console.log("DRS extension (id: " + chrome.runtime.id + "): content script 'destinylfg' is loading.");
 
   const attributeDrs = "drs-name";
-  const attributeChatStyle = "display: inline-block; padding: 0 7px; position: relative; font-size: 13px; left: 4px;";
   const getTitle = (name) => ("Lookup '" + name + "' in DRS");
   const iconSrc = chrome.extension.getURL('icon16.png');
   const intervalMs = 3000;
@@ -28,10 +27,9 @@
     element.setAttribute(attributeDrs, name);
 
     if (isChat) {
-      element.className = sentinelChat;
-      element.setAttribute('style', attributeChatStyle);
+      element.className = sentinelChat + ' drs-chat';
     } else {
-      element.className = sentinelList + ' icon-link';
+      element.className = sentinelList + ' icon-link drs-list';
       element.href = "javascript:void(0)";
     }
 
@@ -72,6 +70,14 @@
     return element.classList.contains(sentinel);
   }
 
+  function adjustSendMessagePadding(element) {
+    const path = ".//*[contains(@class, 'chat-link')]";
+    const result = document.evaluate(path, element, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+    if (result.singleNodeValue) {
+      result.singleNodeValue.style.paddingRight = "0";
+    }
+  }
+
   function runLoopList() {
     let count = 0;
     const gamertags = getElementsByXPath(xpathList);
@@ -84,6 +90,7 @@
 
       const name = getNameFromListElement(gamertag);
       if (name) {
+        adjustSendMessagePadding(gamertag);
         const drsElement = createDrsElement(name, false);
         gamertag.appendChild(drsElement);
         gamertag.classList.add(sentinelList);

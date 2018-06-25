@@ -37,6 +37,9 @@
       ],
       "js": [
         "content-destinylfg.js"
+      ],
+      "css": [
+        "content-destinylfg.css"
       ]
     }
   ],

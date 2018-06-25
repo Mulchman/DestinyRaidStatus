@@ -1,0 +1,11 @@
+.drs-chat {
+  display: inline-block;
+  padding: 0 7px;
+  position: relative;
+  font-size: 13px;
+  left: 4px;
+}
+
+.drs-list {
+  margin: 6px 0 6px 7px;
+}
