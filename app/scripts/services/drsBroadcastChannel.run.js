@@ -19,13 +19,13 @@ function BroadcastChannelRun($rootScope, Constants, PlayerListService, PlayerLis
         return;
       }
 
-      if (lookup.game === Constants.games[0]) { // Destiny 1
+      if (lookup.game === Constants.games[0]) { /* Destiny 1 */
         if (UtilsService.isUndefinedOrNullOrEmpty(lookup.platform)) {
           return;
         }
 
         PlayerListService.addPlayer(lookup.lookup, lookup.platform);
-      } else if (lookup.game === Constants.games[1]) { // Destiny 2
+      } else if (lookup.game === Constants.games[1]) { /* Destiny 2 */
         PlayerListD2Service.addPlayer(lookup.lookup);
       } else {
         console.warn("Unknown parameter ('game') received from contenxt menu extension.");
