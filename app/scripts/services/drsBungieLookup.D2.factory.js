@@ -12,7 +12,7 @@ function BungieLookupD2Service($http, $q, $translate, Constants, QueueService) {
     // 4) Take all characters and find raid completions
     const data = {
       player: entry.player,
-      bootstrap: { type: -1, id: null, name: entry.original }, // starting point
+      bootstrap: { type: -1, id: null, name: entry.original }, /* starting point */
       memberships: null,
       stats: null
     };
@@ -158,7 +158,11 @@ function BungieLookupD2Service($http, $q, $translate, Constants, QueueService) {
         // console.log("[DRS] [getAllMemberships] response: %o", response);
         data.memberships = [];
         response.data.Response.destinyMemberships.forEach(function(m) {
-          const name = m.membershipType === 4 ? response.data.Response.bungieNetUser.blizzardDisplayName : m.displayName;
+
+          const name = m.membershipType === 4
+            ? (response.data.Response.bungieNetUser ? response.data.Response.bungieNetUser.blizzardDisplayName : data.player)
+            : m.displayName;
+
           data.memberships.push({
             type: m.membershipType,
             id: m.membershipId,
