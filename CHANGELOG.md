@@ -1,7 +1,12 @@
+# 2.1.2
+
+* More robust parsing for the The100.io scraper.
+
 # 2.1.1
 
 * Reduce CSS size.
 * Add the copy icon next to player names in the100.io groupings.
+* Fixed bug when a Blizzard account isn't linked to a Bungie account.
 
 # 2.1.0
 

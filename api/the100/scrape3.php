@@ -22,6 +22,14 @@ if (!ctype_digit($game)) {
 $url = 'https://www.the100.io/gaming_sessions/' . $game;
 $contents = file_get_contents($url);
 
+function cfDecodeEmail($encodedString) {
+  $k = hexdec(substr($encodedString, 0, 2));
+  for($i = 2, $email = ''; $i < strlen($encodedString) - 1; $i += 2) {
+    $email .= chr(hexdec(substr($encodedString, $i, 2)) ^ $k);
+  }
+  return $email;
+}
+
 $doc = new DOMDocument;
 $doc->preserveWhiteSpace = false;
 $doc->strictErrorChecking = false;
@@ -51,6 +59,14 @@ foreach ($gamertagEntries as $gamertagEntry) {
 
   $temp = $gamertagXPath->query("//a");
   $the100ioName = $temp->item(0)->nodeValue;
+
+  // Some Battle.net names on the100.io appear as if they're email addresses. They're
+  // also protected by Cloudfare. Try and decrypt them if so.
+  $temp = $gamertagXPath->query("//*[contains(@class, '__cf_email__')]");
+  if ($temp->length) {
+    $attr = $temp->item(0)->getAttribute("data-cfemail");
+    $the100ioName = str_replace("@", "#", cfDecodeEmail($attr)); 
+  }
   
   $player = array();
   $player['name'] = $the100ioName;
