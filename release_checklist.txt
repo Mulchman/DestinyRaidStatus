@@ -1,0 +1,15 @@
+www.destinyraidstatus.com release
+* bump package.json version #
+* create entry in CHANGELOG.md corresponding to new version #
+* change config/webpack.common.js to use the proper Bungie API key
+* build 'server-prod' configuration
+* upload
+* create zip backup
+* create git tag
+
+Chrome extension release
+* bump app/chrome-extension manifest.json version #
+* create entry in CHANGELOG.md corresponding to new version #
+* change app/chrome-extension/manifest.js to point to www.destinyraidstatus.com instead of 127.0.0.1
+* change app/chrome-extension/background.js to point to www.destinyraidstatus.com instead of 127.0.0.1
+* ??? bundle, sign, upload ???
