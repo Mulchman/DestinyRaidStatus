@@ -16,9 +16,7 @@ const ASSET_NAME_PATTERN = 'static/[name]-[hash:6].[ext]';
 module.exports = (env) => {
   const isDev = env === 'dev';
   const version = packageJson.version.toString();
-  // const apiKey = configJson.apiKey.toString();
-  // const apiKey = configJson.apiKeyServerWeb.toString();
-  const apiKey = configJson.apiKeyServerDev.toString();
+  const apiKey = isDev ? configJson.apiKeyServerDev.toString() : configJson.apiKeyServerWeb.toString();
 
   const config = {
     entry: {
