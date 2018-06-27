@@ -158,7 +158,6 @@ function BungieLookupD2Service($http, $q, $translate, Constants, QueueService) {
         // console.log("[DRS] [getAllMemberships] response: %o", response);
         data.memberships = [];
         response.data.Response.destinyMemberships.forEach(function(m) {
-
           const name = m.membershipType === 4
             ? (response.data.Response.bungieNetUser ? response.data.Response.bungieNetUser.blizzardDisplayName : data.player)
             : m.displayName;
