@@ -1,4 +1,4 @@
-function BroadcastChannelRun($rootScope, Constants, PlayerListService, PlayerListD2Service, UtilsService) {
+function BroadcastChannelRun($rootScope, Constants, InputPlayerService, InputPlayerD2Service, UtilsService) {
   'ngInject';
 
   let channel;
@@ -24,9 +24,9 @@ function BroadcastChannelRun($rootScope, Constants, PlayerListService, PlayerLis
           return;
         }
 
-        PlayerListService.addPlayer(lookup.lookup, lookup.platform);
+        InputPlayerService.add(lookup.lookup, lookup.platform);
       } else if (lookup.game === Constants.games[1]) { /* Destiny 2 */
-        PlayerListD2Service.addPlayer(lookup.lookup);
+        InputPlayerD2Service.add(lookup.lookup);
       } else {
         console.warn("Unknown parameter ('game') received from contenxt menu extension.");
       }

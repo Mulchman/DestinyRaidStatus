@@ -1,6 +1,6 @@
 import template from './drsInputPlayer.template.html';
 
-function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListService, SettingsService) {
+function InputPlayerCtrl($rootScope, Constants, InputPlayerService, SettingsService) {
   'ngInject';
 
   const vm = this;
@@ -10,17 +10,6 @@ function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListS
   vm.player = "";
   vm.run = run;
   vm.toggle = toggle;
-
-  function add() {
-    const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
-
-    PlayerListService.addPlayer(vm.player, platform)
-      .catch(function() {
-        // console.log("PSN Id or Gamertag input failure: %o", error);
-      });
-
-    vm.player = "";
-  }
 
   function getPlatformFromSettings() {
     // map XBox/PlayStation to true/false. Defaults to PlayStation.
@@ -37,24 +26,8 @@ function InputPlayerCtrl($rootScope, Constants, InputMatcherService, PlayerListS
     const player = vm.player;
     const platform = vm.platform ? Constants.platforms[1] : Constants.platforms[0];
 
-    const matcherFns = InputMatcherService.getMatcherFns();
-    for (let i = 0; i < matcherFns.length; i++) {
-      const matcher = matcherFns[i];
-
-      const userdata = {};
-      if (matcher.testFn(player, platform, userdata)) {
-        vm.player = "";
-
-        matcher.runFn(player, platform, userdata)
-          .catch(function() {
-            // console.log("PSN Id or Gamertag input failure with %o: %o", matcher.name, error);
-          });
-
-        return;
-      }
-    }
-
-    add();
+    InputPlayerService.add(player, platform);
+    vm.player = "";
   }
 
   function toggle(platform) {
