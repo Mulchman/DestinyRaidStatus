@@ -1,8 +1,7 @@
 www.destinyraidstatus.com release
 * bump package.json version #
 * create entry in CHANGELOG.md corresponding to new version #
-* change config/webpack.common.js to use the proper Bungie API key
-* build 'build-prod' configuration
+* build 'build-prod' configuration (will also set the correct Bungie API key)
 * upload
 * create zip backup
 * create git tag
