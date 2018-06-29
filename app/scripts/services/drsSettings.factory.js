@@ -10,7 +10,8 @@ function SettingsService($rootScope, $translate, $window, localStorageService) {
     language: defaultLanguage(),
     loaded: false,
     platform: "PSN", /* match Constants value */
-    save: save
+    save: save,
+    theme: 'light'
   };
 
   load();

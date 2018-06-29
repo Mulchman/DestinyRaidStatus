@@ -74,6 +74,23 @@ body {
   }
 }
 
+a {
+  color: #0000EE;
+  text-decoration: none;
+  background-color: transparent;
+
+  &:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+
+  &:focus,
+  &:hover {
+    color: #23527c;
+    text-decoration: underline;
+  }
+}
+
 .btn {
   background-color: white;
   background-position: -1px -1px;

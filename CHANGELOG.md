@@ -1,3 +1,7 @@
+# 2.1.3
+
+* Dark theme.
+
 # 2.1.2
 
 * More robust parsing for the the100.io scraper.

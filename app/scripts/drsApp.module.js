@@ -17,6 +17,7 @@ import { InputPlayerComponent } from './drsInputPlayer.component';
 import { InputPlayerD2Component } from './drsInputPlayer.D2.component';
 import { PlayerListComponent } from './drsPlayerList.component';
 import { PlayerListD2Component } from './drsPlayerList.D2.component';
+import { ThemePickerComponent } from './drsThemePicker.component';
 import MainController from './drsMain.controller';
 import SettingsController from './drsSettings.controller';
 import BungieLookupService from './services/drsBungieLookup.factory';
@@ -60,6 +61,7 @@ export const DrsAppModule = angular
   .component('drsInputPlayerD2', InputPlayerD2Component)
   .component('drsPlayerList', PlayerListComponent)
   .component('drsPlayerListD2', PlayerListD2Component)
+  .component('drsThemePicker', ThemePickerComponent)
   .controller('MainCtrl', MainController)
   .controller('SettingsCtrl', SettingsController)
   .factory('BungieLookupService', BungieLookupService)
