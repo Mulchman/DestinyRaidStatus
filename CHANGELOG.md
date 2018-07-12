@@ -1,6 +1,7 @@
 # 2.1.3
 
 * Dark theme.
+* Chrome extension: add DRS icon next to the100.io gaming sessions to be able to easily lookup the players in that session.
 
 # 2.1.2
 
