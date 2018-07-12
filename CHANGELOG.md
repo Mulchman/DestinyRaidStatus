@@ -2,6 +2,7 @@
 
 * Dark theme.
 * Chrome extension: add DRS icon next to the100.io gaming sessions to be able to easily lookup the players in that session.
+* Add 'Destiny Raid Report' (raid.report) link to each player.
 
 # 2.1.2
 
