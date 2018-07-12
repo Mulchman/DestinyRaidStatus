@@ -89,7 +89,8 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
           platform: platform,
           urls: {
             destinyStatus: buildDestinyStatusUrl(platform, m.name),
-            destinyTracker: buildDestinyTrackerUrl(platform, m.name)
+            destinyTracker: buildDestinyTrackerUrl(platform, m.name),
+            raidReport: buildRaidReportUrl(platform, m.name)
           }
         };
         entry.aliases.push(alias);
@@ -98,12 +99,12 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
   }
 
   function buildDestinyStatusUrl(platform, name) {
-    // http://destinystatus.com/pc/<player>
-    // http://destinystatus.com/psn/<player>
-    // http://destinystatus.com/xbl/<player>
+    // https://destinystatus.com/pc/<player>
+    // https://destinystatus.com/psn/<player>
+    // https://destinystatus.com/xbl/<player>
     const alt = $translate.instant('Links.DestinyStatus.Alt');
     const text = $translate.instant('Links.DestinyStatus.Text');
-    return "<a href='http://destinystatus.com/" +
+    return "<a href='https://destinystatus.com/" +
       platform.toLowerCase() + "/" + name.replace('#', '%23') +
       "' target='_blank' alt='" + alt + "'>" + text + "</a>";
   }
@@ -115,8 +116,19 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
     // https://destinytracker.com/d2/profile/xbl/<player>
     const alt = $translate.instant('Links.DestinyTracker.Alt');
     const text = $translate.instant('Links.DestinyTracker.Text');
-    return "<a href='http://destinytracker.com/d2/profile/" +
+    return "<a href='https://destinytracker.com/d2/profile/" +
       platform.toLowerCase() + "/" + name.replace(' ', '-').replace('#', '-') +
+      "' target='_blank' alt='" + alt + "'>" + text + "</a>";
+  }
+
+  function buildRaidReportUrl(platform, name) {
+    // http://raid.report/pc/<player>
+    // http://raid.report/ps/<player>
+    // http://raid.report/xb/<player>
+    const alt = $translate.instant('Links.RaidReport.Alt');
+    const text = $translate.instant('Links.RaidReport.Text');
+    return "<a href='https://raid.report/" +
+      platform.toLowerCase().substring(0, 2) + "/" + name.replace('#', '%23') +
       "' target='_blank' alt='" + alt + "'>" + text + "</a>";
   }
 

@@ -65,6 +65,10 @@
     "DestinyTracker": {
       "Alt": "View player on Destiny Tracker",
       "Text": "DTR"
+    },
+    "RaidReport": {
+      "Alt": "View player on Raid.Report",
+      "Text": "RR"
     }
   },
   "BungieService": {
