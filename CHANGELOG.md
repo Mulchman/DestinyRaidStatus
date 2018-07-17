@@ -1,3 +1,7 @@
+# 2.1.4
+
+* Fix tracking of Guided Games raids.
+
 # 2.1.3
 
 * Dark theme.

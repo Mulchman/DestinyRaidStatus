@@ -152,7 +152,7 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
     // caclulate Leviathan guided mode
     for (let i = 0; i < 6; i++) {
       const hash = Constants.raidsD2[i + offset];
-      entry.l.nm += (entry.stats[hash] || 0);
+      entry.l.g += (entry.stats[hash] || 0);
     }
     offset += 6;
 
@@ -175,7 +175,7 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
     // caclculate Eater of Worlds guided mode
     for (let i = 0; i < 1; i++) {
       const hash = Constants.raidsD2[i + offset];
-      entry.eow.nm += (entry.stats[hash] || 0);
+      entry.eow.g += (entry.stats[hash] || 0);
     }
     offset += 1;
 
@@ -198,7 +198,7 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
     // caclculate Spire of Stars guided mode
     for (let i = 0; i < 1; i++) {
       const hash = Constants.raidsD2[i + offset];
-      entry.sos.nm += (entry.stats[hash] || 0);
+      entry.sos.g += (entry.stats[hash] || 0);
     }
     offset += 1;
 
