@@ -122,9 +122,9 @@ function PlayerListD2Service($q, $translate, BungieLookupD2Service, Constants, S
   }
 
   function buildRaidReportUrl(platform, name) {
-    // http://raid.report/pc/<player>
-    // http://raid.report/ps/<player>
-    // http://raid.report/xb/<player>
+    // https://raid.report/pc/<player>
+    // https://raid.report/ps/<player>
+    // https://raid.report/xb/<player>
     const alt = $translate.instant('Links.RaidReport.Alt');
     const text = $translate.instant('Links.RaidReport.Text');
     return "<a href='https://raid.report/" +
